@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Calendar | Sangoma Bootstrap Admin Template</title>
+		<meta name="description" content="">
+		<meta name="author" content="Walking Pixels | www.walkingpixels.com">
+		<meta name="robots" content="index, follow">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- jQuery FullCalendar Styles -->
+		<link rel='stylesheet' type='text/css' href='css/plugins/fullcalendar/fullcalendar.css'>
+
+		<!-- Styles -->
+		<link rel="stylesheet" href="css/sangoma-red.css">
+
+		<!-- JS Libs -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="js/libs/jquery.js"><\/script>')</script>
+		<script src="js/libs/modernizr.js"></script>
+
+		<!-- IE8 support of media queries and CSS 2/3 selectors -->
+		<!--[if lt IE 9]>
+			<script src="js/libs/respond.min.js"></script>
+			<script src="js/libs/selectivizr.js"></script>
+		<![endif]-->
+
+		<script>
+			$(document).ready(function(){
+				
+				// Tooltips
+				$('[title]').tooltip();
+
+				// Tabs
+				$('.demoTabs a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+					$('.fullcalendar, .full-calendar-gcal').fullCalendar('render'); // Refresh jQuery FullCalendar for hidden tabs
+				})
+				
+			});
+		</script>
+
+	</head>
+	<body>
+		
+		<!-- Full height wrapper -->
+		<div id="wrapper">
+
+			<!-- Main page header -->
+			<header id="header" class="container">
+
+				<h1>
+					<!-- Main page logo -->
+					<a href="login.html">Sangoma</a>
+					
+					<!-- Main page headline -->
+					<span>A flat Bootstrap admin template</span>
+				</h1>
+				
+				<!-- User profile -->
+				<div class="user-profile">
+					<figure>
+
+						<!-- User profile avatar -->
+						<img alt="John Pixel avatar" src="http://placekitten.com/60/60">
+
+						<!-- User profile info -->
+						<figcaption>
+							<strong><a href="user-profile.html">John Pixel</a></strong>
+							<ul>
+								<li><a href="#" title="Message inbox">inbox</a></li>
+								<li><a href="#" title="Account settings">settings</a></li>
+								<li><a href="login.html" title="Logout">logout</a></li>
+							</ul>
+						</figcaption>
+						<!-- /User profile info -->
+
+					</figure>
+				</div>
+				<!-- /User profile -->
+
+				<!-- Main navigation -->
+				<nav class="main-navigation navbar navbar-default" role="navigation">
+
+					<!-- Collapse navigation for mobile -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-navigation-collapse">
+							<span class="elusive icon-calendar"></span> Calendar
+						</button>
+					</div>
+					<!-- /Collapse navigation for mobile -->
+
+					<!-- Navigation -->
+					<div class="main-navigation-collapse collapse navbar-collapse">
+
+						<!-- Navigation items -->
+						<ul class="nav navbar-nav">
+
+							<li>
+								<a href="index.html"><span class="elusive icon-home"></span> Dashboard</a>
+							</li>
+
+							<!-- Dropdown navigation items -->
+							<li class="dropdown active">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="elusive icon-asl"></span> Components <b class="caret"></b></a>
+								<span class="badge">23</span>
+								<ul class="dropdown-menu">
+									<li><a href="tables.html"><span class="elusive icon-th-list"></span> Tables</a></li>
+									<li><a href="forms.html"><span class="elusive icon-align-left"></span> Forms</a></li>
+									<li class="active"><a href="calendar.html"><span class="elusive icon-calendar"></span> Calendar</a></li>
+									<li><a href="charts.html"><span class="elusive icon-graph"></span> Charts</a></li>
+									<li><a href="gallery.html"><span class="elusive icon-picture"></span> Gallery</a></li>
+									<li><a href="file-explorer.html"><span class="elusive icon-inbox"></span> File explorer</a></li>
+									<li class="divider"></li>
+									<li><a href="ui-buttons.html"><span class="elusive icon-cogs"></span> UI &amp; Buttons</a></li>
+									<li><a href="typo.html"><span class="elusive icon-font"></span> Typography</a><span class="badge">7</span></li>
+									<li><a href="grid.html"><span class="elusive icon-th"></span> Grid</a></li>
+									<li><a href="goodies.html"><span class="elusive icon-heart"></span> Goodies</a></li>
+								</ul>
+							</li>
+							<!-- /Dropdown navigation items -->
+
+							<!-- Dropdown navigation with multi-level dropdown -->
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="elusive icon-file"></span> Extra <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="eshop.html"><span class="elusive icon-file"></span> Online store</a></li>
+									<li><a href="add-item.html"><span class="elusive icon-file"></span> Add item / product</a></li>
+									<li><a href="invoice.html"><span class="elusive icon-file"></span> Invoice</a></li>
+									<li><a href="user-profile.html"><span class="elusive icon-file"></span> User profile</a></li>
+									<li class="divider"></li>
+
+									<!-- 2nd level dropdown -->
+									<li class="dropdown-submenu">
+										<a href="#">Login Pages</a>
+										<ul class="dropdown-menu">
+											<li role="presentation" class="dropdown-header">Login Pages</li>
+											<li><a href="login.html"><span class="elusive icon-file"></span> Login page</a></li>
+											<li><a href="lost-password.html"><span class="elusive icon-file"></span> Lost password</a></li>
+										</ul>
+									</li>
+									<!-- /2nd level dropdown -->
+
+									<li class="dropdown-submenu">
+										<a href="#">Error Pages</a>
+										<ul class="dropdown-menu">
+											<li role="presentation" class="dropdown-header">Error Pages</li>
+											<li><a href="401.html"><span class="elusive icon-file"></span> Error 401</a></li>
+											<li><a href="403.html"><span class="elusive icon-file"></span> Error 403</a></li>
+											<li><a href="404.html"><span class="elusive icon-file"></span> Error 404</a></li>
+											<li><a href="500.html"><span class="elusive icon-file"></span> Error 500</a></li>
+											<li><a href="503.html"><span class="elusive icon-file"></span> Error 503</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<!-- /Dropdown navigation with multi-level dropdown -->
+
+							<li>
+								<a href="docs/index.html"><span class="elusive icon-info-sign"></span> Docs</a>
+							</li>
+						</ul>
+						<!-- /Navigation items -->
+
+						<!-- Navigation form -->
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Type here to search&hellip;">
+							</div>
+							<button type="submit" class="btn btn-default"><span class="elusive icon-search"></span></button>
+						</form>
+						<!-- /Navigation form -->
+
+					</div>
+					<!-- /Navigation -->
+
+				</nav>
+				<!-- /Main navigation -->
+
+			</header>
+			<!-- /Main page header -->
+
+			<!-- Main page container -->
+			<section class="container" role="main">
+
+				<!-- Grid row -->
+				<div class="row">
+					
+					<!-- Data block -->
+					<article class="col-sm-12">
+						<div class="gray data-block">
+							<header>
+								<h2><span class="elusive icon-calendar"></span> Calendar</h2>
+
+								<!-- Tab navigation -->
+								<ul class="data-header-actions">
+									<li class="demoTabs active"><a href="#calendar">Basic</a></li>
+									<li class="demoTabs"><a href="#google">Google Calendar</a></li>
+								</ul>
+								<!-- /Tab navigation -->
+
+							</header>
+
+							<!-- Tab content -->
+							<section class="tab-content">
+
+								<!-- Tab #calendar -->
+								<div class="tab-pane active" id="calendar">
+
+								<!-- FullCalendar demo -->
+									<div class='full-calendar full-calendar-demo'></div>
+
+								</div>
+								<!-- /Tab #calendar -->
+
+								<!-- Tab #google -->
+ 								<div class="tab-pane" id="google">
+ 								 	
+ 									<!-- FullCalendar demo with Google calendar -->
+ 									<div class='full-calendar full-calendar-gcal'></div>
+
+ 								</div>
+ 								<!-- /Tab #google -->
+
+							</section>
+							<!-- /Tab content -->
+
+							<footer>
+								<p>Morbi vitae luctus dolor. Aliquam ut enim a mi scelerisque porttitor ac at tortor.</p>
+							</footer>
+						</div>
+					</article>
+					<!-- /Data block -->
+					
+				</div>
+				<!-- /Grid row -->
+
+			</section>
+			<!-- /Main page container -->
+			
+		</div>
+		<!-- /Full height wrapper -->
+
+		<!-- Main page footer -->
+		<footer id="footer">
+			<div class="container">
+
+				<!-- Footer info -->
+				<p>Built with love on <a href="http://getbootstrap.com/">Twitter Bootstrap</a> by <a href="http://www.walkingpixels.com">Walking Pixels</a></p>
+
+				<!-- Footer nav -->
+				<ul>
+					<li><a href="http://support.walkingpixels.com/">Support</a></li>
+					<li><a href="http://getbootstrap.com/getting-started/">Documentation</a></li>
+					<li><a href="http://parallaq.com/">API</a></li>
+				</ul>
+				<!-- /Footer nav -->
+
+				<!-- Footer back to top -->
+				<a href="#top" class="btn btn-back-to-top" title="Back to top"><span class="elusive icon-arrow-up"></span></a>
+
+			</div>
+		</footer>
+		<!-- /Main page footer -->
+
+		<!-- Bootstrap scripts -->
+		<script src="js/bootstrap/bootstrap.min.js"></script>
+
+		<!-- jQuery FullCalendar -->
+		<script src="js/plugins/fullcalendar/fullcalendar.min.js"></script>
+		
+		<!-- Google Calendar plugin for jQuery FullCalendar -->
+		<script src="js/plugins/fullcalendar/gcal.js"></script>
+		
+		<script>
+			$(document).ready(function() {
+			
+				var date = new Date();
+				var d = date.getDate();
+				var m = date.getMonth();
+				var y = date.getFullYear();
+				
+				$('.full-calendar-demo').fullCalendar({
+					header: {
+						left: 'today month,basicWeek',
+						center: 'title',
+						right: 'prev,next'
+					},
+					buttonText: {
+						prev: '<span class="elusive icon-chevron-left"></span>',
+						next: '<span class="elusive icon-chevron-right"></span>'
+					},
+					editable: true,
+					events: [
+						{
+							title: 'All Day Event',
+							start: new Date(y, m, 1)
+						},
+						{
+							title: 'Long Event',
+							start: new Date(y, m, d-5),
+							end: new Date(y, m, d-2),
+							className: 'event-red'
+						},
+						{
+							id: 999,
+							title: 'Repeating Event',
+							start: new Date(y, m, d-3, 16, 0),
+							allDay: false,
+							className: 'event-blue'
+						},
+						{
+							id: 999,
+							title: 'Repeating Event',
+							start: new Date(y, m, d+4, 16, 0),
+							allDay: false,
+							className: 'event-green'
+						},
+						{
+							title: 'Meeting',
+							start: new Date(y, m, d, 10, 30),
+							allDay: false,
+							className: 'event-orange'
+						},
+						{
+							title: 'Lunch',
+							start: new Date(y, m, d, 12, 0),
+							end: new Date(y, m, d, 14, 0),
+							allDay: false,
+							className: 'event-purple'
+						},
+						{
+							title: 'Birthday Party',
+							start: new Date(y, m, d+1, 19, 0),
+							end: new Date(y, m, d+1, 22, 30),
+							allDay: false,
+							className: 'event-turquoise'
+						},
+						{
+							title: 'Walking Pixels website',
+							start: new Date(y, m, 28),
+							end: new Date(y, m, 29),
+							url: 'http://www.walkingpixels.com/',
+							className: 'event-dark'
+						}
+					]
+				});
+				
+				$('.full-calendar-gcal').fullCalendar({
+					header: {
+						left: 'today month,basicWeek',
+						center: 'title',
+						right: 'prev,next'
+					},
+					buttonText: {
+						prev: '<span class="elusive icon-arrow-left"></span>',
+						next: '<span class="elusive icon-arrow-right"></span>'
+					},
+					events: {
+						url: 'http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic',
+						className: 'gcal-event', // an option!
+						currentTimezone: 'America/Chicago' // an option!
+					}
+				});
+				
+			});
+		</script>
+
+	</body>
+</html>
