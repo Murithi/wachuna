@@ -45,8 +45,13 @@ class SokoProperty(TimeStampedModel):
         Two = ChoiceItem(2, '2')
         TwoAndHalf = ChoiceItem(2.5, '2 and 1/2')
 
+    class StateOptions(DjangoChoices):
+        New = ChoiceItem('new', 'New')
+        Active = ChoiceItem('active', 'Active')
+        Deleted = ChoiceItem('deleted', 'Deleted')
+
     name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=100)
+    slug = models.SlugField(max_length=100, blank=True)
     price = models.DecimalField(max_digits=12, decimal_places=2)
     description = models.TextField(_('Description'), blank=True, null=True)
     bedroom = models.IntegerField(max_length=5, null=True, blank=True, choices=BedroomOptions.choices)
@@ -57,6 +62,7 @@ class SokoProperty(TimeStampedModel):
                                    help_text='Size of the lot in acres')
     city = models.ForeignKey(City, null=False, blank=False)
     neighbourhood = models.ForeignKey(Neighbourhood, null=False, blank=False)
+    #state = models.CharField(max_length=10, choices=StateOptions.choices, default=StateOptions.New)
 
 
 @with_author
