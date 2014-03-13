@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'homesoko.apps.properties',
     'homesoko.apps.users',
     'homesoko.apps.dashboard.properties',
@@ -131,6 +132,9 @@ INSTALLED_APPS = (
     'author',
     # django-bootstrap3
     'bootstrap3',
+    'south',
+    'userena',
+    'guardian',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -177,3 +181,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+SITE_ID = 1

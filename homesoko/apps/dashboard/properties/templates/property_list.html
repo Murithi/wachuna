@@ -8,7 +8,7 @@
     <div class="row">
         <!-- Data block -->
 		<article class="col-sm-12">
-            <div class="red data-block">
+            <div class="orange data-block">
                 <header>
                     <h2>Properties</h2>
                 </header>
@@ -24,17 +24,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        
                             {% for property in object_list %}
-                            <td>{{ property.name }}</td>
-
+                            <tr>
+                            <td>{{ property.name }} - {{ property.category }}</td>
+                            <td>{{ property.price }}</td>
+							<td>{{ property.city }}</td>                            
+                            <td>{{ property.neighbourhood }}</td>
+                            <td></td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-default"><span class="elusive icon-tag"></span></button><button class="btn btn-default"><span class="elusive icon-print"></span></button><button class="btn btn-default"><span class="elusive icon-refresh"></span></button>
+                                    <button class="btn btn-default"><span class="elusive icon-tag"></span></button>
+                                    <button class="btn btn-default"><span class="elusive icon-print"></span></button>
+                                    <button class="btn btn-default"><span class="elusive icon-refresh"></span></button>
                                 </div>
                             </td>
+                            
+                            </tr>
                             {% endfor %}
-                        </tr>
+                        
                     </table>
                 </section>
             </div>

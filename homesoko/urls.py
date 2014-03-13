@@ -8,5 +8,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # Users
     #url(r'^properties/', include('homesoko.apps.properties.urls')),
-    url(r'^dashboard/properties/', include('homesoko.apps.dashboard.properties.urls'))
+    url(r'^dashboard/properties/', include('homesoko.apps.dashboard.properties.urls')),
+    url(r'^accounts/', include('userena.urls')),
 )
