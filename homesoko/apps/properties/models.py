@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
 from djchoices import DjangoChoices, ChoiceItem
 from author.decorators import with_author
+from django.template.defaultfilters import default
+
 
 @with_author
 class City(TimeStampedModel):
@@ -78,21 +80,15 @@ class PropertyImage(TimeStampedModel):
     """
     An image of a property
     """
+    file = models.ImageField(
+        _("Original"), upload_to="images", max_length=255)
     soko_property = models.ForeignKey(
         SokoProperty, related_name='images', verbose_name=_("Soko Property"))
-    original = models.ImageField(
-        _("Original"), upload_to=settings.IMAGE_FOLDER, max_length=255)
     caption = models.CharField(
         _("Caption"), max_length=200, blank=True, null=True)
 
-    #: Use display_order to determine which is the "primary" image
-    display_order = models.PositiveIntegerField(_("Display Order"), default=0,
-        help_text=_("""An image with a display order of
-                       zero will be the primary image for a product"""))
-
     class Meta:
-        unique_together = ("soko_property", "display_order")
-        ordering = ["display_order"]
+        unique_together = ('soko_property', 'file')
         verbose_name = _('Property Image')
         verbose_name_plural = _('Property Images')
 
@@ -103,7 +99,7 @@ class PropertyImage(TimeStampedModel):
         """
         Return bool if image display order is 0
         """
-        return self.display_order == 0
+        #return self.display_order == 0
 
     def resized_image_url(self, width=None, height=None, **kwargs):
         return self.original.url
@@ -120,4 +116,3 @@ class PropertyImage(TimeStampedModel):
     @property
     def thumbnail_url(self):
         return self.resized_image_url()
-

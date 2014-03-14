@@ -4,11 +4,20 @@
 <!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<title>{% block content_title %}{% endblock %}</title>
+		<title>Homesoko User Profile</title>
 		<meta name="description" content="">
 		<meta name="author" content="Homesoko Team">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% load staticfiles %}
+        {% load bootstrap3 %}
 
+        {# Load CSS and JavaScript #}
+
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+        {# Display django.contrib.messages as Bootstrap alerts #}
+        {% bootstrap_messages %}
 		<!-- PrettyCheckable Styles -->
 		<link rel='stylesheet' type='text/css' href='{{ STATIC_URL }}css/plugins/prettycheckable/prettyCheckable.css'>
 
@@ -25,16 +34,7 @@
 			<script src="{{ STATIC_URL }}js/libs/respond.min.js"></script>
 			<script src="{{ STATIC_URL }}js/libs/selectivizr.js"></script>
 		<![endif]-->
-        {% load staticfiles %}
-        {% load bootstrap3 %}
-
-        {# Load CSS and JavaScript #}
-
-        {% bootstrap_javascript %}
-
-        {# Display django.contrib.messages as Bootstrap alerts #}
-        {% bootstrap_messages %}
-		
+		{% block fileuploadassets %}{% endblock %}		
 	</head>
 	<body>
 		
@@ -76,57 +76,52 @@
 				<!-- /User profile -->
 
 
-				<!-- Main navigation -->
-				<nav class="main-navigation navbar navbar-default" role="navigation">
-
-					<!-- Collapse navigation for mobile -->
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-navigation-collapse">
-							<span class="elusive icon-home"></span>  Dashboard
-						</button>
-					</div>
-					<!-- /Collapse navigation for mobile -->
-
-					<!-- Navigation -->
-					<div class="main-navigation-collapse collapse navbar-collapse">
-
-						<!-- Navigation items -->
-						<ul class="nav navbar-nav">
-
-							<!-- Dashboard -->
-							<li class="active">
-								<a href="/dashboard/">Dashboard</a>
-							</li>
-							<!-- /Active navigation items -->
-
-							<!-- Properties -->
-							<li class="dropdown">
-								<a href="/dashboard/properties/" class="dropdown-toggle" data-toggle="dropdown">My Properties</b></a>
-							</li>
-							<!-- /Dropdown navigation items -->
-							<!-- My Account -->
-							<li class="dropdown">
-								<a href="/dashboard/account/" class="dropdown-toggle" data-toggle="dropdown">My Account</b></a>
-							</li>
-							<!-- /Dropdown navigation items -->
-							<li>
-								<a href="docs/index.html">Docs</a>
-							</li>
-						</ul>
-						<!-- /Navigation items -->
-
-
-					</div>
-					<!-- /Navigation -->
-
-				</nav>
-				<!-- /Main navigation -->
-
 			</header>
 			<!-- /Main page header -->
 			
 			<!-- Main page container -->
 			<section class="container" role="main">
+			<!-- Grid row -->
+				<div class="row">
+			
+					<!-- Widget block -->
+					<div class="col-sm-3 col-xs-6">
+						<a class="data-block widget-block" href="{% url "properties.properties_create" %}">
+							<span class="widget-icon elusive icon-file-new-alt"></span>
+							<strong>Add property</strong>
+						</a>
+					</div>
+					<!-- /Widget block -->
+					
+							<!-- Widget block -->
+					<div class="col-sm-3 col-xs-6">
+						<a class="data-block widget-block" href="{% url "properties.properties_list" %}">
+							<span class="widget-icon elusive icon-list"></span>
+							<strong>My Properties</strong>
+						</a>
+					</div>
+					<!-- /Widget block -->
+			
+					<!-- Widget block -->
+					<div class="col-sm-3 col-xs-6">
+						<a class="data-block widget-block" href="#">
+							<span class="widget-icon elusive icon-cogs"></span>
+							<strong>My Account</strong>
+						</a>
+					</div>
+					<!-- /Widget block -->
+			
+					<!-- Widget block -->
+					<div class="col-sm-3 col-xs-6">
+						<a class="data-block widget-block" href="#">
+							<span class="widget-icon elusive icon-lock-alt"></span>
+							<strong>Logout</strong>
+						</a>
+					</div>
+					<!-- /Widget block -->
+			
+				</div>
+				<!-- /Grid row -->
 				{% block content %}
 
 				{% endblock %}

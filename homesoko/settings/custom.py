@@ -12,7 +12,6 @@ PROJECT_DIR = os.path.dirname(os.path.realpath(project_module.__file__))
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
-IMAGE_FOLDER = os.path.join(PROJECT_DIR, 'media/images')
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATICFILES_DIRS = (
@@ -26,14 +25,13 @@ TEMPLATE_DIRS = (
 # django-userena settings
 ###########################################
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
-
 ANONYMOUS_USER_ID = -1
-
 AUTH_PROFILE_MODULE = 'users.Profile'
-
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'

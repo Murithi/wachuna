@@ -6,21 +6,103 @@
 {% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
 
 {% block content %}
-  <div class="white-box">
-    {% block profile_navigation %}
-      {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
-      {% if user.username == profile.user.username %}
-        <ul id="box-nav">
-          {% block profile_navigation_items %}
-            <li><a href="{% url 'userena_profile_detail' user.username %}">{% trans "View profile" %}</a></li>
-            <li><a href="{% url 'userena_profile_edit' user.username %}">{% trans "Edit details" %}</a></li>
-            <li><a href="{% url 'userena_password_change' user.username %}">{% trans "Change password" %}</a></li>
-            <li><a href="{% url 'userena_email_change' user.username %}">{% trans "Change email" %}</a></li>
-          {% endblock %}
-        </ul>
-      {% endif %}
-    {% endblock %}
+  <!-- Grid row -->
+<div class="row">
+	
+	<!-- Data block -->
+	<!-- Data block -->
+	<article class="col-sm-12">
+		<div class="data-block">
+			<header>
+				<h2>User profile settings</h2>
+			</header>
+			<section>
+				<div class="row">
+					<div class="col-sm-6">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Username</label>
+								<div class="col-sm-5">
+									<p class="form-control-static">{{ profile.user.username }}</p>
+								</div>
+							</div>							
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Firstname</label>
+								<div class="col-sm-5">
+									<input class="form-control" type="text" placeholder="John Pixel" value="{{ profile.user.first_name }}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Lastname</label>
+								<div class="col-sm-5">
+									<input class="form-control" type="text" placeholder="John Pixel" value="{{ profile.user.last_name }}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Company</label>
+								<div class="col-sm-5">
+									<input class="form-control" type="text" placeholder="John Pixel" value="{{ profile.user.company }}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">E-mail</label>
+								<div class="col-sm-5">
+									<input class="form-control" type="text" placeholder="example@domain.com" value="{{ profile.user.email }}">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="select" class="col-sm-3 control-label">Language</label>
+								<div class="col-sm-4">
+									<select id="select" class="form-control">
+										<option>English</option>
+										<option>French</option>
+										<option>German</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-10">
+									<button class="btn btn-lg btn-primary" type="submit">Save changes</button>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="col-sm-6">
+						<h4>Change password</h4>
+						<p>Suspendisse sed turpis sem. Morbi tempus sapien accumsan metus ultricies tristique. Vestibulum lacus orci, consequat dignissim ullamcorper vel, viverra eleifend enim. Nullam et turpis urna, eu gravida ligula.</p>
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-sm-3 control-label">New Password</label>
+								<div class="col-sm-5">
+									<input class="form-control" type="password">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Confirm Password</label>
+								<div class="col-sm-5">
+									<input class="form-control" type="password">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-3 col-sm-10">
+									<button class="btn btn-lg btn-primary" type="submit">Change password</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</section>
+			<footer>
+				<p>Etiam sit amet dolor purus. Praesent eu lectus elit, dignissim iaculis libero. In hac habitasse platea dictumst.</p>
+			</footer>
+		</div>
+	</article>
+	<!-- /Data block -->
 
+</div>
+<!-- /Grid row -->
+  
+  <div class="white-box">
     <div id="details">
       {% block profile_details %}
         <img class="mugshot" src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
