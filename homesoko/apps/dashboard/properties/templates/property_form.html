@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_dashboard.html" %}
 {% load bootstrap3 %}
 {% block content %}
 {{ form.media }}
@@ -13,108 +13,9 @@
 			<section>
                 <div class="row">
                     <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
-                        {{ form.errors }}
-                    {% csrf_token %}
-                        <div class="col-lg-4">
-                            <h3>Main Details</h3>
-                            <p>
-                            Write a name and description, and provide a type and vendor to categorize this product.
-                            </p>
-                        </div>
-                        <div class="col-lg-8">
-                            <h3>Main Details</h3>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Name</label>
-                                <div class="col-sm-5">
-                                    {{ form.name }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Price</label>
-                                <div class="col-sm-5">
-                                    {{ form.price }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Property Type</label>
-                                <div class="col-sm-5">
-                                    {{ form.type }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Property Category</label>
-                                <div class="col-sm-5">
-                                    {{ form.category }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Description</label>
-                                <div class="col-sm-10">
-                                    {{ form.description }}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of main features -->
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <h3>Other details Details</h3>
-                                <p>
-                                Write a name and description, and provide a type and vendor to categorize this product.
-                                </p>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Lot size</label>
-                                    <div class="col-sm-5">
-                                        {{ form.lot_size }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Structure size</label>
-                                    <div class="col-sm-5">
-                                        {{ form.structure_size }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">City</label>
-                                    <div class="col-sm-5">
-                                        {{ form.city }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">Neighbourhood</label>
-                                    <div class="col-sm-5">
-                                        {{ form.neighbourhood }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <h3>Add Features</h3>
-                                <p>
-                                    Here add all the features of your property
-                                </p>
-                            </div>
-                            <div class="col-lg-8">
-                                <div class="form-group" >
-                                    <label class="col-sm-2 control-label">Feature</label>
-                                    <div class="col-sm-6">
-                                  	  	{{ form.features }}
-
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                                 	 <div class="form-group">
-                                        <div class="col-sm-offset-6 col-sm-8">
-                                            <button class="btn btn-danger btn-lg" type="submit">Save Property</button>
-                                        </div>
-                                    </div>
-                                
-                            </div>
+             			{% csrf_token %}
+				        {% bootstrap_form form layout="horizontal" %}
+				        {% buttons submit='Save' reset='Cancel' layout='horizontal' %}{% endbuttons %}
                     </form>
                 </div>
                 <!-- /Row -->

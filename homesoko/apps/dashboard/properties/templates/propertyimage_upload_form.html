@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_dashboard.html" %}
 {% load upload_tags %}
 {% block fileuploadassets %}
 	<!-- Generic page styles -->
@@ -84,8 +84,6 @@
 </div>
 {% upload_js %}
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <script src="{{ STATIC_URL }}upload/js/vendor/jquery.ui.widget.js"></script>
 <!-- The Templates plugin is included to render the upload/download listings -->
 <script src="{{ STATIC_URL }}upload/js/tmpl.min.js"></script>

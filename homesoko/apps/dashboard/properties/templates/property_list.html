@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "base_dashboard.html" %}
 {% load bootstrap3 %}
 {% block content %}    
     <div class="row">
         <!-- Data block -->
 		<article class="col-sm-12">
-            <div class="orange data-block">
+            <div class="blue data-block">
                 <header>
                     <h2>Properties</h2>
                 </header>
@@ -30,7 +30,7 @@
                             <td class="toolbar">
                                 <div class="btn-group">
                                 	<a class="btn btn-default" href="/dashboard/properties/edit/{{ property.id }}"><span class="elusive icon-pencil"></span></a>                                    
-                                    <a class="btn btn-default" href="/dashboard/properties/upload-images/{{ property.id }}"><span class="elusive icon-instagram"></span></a>                                    
+                                    <a class="btn btn-default" href="/dashboard/properties/images/{{ property.id }}"><span class="elusive icon-instagram"></span></a>                                    
                                     <button class="btn btn-default"><span class="elusive icon-eye-open"></span></button>
                                     <button class="btn btn-default"><span class="elusive icon-trash"></span></button>
                                 </div>

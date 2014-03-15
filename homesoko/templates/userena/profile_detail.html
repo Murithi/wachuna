@@ -6,10 +6,6 @@
 {% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
 
 {% block content %}
-  <!-- Grid row -->
-<div class="row">
-	
-	<!-- Data block -->
 	<!-- Data block -->
 	<article class="col-sm-12">
 		<div class="data-block">
@@ -17,80 +13,32 @@
 				<h2>User profile settings</h2>
 			</header>
 			<section>
-				<div class="row">
-					<div class="col-sm-6">
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Username</label>
-								<div class="col-sm-5">
-									<p class="form-control-static">{{ profile.user.username }}</p>
-								</div>
-							</div>							
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Firstname</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text" placeholder="John Pixel" value="{{ profile.user.first_name }}">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Lastname</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text" placeholder="John Pixel" value="{{ profile.user.last_name }}">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Company</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text" placeholder="John Pixel" value="{{ profile.user.company }}">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">E-mail</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="text" placeholder="example@domain.com" value="{{ profile.user.email }}">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="select" class="col-sm-3 control-label">Language</label>
-								<div class="col-sm-4">
-									<select id="select" class="form-control">
-										<option>English</option>
-										<option>French</option>
-										<option>German</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-10">
-									<button class="btn btn-lg btn-primary" type="submit">Save changes</button>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="col-sm-6">
-						<h4>Change password</h4>
-						<p>Suspendisse sed turpis sem. Morbi tempus sapien accumsan metus ultricies tristique. Vestibulum lacus orci, consequat dignissim ullamcorper vel, viverra eleifend enim. Nullam et turpis urna, eu gravida ligula.</p>
-						<form class="form-horizontal" role="form">
-							<div class="form-group">
-								<label class="col-sm-3 control-label">New Password</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="password">
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Confirm Password</label>
-								<div class="col-sm-5">
-									<input class="form-control" type="password">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-3 col-sm-10">
-									<button class="btn btn-lg btn-primary" type="submit">Change password</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
+				<div class="data-block plan-block">
+					<div id="details">
+			      {% block profile_details %}
+			        <dl>
+			          {% block profile_definition_list %}
+			            {% if profile.user.get_full_name %}
+			              <dt>{% trans "Name" %}</dt>
+			              <dd>{{ profile.user.get_full_name }}</dd>
+			            {% endif %}
+			            {% if profile.user.email and not hide_email %}
+			              <dt>{% trans "Email" %}</dt>
+			              <dd>{{ profile.user.email }}</dd>
+			            {% endif %}
+			            {% if profile.company %}
+			              <dt>{% trans "Company" %}</dt>
+			              <dd>{{ profile.company }}</dd>
+			            {% endif %}			        
+			          {% endblock %}
+			        </dl>
+			      {% endblock %}
+			    </div>
+			  </div>
+			  <div class="row">
+			  	<a href="{% url "userena_profile_edit" username=user.username %}" class="btn btn-success btn-block btn-lg">Change Profile</a>
+			  	<a href="{% url "userena_password_change" username=user.username %}" class="btn btn-warning btn-block btn-lg">Change Password</a>
+			  </div>
 			</section>
 			<footer>
 				<p>Etiam sit amet dolor purus. Praesent eu lectus elit, dignissim iaculis libero. In hac habitasse platea dictumst.</p>
@@ -98,43 +46,4 @@
 		</div>
 	</article>
 	<!-- /Data block -->
-
-</div>
-<!-- /Grid row -->
-  
-  <div class="white-box">
-    <div id="details">
-      {% block profile_details %}
-        <img class="mugshot" src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
-        <dl>
-          {% block profile_definition_list %}
-            {% if profile.user.get_full_name %}
-              <dt>{% trans "Name" %}</dt>
-              <dd>{{ profile.user.get_full_name }}</dd>
-            {% endif %}
-            {% if profile.user.email and not hide_email %}
-              <dt>{% trans "Email" %}</dt>
-              <dd>{{ profile.user.email }}</dd>
-            {% endif %}
-            {% if profile.age %}
-              <dt>{% trans "Age" %}</dt>
-              <dd>{{ profile.age }}</dd>
-            {% endif %}
-            {% if profile.website %}
-              <dt>{% trans "Website" %}</dt>
-              <dd>{{ profile.website|urlize }}</dd>
-            {% endif %}
-            {% if profile.location %}
-              <dt>{% trans "Location" %}</dt>
-              <dd>{{ profile.location }}</dd>
-            {% endif %}
-            {% if profile.about_me %}
-              <dt>{% trans "About me" %}</dt>
-              <dd>{{ profile.about_me }}</dd>
-            {% endif %}
-          {% endblock %}
-        </dl>
-      {% endblock %}
-    </div>
-  </div>
 {% endblock %}

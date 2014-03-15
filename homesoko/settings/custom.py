@@ -32,6 +32,8 @@ AUTHENTICATION_BACKENDS = (
 )
 ANONYMOUS_USER_ID = -1
 AUTH_PROFILE_MODULE = 'users.Profile'
+USERENA_MUGSHOT_GRAVATAR = False
+USERENA_SIGNIN_REDIRECT_URL = '/dashboard/properties'
 LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
 LOGIN_URL = '/accounts/signin/'
 LOGOUT_URL = '/accounts/signout/'

@@ -13,7 +13,7 @@ class PropertyCreateView(LoginRequiredMixin, CreateView):
     form_class = SokoPropertyForm
     model = SokoProperty
     template_name = 'property_form.html'
-    success_url = reverse_lazy('properties.properties_list')
+    success_url = reverse_lazy('dashboard_properties_list')
 
     def form_valid(self, form):
         soko_property = form.save()
@@ -54,7 +54,7 @@ class PropertyListView(LoginRequiredMixin, ListView):
 class EditPropertyView(UpdateView):
     model = SokoProperty
     template_name = 'property_form.html'
-    success_url = reverse_lazy('properties.properties_list')
+    success_url = reverse_lazy('dashboard_properties_list')
     form_class = SokoPropertyForm
 
     def form_valid(self, form):

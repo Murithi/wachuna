@@ -5439,10 +5439,10 @@ a:focus {
   background-color: transparent;
   border: 0;
   display: block;
-  width: 220px;
+  width: 256px;
   height: 60px;
   background-repeat: no-repeat;
-  background-image: url("../img/template_logo.png");
+  background-image: url("../img/logo.png");
 }
 #header > h1 span {
   margin: -20px 0 0 71px;

@@ -1,32 +1,60 @@
-{% extends 'userena/base_userena.html' %}
+{% extends 'base_sangoma.html' %}
 {% load i18n %}
 {% load url from future %}
 
 {% block title %}{% trans "Signin" %}{% endblock %}
 
 {% block content %}
-<form action="" method="post">
-  {% csrf_token %}
-  <fieldset>
-    <legend>{% trans "Signin" %}</legend>
-    {{ form.non_field_errors }}
-    {% for field in form %}
-    {{ field.errors }}
-    {% comment %} Displaying checkboxes differently {% endcomment %}
-    {% if field.name == 'remember_me' %}
-    <p class="checkbox">
-    <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-    </p>
-    {% else %}
-    <p>
-    {{ field.label_tag }}
-    {{ field }}
-    </p>
-    {% endif %}
-    {% endfor %}
-  </fieldset>
-  <input type="submit" value="{% trans "Signin" %}" />
-  <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
-  {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
-</form>
+<body class="login">
+<!-- Main page container -->
+		<section class="container" role="main">
+
+			<!-- Login header -->
+			<div class="login-logo">
+				<h1>Welcome to Homesoko</h1>
+			</div>
+			<!-- /Login header -->
+
+			<!-- Login form -->
+			<form action="" method="post">
+			  {% csrf_token %}
+			  <fieldset>
+			    <legend>{% trans "Signin" %}</legend>
+			    {{ form.non_field_errors }}
+			    {% for field in form %}
+			    {{ field.errors }}
+			    {% comment %} Displaying checkboxes differently {% endcomment %}
+			    {% if field.name == 'remember_me' %}
+			    <p class="checkbox">
+			    <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+			    </p>
+			    {% elif field.name == 'identification' %}			    
+			    <div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon"><span class="elusive icon-user"></span></span>
+						<input class="form-control required" type="text" placeholder="username or email" name="{{ field.name }}">
+					</div>
+				</div>			    
+			    {% else %}			    
+			    <div class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon"><span class="elusive icon-key"></span></span>
+						<input class="required form-control" type="password" placeholder="Password" name="password">
+					</div>
+				</div>
+			    {% endif %}
+			    {% endfor %}
+			  </fieldset>
+			  <input type="submit" value="{% trans "Signin" %}" class="btn btn-primary btn-lg btn-block"/>
+			  <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
+			  {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+			</form>
+			<!-- /Login form -->
+			
+		</section>
+		<!-- /Main page container -->
+
+		<!-- Bootstrap scripts -->
+		<script src="{{ STATIC_URL }}js/bootstrap/bootstrap.min.js"></script>
+</body>
 {% endblock %}

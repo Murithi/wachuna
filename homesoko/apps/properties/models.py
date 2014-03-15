@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
 from djchoices import DjangoChoices, ChoiceItem
 from author.decorators import with_author
-from django.template.defaultfilters import default
+from autoslug import AutoSlugField
 
 
 @with_author
@@ -53,11 +53,11 @@ class SokoProperty(TimeStampedModel):
         Deleted = ChoiceItem('deleted', 'Deleted')
 
     name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=100, blank=True)
+    slug = AutoSlugField(populate_from='name')
     price = models.DecimalField(max_digits=12, decimal_places=2)
     description = models.TextField(_('Description'), blank=True, null=True)
-    bedroom = models.IntegerField(max_length=5, null=True, blank=True, choices=BedroomOptions.choices)
-    bathroom = models.DecimalField(max_digits=2, decimal_places=2, null=True, blank=True, choices=BathroomsOptions.choices)
+    bedrooms = models.IntegerField(max_length=5, null=True, blank=True, choices=BedroomOptions.choices)
+    bathrooms = models.DecimalField(max_digits=2, decimal_places=2, null=True, blank=True, choices=BathroomsOptions.choices)
     structure_size = models.PositiveIntegerField(null=True, blank=True,
                                                  help_text='Size of the structure in square feet')
     lot_size = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True,
@@ -81,7 +81,7 @@ class PropertyImage(TimeStampedModel):
     An image of a property
     """
     file = models.ImageField(
-        _("Original"), upload_to="images", max_length=255)
+        _("File"), upload_to="images", max_length=255)
     soko_property = models.ForeignKey(
         SokoProperty, related_name='images', verbose_name=_("Soko Property"))
     caption = models.CharField(
