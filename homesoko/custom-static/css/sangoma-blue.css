@@ -10742,3 +10742,7 @@ ul.icons li .elusive.icon-large:before {
   border-radius: 4px;
   margin-bottom: 10px;
 }
+
+.preview img {
+    max-height:50px;
+}
