@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'users',
     # django-authors - app to update author and updated_by fields of models automatically
     'author',
+    # Django Nose
+    'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
