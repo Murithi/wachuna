@@ -1,14 +1,12 @@
 {% extends "base_dashboard.html" %}
 {% load upload_tags %}
 {% block fileuploadassets %}
-	<!-- Generic page styles -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 	<!-- blueimp Gallery styles -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}upload/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blueimp-gallery.min.css">
     <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}upload/css/jquery.fileupload-ui.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui.css">
     <!-- CSS adjustments for browsers with JavaScript disabled -->
-    <noscript><link rel="stylesheet" href="{{ STATIC_URL }}upload/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.fileupload-ui-noscript.css"></noscript>
     
     <!-- Shim to make HTML5 elements usable in older Internet Explorer versions -->
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -84,39 +82,37 @@
 </div>
 {% upload_js %}
 
-<script src="{{ STATIC_URL }}upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/vendor/jquery.ui.widget.js"></script>
 <!-- The Templates plugin is included to render the upload/download listings -->
-<script src="{{ STATIC_URL }}upload/js/tmpl.min.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/tmpl.min.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="{{ STATIC_URL }}upload/js/load-image.min.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/load-image.min.js"></script>
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="{{ STATIC_URL }}upload/js/canvas-to-blob.min.js"></script>
-<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
-<script src="{{ STATIC_URL }}upload/js/bootstrap.min.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/canvas-to-blob.min.js"></script>
 <!-- blueimp Gallery script -->
-<script src="{{ STATIC_URL }}upload/js/jquery.blueimp-gallery.min.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.blueimp-gallery.min.js"></script>
 <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<script src="{{ STATIC_URL }}upload/js/jquery.iframe-transport.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.iframe-transport.js"></script>
 <!-- The basic File Upload plugin -->
-<script src="{{ STATIC_URL }}upload/js/jquery.fileupload.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.fileupload.js"></script>
 <!-- The File Upload processing plugin -->
-<script src="{{ STATIC_URL }}upload/js/jquery.fileupload-process.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.fileupload-process.js"></script>
 <!-- The File Upload image preview & resize plugin -->
-<script src="{{ STATIC_URL }}upload/js/jquery.fileupload-image.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.fileupload-image.js"></script>
 <!-- The File Upload audio preview plugin -->
-<script src="{{ STATIC_URL }}upload/js/jquery.fileupload-audio.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.fileupload-audio.js"></script>
 <!-- The File Upload video preview plugin -->
-<script src="{{ STATIC_URL }}upload/js/jquery.fileupload-video.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.fileupload-video.js"></script>
 <!-- The File Upload validation plugin -->
-<script src="{{ STATIC_URL }}upload/js/jquery.fileupload-validate.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.fileupload-validate.js"></script>
 <!-- The File Upload user interface plugin -->
-<script src="{{ STATIC_URL }}upload/js/jquery.fileupload-ui.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/jquery.fileupload-ui.js"></script>
 <!-- The main application script -->
-<script src="{{ STATIC_URL }}upload/js/main.js"></script>
-<script src="{{ STATIC_URL }}upload/js/locale.js"></script>
-<script src="{{ STATIC_URL }}upload/js/csrf.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/main.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/locale.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/csrf.js"></script>
 <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE8+ -->
 <!--[if gte IE 8]>
-<script src="{{ STATIC_URL }}upload/js/cors/jquery.xdr-transport.js"></script>
+<script src="{{ STATIC_URL }}js/plugins/fileupload/cors/jquery.xdr-transport.js"></script>
 <![endif]-->
 {% endblock %}
