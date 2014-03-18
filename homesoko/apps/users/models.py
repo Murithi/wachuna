@@ -11,4 +11,4 @@ class Profile (TimeStampedModel, UserenaBaseProfile):
     company = models.CharField(max_length=100, blank=False)
 
     def __unicode__(self):
-        return "User: " + str(self.user) + ", Organization: " + str(self.company)
+        return "User: " + str(self.user) + ", Company: " + str(self.company)

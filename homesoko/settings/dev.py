@@ -33,6 +33,15 @@ else:
         }
     }
 
+# Testing
+SOUTH_TESTS_MIGRATE = False  # To disable migrations and use syncdb instead
+SKIP_SOUTH_TESTS = True  # To disable South's own unit tests
+
+# Django Nose
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+DDF_FILL_NULLABLE_FIELDS = False
+DDF_USE_LIBRARY = True
+
 # Turn warnings about naive datetime into errors
 import warnings
 warnings.filterwarnings('error', r"DateTimeField received a naive datetime",

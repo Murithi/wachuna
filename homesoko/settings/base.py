@@ -134,11 +134,12 @@ INSTALLED_APPS = (
     'django_select2',
     # django-authors - app to update author and updated_by fields of models automatically
     'author',
-    # django-bootstrap3
+    # 3rd party
     'bootstrap3',
     'south',
     'userena',
     'guardian',
+    'django_nose',
 )
 
 MIDDLEWARE_CLASSES = (
