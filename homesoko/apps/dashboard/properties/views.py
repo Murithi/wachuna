@@ -48,7 +48,7 @@ class AddPropertyImages(CreateView):
 
 class PropertyListView(LoginRequiredMixin, ListView):
     model = SokoProperty
-    template_name = 'property_list.html'
+    template_name = 'dashboard_property_list.html'
 
 
 class EditPropertyView(UpdateView):

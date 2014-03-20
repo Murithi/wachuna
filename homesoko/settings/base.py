@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'homesoko.apps.properties',
     'homesoko.apps.users',
+    'homesoko.apps.home',
     'homesoko.apps.dashboard.properties',
     'django_extensions',
     'django_select2',
