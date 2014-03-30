@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^dashboard/properties/', include('homesoko.apps.dashboard.properties.urls')),
     url(r'^accounts/', include('userena.urls')),
     url(r'^select2/', include('django_select2.urls')),
+    #url(r'^search/', include('haystack.urls')),
 )
 
 import os

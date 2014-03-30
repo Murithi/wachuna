@@ -53,212 +53,28 @@
 									<ul class="custom-list clearfix property-list layout-grid">
 
 										<!-- PROPERTY 1 : begin -->
-										<li class="property first-in-row odd">
+									    {% for property in properties %}
+								       	<li class="property">
 											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_01.jpg" alt="">
+												<img src="{{ property.primary_image_thumbnail.url }}" alt="">
 												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
 											</a>
 											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
+												<h4 class="property-title"><a href="#">{{ property.name }}</a></h4>
+												<h5 class="property-location">{{ property.neighbourhood }}, {{ property.city }}</h5>
+												<p class="property-description">{{ property.description }}</p>
 												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
+													<li class="beds" title="beds"><i></i>{{ property.bedrooms }}</li>
+													<li class="bathrooms" title="bathrooms"><i></i>{{ property.bathrooms }}</li>
 												</ul>
 												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
+													<div class="property-price"><strong>{{ property.price }}</strong></div>
 													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
 												</div>
 											</div>
 										</li>
+									    {% endfor %}
 										<!-- PROPERTY 1 : end -->
-
-										<!-- PROPERTY 2 : begin -->
-										<li class="property">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_02.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 2 : end -->
-
-										<!-- PROPERTY 3 : begin -->
-										<li class="property odd">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_03.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 3 : end -->
-
-										<!-- PROPERTY 4 : begin -->
-										<li class="property first-in-row">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_04.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 4 : end -->
-
-										<!-- PROPERTY 5 : begin -->
-										<li class="property odd">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_05.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 5 : end -->
-
-										<!-- PROPERTY 6 : begin -->
-										<li class="property">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_06.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 6 : end -->
-
-										<!-- PROPERTY 7 : begin -->
-										<li class="property first-in-row odd">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_07.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 7 : end -->
-
-										<!-- PROPERTY 8 : begin -->
-										<li class="property">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_08.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 8 : end -->
-
-										<!-- PROPERTY 9 : begin -->
-										<li class="property odd">
-											<a href="#" class="property-thumb">
-												<img src="{{ STATIC_URL }}dummies/property_thumb_01.jpg" alt="">
-												<span class="overlay"><span><i class="fa fa-search"></i> View More</span></span>
-											</a>
-											<div class="property-content">
-												<h4 class="property-title"><a href="#">Property Name Goes Here</a></h4>
-												<h5 class="property-location">Sinaloa, Mexico</h5>
-												<p class="property-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit.</p>
-												<ul class="custom-list property-icons">
-													<li class="beds" title="beds"><i></i>2</li>
-													<li class="people" title="people"><i></i>4</li>
-													<li class="bathrooms" title="bathrooms"><i></i>1</li>
-												</ul>
-												<div class="property-price-rating">
-													<div class="property-price"><strong>$ 37</strong> / night</div>
-													<div class="property-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-												</div>
-											</div>
-										</li>
-										<!-- PROPERTY 9 : end -->
-
 									</ul>
 									<!-- PROPERTY LIST : end -->
 
@@ -502,63 +318,6 @@
 												</div>
 											</div>
 											<!-- PRICE FILTER : end -->
-
-											<!-- RATING FILTER : begin -->
-											<div class="rating-filter toggle-container">
-												<h5 class="toggle-title">By Rating</h5>
-												<div class="toggle-content">
-
-													<ul class="custom-list rating-filter-list">
-														<li>
-															<span class="checkbox-input">
-																<input type="checkbox" id="rating-filter-5star" checked="checked">
-																<label for="rating-filter-5star">
-																	<span class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></span>
-																	<span class="label">5 stars</span>
-																</label>
-															</span>
-														</li>
-														<li>
-															<span class="checkbox-input">
-																<input type="checkbox" id="rating-filter-4star">
-																<label for="rating-filter-4star">
-																	<span class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></span>
-																	<span class="label">4 stars</span>
-																</label>
-															</span>
-														</li>
-														<li>
-															<span class="checkbox-input">
-																<input type="checkbox" id="rating-filter-3star">
-																<label for="rating-filter-3star">
-																	<span class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
-																	<span class="label">3 stars</span>
-																</label>
-															</span>
-														</li>
-														<li>
-															<span class="checkbox-input">
-																<input type="checkbox" id="rating-filter-2star">
-																<label for="rating-filter-2star">
-																	<span class="stars"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
-																	<span class="label">2 stars</span>
-																</label>
-															</span>
-														</li>
-														<li>
-															<span class="checkbox-input">
-																<input type="checkbox" id="rating-filter-1star">
-																<label for="rating-filter-1star">
-																	<span class="stars"><i class="fa fa-star"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i class="fa fa-star-o"></i></span>
-																	<span class="label">1 star</span>
-																</label>
-															</span>
-														</li>
-													</ul>
-
-												</div>
-											</div>
-											<!-- RATING FILTER : end -->
 
 											<!-- ADDITIONAL FILTER : begin -->
 											<div class="additional-filter toggle-container">

@@ -1,10 +1,10 @@
-from django.conf.urls import url, patterns
-from .views import HomeDetail, HomeList
+from django.conf.urls import patterns
+from .views import LettingProperties, SaleProperties, FilteredProperties
 
 urlpatterns = patterns('',
                        #(r'contact-agent/$',agent_message),
-                       (r'list/for-sale/$', HomeList.as_view()),
-                       (r'list/letting/$', HomeList.as_view()),
-                       (r'list/land/$', HomeList.as_view()),
-                       (r'listing/(?P<property_slug>[\w-]+)/$', HomeDetail.as_view()),
+                       (r'list/$', FilteredProperties.as_view()),
+                       (r'list/for-sale/$', SaleProperties.as_view()),
+                       (r'list/letting/$', LettingProperties.as_view()),
+                       (r'listing/(?P<property_slug>[\w-]+)/$', LettingProperties.as_view()),
                        )

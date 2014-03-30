@@ -26,24 +26,6 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
-INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'properties',
-    'users',
-    # django-authors - app to update author and updated_by fields of models automatically
-    'author',
-    # Django Nose
-    'django_nose',
-)
-
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -127,20 +109,22 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    # homesoko apps
     'homesoko.apps.properties',
     'homesoko.apps.users',
     'homesoko.apps.home',
     'homesoko.apps.dashboard.properties',
-    'django_extensions',
-    'django_select2',
-    # django-authors - app to update author and updated_by fields of models automatically
-    'author',
     # 3rd party
+    'author',
     'bootstrap3',
     'south',
     'userena',
     'guardian',
     'django_nose',
+    'django_extensions',
+    'django_select2',
+    'sorl.thumbnail',
+    'django_filters'
 )
 
 MIDDLEWARE_CLASSES = (

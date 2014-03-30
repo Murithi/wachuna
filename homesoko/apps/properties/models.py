@@ -1,10 +1,11 @@
 from django.db import models
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 from django_extensions.db.models import TimeStampedModel
 from djchoices import DjangoChoices, ChoiceItem
 from author.decorators import with_author
 from autoslug import AutoSlugField
+import django_filters
+from sorl.thumbnail import get_thumbnail
 
 
 @with_author
@@ -25,6 +26,16 @@ class Neighbourhood(TimeStampedModel):
 
     def __unicode__(self):
         return self.name
+
+
+class SalePropertiesManager(models.Manager):
+    def get_query_set(self):
+        return super(SalePropertiesManager, self).get_query_set().filter(category=SokoProperty.CategoryOptions.Sale)
+
+
+class LettingPropertiesManager(models.Manager):
+    def get_query_set(self):
+        return super(LettingPropertiesManager, self).get_query_set().filter(category=SokoProperty.CategoryOptions.Sale)
 
 
 @with_author
@@ -64,7 +75,25 @@ class SokoProperty(TimeStampedModel):
                                    help_text='Size of the lot in acres')
     city = models.ForeignKey(City, null=False, blank=False)
     neighbourhood = models.ForeignKey(Neighbourhood, null=False, blank=False)
-    #state = models.CharField(max_length=10, choices=StateOptions.choices, default=StateOptions.New)
+    object = models.Manager()
+    sale = SalePropertiesManager()
+    letting = LettingPropertiesManager()
+
+    def primary_image_thumbnail(self):
+        return get_thumbnail(self.primary_image().file, '225x172', crop='center', quality=99)
+
+    def primary_image(self):
+        images = self.images.all()
+        try:
+            return images[0]
+        except IndexError:
+            # We return a dict with fields that mirror the key properties of
+            # the ProductImage class so this missing image can be used
+            # interchangably in templates.  Strategy pattern ftw!
+            return {
+                'original': self.get_missing_image(),
+                'caption': '',
+                'is_missing': True}
 
 
 @with_author
@@ -93,4 +122,10 @@ class PropertyImage(TimeStampedModel):
         verbose_name_plural = _('Property Images')
 
     def __unicode__(self):
-        return u"Image of '%s'" % self.property
+        return u"Image of '%s'" % self.soko_property
+
+
+class PropertyFilter(django_filters.FilterSet):
+    class Meta:
+        model = SokoProperty
+        fields = ['neighbourhood', 'city', 'bedrooms', 'price']
