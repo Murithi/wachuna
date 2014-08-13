@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/font-awesome/css/font-awesome.css" media="screen, projection">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/jquery-bxslider/jquery.bxslider.css" media="screen, projection">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/flexslider/flexslider.css" media="screen, projection">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/variants/orange2.css" media="screen, projection" id="css-main">
+
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
+
+    <title>
+        Homesoko
+    </title>
+</head>
+
+<body>
+<div id="wrapper">
+    {% block header %}
+        {% include "partials/header.html" %}
+    {% endblock %}
+    <div id="main-wrapper">
+        <div id="main">
+            <div id="main-inner">
+                {% block content %}
+
+                {% endblock %}
+
+
+        <hr>
+
+        <div class="row">
+    <div class="col-sm-9">
+        <ul class="footer-nav nav nav-pills">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Properties</a></li>
+            <li><a href="#">Agents</a></li>
+            <li><a href="#">Agencies</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul><!-- /.footer-nav -->
+    </div>
+
+    <div class="col-sm-3">
+        <form method="post" action="?" class="form-horizontal form-search">
+            <div class="form-group has-feedback no-margin">
+                <input type="text" class="form-control" placeholder="Search">
+
+                                        <span class="form-control-feedback">
+                                            <i class="fa fa-search"></i>
+                                        </span><!-- /.form-control-feedback -->
+            </div><!-- /.form-group -->
+        </form>
+    </div>
+</div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.footer-top -->
+                <div class="footer-bottom">
+                    <div class="container">
+                        <p class="center no-margin">
+                            &copy; 2014 homesoko, All Right reserved
+                        </p>
+
+                        <div class="center">
+                            <ul class="social">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-flickr"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            </ul><!-- /.social -->
+                        </div><!-- /.center -->
+                    </div><!-- /.container -->
+                </div><!-- /.footer-bottom -->
+            </div><!-- /#footer-inner -->
+        </div><!-- /#footer -->
+    </div><!-- /#footer-wrapper -->
+</div><!-- /#wrapper -->
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/isotope/jquery.isotope.min.js"></script>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.infobox.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.clusterer.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/map.js"></script>
+
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/jquery-bxslider/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/flexslider/jquery.flexslider.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.chained.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/realocation.js"></script>
+
+</body>
+</html>

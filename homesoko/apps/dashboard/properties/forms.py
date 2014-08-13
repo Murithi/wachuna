@@ -1,6 +1,6 @@
 from django import forms
 from django.conf import settings
-from homesoko.apps.properties.models import SokoProperty, City, Neighbourhood, Features
+from homesoko.apps.properties.models import Property, City, Neighbourhood, Features
 from django_select2.fields import HeavyModelSelect2MultipleChoiceField
 from django_select2.widgets import Select2MultipleWidget
 
@@ -8,10 +8,10 @@ from django_select2.widgets import Select2MultipleWidget
 class SokoPropertyForm(forms.ModelForm):
     name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}), error_messages={'required':'The name of the property is required'})
     price = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    type = forms.ChoiceField(choices=SokoProperty.PropertyTypeOptions.choices, widget=forms.Select(attrs={'class': 'form-control'}))
-    category = forms.ChoiceField(choices=SokoProperty.CategoryOptions.choices, widget=forms.Select(attrs={'class': 'form-control'}))
-    bedrooms = forms.ChoiceField(choices=SokoProperty.BedroomOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
-    bathrooms = forms.ChoiceField(choices=SokoProperty.BathroomsOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    type = forms.ChoiceField(choices=Property.PropertyTypeOptions.choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    category = forms.ChoiceField(choices=Property.CategoryOptions.choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    bedrooms = forms.ChoiceField(choices=Property.BedroomOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
+    #bathrooms = forms.ChoiceField(choices=Property.BathroomsOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '8'}))
     structure_size = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     lot_size = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -30,8 +30,8 @@ class SokoPropertyForm(forms.ModelForm):
             self.fields['features'].initial = kwargs['instance'].features.all()
 
     class Meta:
-        model = SokoProperty
-        exclude = ['author', 'updated_by']
+        model = Property
+        exclude = ['author', 'updated_by', 'bathrooms']
 
     class Media:
         js = (settings.STATIC_URL + 'js/properties/jquery.duplicate.min.js',

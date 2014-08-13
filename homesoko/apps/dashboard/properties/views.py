@@ -1,17 +1,14 @@
-import json  #@Unresolved
-from django.http import HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView
 from braces.views import LoginRequiredMixin
-from homesoko.apps.properties.models import SokoProperty, PropertyImage, Features
+from homesoko.apps.properties.models import Property, PropertyImage
+from homesoko.apps.utils.djupload.views import UploadView, UploadListView, UploadDeleteView
 from .forms import SokoPropertyForm
-from .response import JSONResponse, response_mimetype
-from .serialize import serialize
 
 
 class PropertyCreateView(LoginRequiredMixin, CreateView):
     form_class = SokoPropertyForm
-    model = SokoProperty
+    model = Property
     template_name = 'property_form.html'
     success_url = reverse_lazy('dashboard_properties_list')
 
@@ -23,36 +20,13 @@ class PropertyCreateView(LoginRequiredMixin, CreateView):
         return CreateView.form_valid(self, form)
 
 
-class AddPropertyImages(CreateView):
-    model = PropertyImage
-    template_name = 'propertyimage_upload_form.html'
-
-    def form_valid(self, form):
-        self.object = form.save()
-        files = [serialize(self.object)]
-        data = {'files': files}
-        response = JSONResponse(data, mimetype=response_mimetype(self.request))
-        response['Content-Disposition'] = 'inline; filename=files.json'
-        return response
-
-    def form_invalid(self, form):
-        print form.errors
-        data = json.dumps(form.errors)
-        return HttpResponse(content=data, status=400, content_type='application/json')
-
-    def get_context_data(self, **kwargs):
-        context = super(AddPropertyImages, self).get_context_data(**kwargs)
-        context['soko_property'] = SokoProperty.objects.get(id=self.kwargs['pk'])
-        return context
-
-
 class PropertyListView(LoginRequiredMixin, ListView):
-    model = SokoProperty
+    model = Property
     template_name = 'dashboard_property_list.html'
 
 
 class EditPropertyView(UpdateView):
-    model = SokoProperty
+    model = Property
     template_name = 'property_form.html'
     success_url = reverse_lazy('dashboard_properties_list')
     form_class = SokoPropertyForm
@@ -66,15 +40,30 @@ class EditPropertyView(UpdateView):
         return UpdateView.form_valid(self, form)
 
 
-class PropertyImageListView(ListView):
+class PropertyImagesUploadView(UploadView):
     model = PropertyImage
+    delete_url = 'users.organizationdocuments_delete'
 
-    def render_to_response(self, context, **response_kwargs):
-        files = [serialize(p) for p in self.get_queryset()]
-        data = {'files': files}
-        response = JSONResponse(data, mimetype=response_mimetype(self.request))
-        response['Content-Disposition'] = 'inline; filename=files.json'
-        return response
+    def get_object_org(self):
+        return self.request.user.profile.organization
+
+    def get_context_data(self, **kwargs):
+        context = super(PropertyImagesUploadView, self).get_context_data(**kwargs)
+        context['property'] = Property.objects.get(id=int(self.kwargs['pk']))
+        return context
+
+
+class PropertyImagesListView(UploadListView):
+    model = PropertyImage
+    delete_url = 'users.organizationdocuments_delete'
+
+    def get_object_org(self):
+        return self.request.user.profile.organization
 
     def get_queryset(self):
-        return PropertyImage.objects.filter(soko_property=self.kwargs['pk'])
+        return PropertyImage.objects.filter(soko_property=self.kwargs['pk']).filter(deleted=False)
+
+
+class PropertyImagesDeleteView(UploadDeleteView):
+    model = PropertyImage
+

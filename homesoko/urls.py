@@ -1,16 +1,16 @@
 from django.conf.urls import patterns, include, url
+from homesoko.apps.properties.views import Homepage
 from django.contrib import admin
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', include('homesoko.apps.home.urls')),
+    url(r'^$', Homepage.as_view(), name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^properties/', include('homesoko.apps.properties.urls')),
     url(r'^dashboard/properties/', include('homesoko.apps.dashboard.properties.urls')),
     url(r'^accounts/', include('userena.urls')),
     url(r'^select2/', include('django_select2.urls')),
-    #url(r'^search/', include('haystack.urls')),
 )
 
 import os

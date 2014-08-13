@@ -30,16 +30,16 @@ class Neighbourhood(TimeStampedModel):
 
 class SalePropertiesManager(models.Manager):
     def get_query_set(self):
-        return super(SalePropertiesManager, self).get_query_set().filter(category=SokoProperty.CategoryOptions.Sale)
+        return super(SalePropertiesManager, self).get_query_set().filter(category=Property.CategoryOptions.Sale)
 
 
 class LettingPropertiesManager(models.Manager):
     def get_query_set(self):
-        return super(LettingPropertiesManager, self).get_query_set().filter(category=SokoProperty.CategoryOptions.Sale)
+        return super(LettingPropertiesManager, self).get_query_set().filter(category=Property.CategoryOptions.Sale)
 
 
 @with_author
-class SokoProperty(TimeStampedModel):
+class Property(TimeStampedModel):
     class PropertyTypeOptions(DjangoChoices):
         Land = ChoiceItem('land', 'Land')
         Apartment = ChoiceItem('apartment', 'Apartment')
@@ -65,17 +65,18 @@ class SokoProperty(TimeStampedModel):
 
     name = models.CharField(max_length=100, unique=True)
     slug = AutoSlugField(populate_from='name')
-    price = models.DecimalField(max_digits=12, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(_('Description'), blank=True, null=True)
     bedrooms = models.IntegerField(max_length=5, null=True, blank=True, choices=BedroomOptions.choices)
     bathrooms = models.DecimalField(max_digits=2, decimal_places=2, null=True, blank=True, choices=BathroomsOptions.choices)
     structure_size = models.PositiveIntegerField(null=True, blank=True,
                                                  help_text='Size of the structure in square feet')
-    lot_size = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True,
+    lot_size = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,
                                    help_text='Size of the lot in acres')
     city = models.ForeignKey(City, null=False, blank=False)
     neighbourhood = models.ForeignKey(Neighbourhood, null=False, blank=False)
-    object = models.Manager()
+    category = models.CharField(max_length=14, null=True, blank=True, choices=CategoryOptions.choices)
+    objects = models.Manager()
     sale = SalePropertiesManager()
     letting = LettingPropertiesManager()
 
@@ -99,7 +100,7 @@ class SokoProperty(TimeStampedModel):
 @with_author
 class Features(TimeStampedModel):
     name = models.CharField(max_length=20)
-    soko_property = models.ManyToManyField(SokoProperty, related_name='features', null=True, blank=True)
+    property = models.ManyToManyField(Property, related_name='features', null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -111,13 +112,13 @@ class PropertyImage(TimeStampedModel):
     """
     file = models.ImageField(
         _("File"), upload_to="images", max_length=255)
-    soko_property = models.ForeignKey(
-        SokoProperty, related_name='images', verbose_name=_("Soko Property"))
+    property = models.ForeignKey(
+        Property, related_name='images', verbose_name=_("Soko Property"))
     caption = models.CharField(
         _("Caption"), max_length=200, blank=True, null=True)
 
     class Meta:
-        unique_together = ('soko_property', 'file')
+        unique_together = ('property', 'file')
         verbose_name = _('Property Image')
         verbose_name_plural = _('Property Images')
 
@@ -127,5 +128,5 @@ class PropertyImage(TimeStampedModel):
 
 class PropertyFilter(django_filters.FilterSet):
     class Meta:
-        model = SokoProperty
+        model = Property
         fields = ['neighbourhood', 'city', 'bedrooms', 'price']

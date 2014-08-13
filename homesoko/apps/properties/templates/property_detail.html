@@ -1,295 +1,260 @@
-{% extends "base_frontend.html" %}
+{% extends "frontend.html" %}
 {% block content %}
-		<!-- CORE : begin -->
-		<div id="core" class="page-property-details">
+    <div class="container">
+                <div class="block-content block-content-small-padding">
+                    <div class="block-content-inner">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <h2 class="property-detail-title">A.  Peter Cooper Village &amp; Stuyvesant Town</h2>
+                                <h3 class="property-detail-subtitle">New York, Brooklyn <strong>$ 680 000</strong></h3>
 
-			<!-- PAGE HEADER : begin -->
-			<div class="page-header">
-				<div class="container">
-					<div class="page-header-inner clearfix">
-						<h1>Hacienda in Mexico - Rent</h1>
-						<ul class="custom-list breadcrumbs">
-							<li><a href="index.html">Home</a> / </li>
-							<li><a href="properties-listing-grid.html">Search Results</a> /</li>
-							<li><a href="property-details-rent.html">Property Details</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- PAGE HEADER : end -->
+                                <div class="property-detail-overview">
+                                    <div class="property-detail-overview-inner clearfix">
+                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
+                                            <strong>Price:</strong>
+                                            <span>$ 680 000</span>
+                                        </div><!-- /.property-detail-overview-item -->
 
-			<!-- MAIN WRAPPER : begin -->
-			<div class="main-wrapper-container">
-				<div class="container">
-					<div id="main-wrapper">
-						<div class="row">
-							<div class="col-md-8 col-md-push-4">
+                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
+                                            <strong>Type:</strong>
+                                            <span>Sale</span>
+                                        </div><!-- /.property-detail-overview-item -->
 
-								<!-- PROPERTY DETAILS : begin -->
-								<div class="property-details">
+                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
+                                            <strong>Area:</strong>
+                                            <span>250m<sup>2</sup></span>
+                                        </div><!-- /.property-detail-overview-item -->
 
-									<!-- PROPERTY IMAGES : begin -->
-									<div class="property-images">
-										<div class="image-list">
-											<div class="image"><img src="{{ STATIC_URL }}dummies/property_01.jpg" alt="Short photo description should go right here"></div>
-											<div class="image"><img src="{{ STATIC_URL }}dummies/property_02.jpg" alt="Short photo description should go right here"></div>
-											<div class="image"><img src="{{ STATIC_URL }}dummies/property_03.jpg" alt="Short photo description should go right here"></div>
-										</div>
-										<div class="images-footer">
-											<div class="images-footer-inner">
-												<div class="image-description"></div>
-												<div class="image-counter"></div>
-											</div>
-											<button class="prev-btn"><i class="fa fa-chevron-left"></i></button>
-											<button class="next-btn"><i class="fa fa-chevron-right"></i></button>
-										</div>
-									</div>
-									<!-- PROPERTY IMAGES : end -->
+                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
+                                            <strong>Baths:</strong>
+                                            <span>3</span>
+                                        </div><!-- /.property-detail-overview-item -->
 
-									<div class="row">
-										<div class="col-md-8">
+                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
+                                            <strong>Beds:</strong>
+                                            <span>4</span>
+                                        </div><!-- /.property-detail-overview-item -->
 
-											<!-- PROPERTY DESCRIPTION : begin -->
-											<div class="property-description">
+                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
+                                            <strong>Garages:</strong>
+                                            <span>2</span>
+                                        </div><!-- /.property-detail-overview-item -->
+                                    </div><!-- /.property-detail-overview-inner -->
+                                </div><!-- /.property-detail-overview -->
 
-												<!-- DESCRIPTION TEXT : begin -->
-												<div class="description-text">
-													<h4>Object Description</h4>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam.</p>
-													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem. Etiam pellentesque aliquet tellus. Phasellus pharetra nulla ac diam. Quisque semper justo at risus. Donec venenatis, turpis vel hendrerit interdum, dui ligula ultricies purus, sed posuere libero dui id orci. Nam congue, pede vitae dapibus aliquet, elit magna vulputate arcu, vel tempus metus leo non est.</p>
-												</div>
-												<!-- DESCRIPTION TEXT : end -->
+                                <div class="flexslider">
+                                    <ul class="slides">
 
-												<!-- TABS : begin -->
-												<div class="tabs-container">
-													<ul class="tab-title-list">
-														<li class="tab-title active"><a href="#amenities">Amenities</a></li>
-														<li class="tab-title"><a href="#reviews">Reviews</a></li>
-													</ul>
-													<ul class="tab-content-list">
+                                        <li data-thumb="assets/img/tmp/properties/large/3.jpg">
+                                            <img src="assets/img/tmp/properties/large/3.jpg" alt="">
+                                        </li>
 
-														<!-- AMENITIES TAB : begin -->
-														<li class="tab-content active" id="amenities">
+                                        <li data-thumb="assets/img/tmp/properties/large/12.jpg">
+                                            <img src="assets/img/tmp/properties/large/12.jpg" alt="">
+                                        </li>
 
-															<div class="row">
-																<div class="col-sm-6">
-																	<ul class="check-list">
-																		<li>Air Conditioning</li>
-																		<li>Balcony/Loggia</li>
-																		<li>Cable TV</li>
-																		<li class="unchecked">DVD</li>
-																		<li>Audio/Radio</li>
-																		<li class="unchecked">Dishwasher</li>
-																	</ul>
-																</div>
-																<div class="col-sm-6">
-																	<ul class="check-list">
-																		<li>Fridge</li>
-																		<li>Grill</li>
-																		<li>Internet</li>
-																		<li class="unchecked">Oven</li>
-																		<li>Parking</li>
-																		<li class="unchecked">Smoking Allowed</li>
-																	</ul>
-																</div>
-															</div>
+                                        <li data-thumb="assets/img/tmp/properties/large/5.jpg">
+                                            <img src="assets/img/tmp/properties/large/5.jpg" alt="">
+                                        </li>
 
-														</li>
-														<!-- AMENITIES TAB : end -->
+                                        <li data-thumb="assets/img/tmp/properties/large/6.jpg">
+                                          <img src="assets/img/tmp/properties/large/6.jpg" alt="">
+                                        </li>
+                                    </ul><!-- /.slides -->
+                                </div><!-- /.flexslider -->
 
-														<!-- COMMENTS TAB : begin -->
-														<li class="tab-content">
+                                <hr>
 
-															<div class="comments">
-																<ul class="custom-list comment-list">
+                                <h2>Description</h2>
 
-																	<!-- COMMENT 1 : begin -->
-																	<li class="comment">
-																		<div class="author"><strong>Jenny &amp; Tom </strong> - <span class="date">Nov. 14, 2013</span></div>
-																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div>
-																		<div class="review">
-																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
-																		</div>
-																	</li>
-																	<!-- COMMENT 1 : end -->
+                                <p>
+                                    Vestibulum feugiat tempor mattis. Maecenas venenatis at erat sit amet viverra. Fusce sagittis pretium est vel iaculis. Proin vel tincidunt nisi. Sed non vehicula purus. In auctor sodales metus, ac fermentum odio sagittis quis. Curabitur volutpat, erat nec varius dapibus, felis libero malesuada mauris, at vestibulum enim erat non nibh. Donec ac nibh dapibus, sagittis libero a, sodales enim. Quisque a viverra mi.
+                                </p>
 
-																	<!-- COMMENT 2 : begin -->
-																	<li class="comment">
-																		<div class="author"><strong>Tom &amp; Jerry </strong> - <span class="date">Nov. 4, 2013</span></div>
-																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-																		<div class="review">
-																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
-																		</div>
-																	</li>
-																	<!-- COMMENT 2 : end -->
+                                <hr>
 
-																	<!-- COMMENT 3 : begin -->
-																	<li class="comment">
-																		<div class="author"><strong>Kate </strong> - <span class="date">Nov. 1, 2013</span></div>
-																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
-																		<div class="review">
-																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
-																		</div>
-																	</li>
-																	<!-- COMMENT 3 : end -->
+                                <h2>Amenities</h2>
 
-																</ul>
-															</div>
+                                <div class="row">
+                                    <ul class="property-detail-amenities">
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Air conditioning</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Balcony</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Bedding</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Cable TV</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Cleaning after exit</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Cofee pot</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Computer</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Cot</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Dishwasher</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> DVD</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Fan</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Fridge</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Grill</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Hairdryer</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Heating</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Hi-fi</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Internet</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Iron</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Juicer</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Lift</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Microwave</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Oven</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Parking</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Parquet</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Radio</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Roof terrace</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Smoking allowed</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Terrace</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Toaster</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Towelwes</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Use of pool</li>
+                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Video</li>
+                                    </ul>
+                                </div><!-- /.row -->
+                            </div>
 
-														</li>
-														<!-- COMMENTS TAB : end -->
+                            <div class="col-sm-3">
+                                <div class="sidebar">
+                                    <div class="sidebar-inner">
+                                        <div class="widget">
+    <h3 class="widget-title">Social Networks</h3>
 
-													</ul>
-												</div>
-												<!-- TABS : end -->
+    <ul class="social social-boxed">
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+    </ul><!-- /.social-->
+</div><!-- /.widget -->                                        <div class="widget">
+    <h3 class="widget-title">Enquire</h3>
 
-											</div>
-											<!-- PROPERTY DESCRIPTION : end -->
+    <div class="widget-content">
+        <form method="post" action="?">
+            <div class="form-group">
+                <label>Your e-mail</label>
+                <input type="text" value="" class="form-control">
+            </div><!-- /.form-group -->
 
-										</div>
-										<div class="col-md-4">
+            <div class="form-group">
+                <label>Date From</label>
+                <input type="date" value="" class="form-control">
+            </div><!-- /.form-group -->
 
-											<!-- PROPERTY PANEL : begin -->
-											<div class="property-panel">
+            <div class="form-group">
+                <label>Date To</label>
+                <input type="date" value="" class="form-control">
+            </div><!-- /.form-group -->
 
-												<!-- OBJECT PRICE : begin -->
-												<div class="panel-item object-price">
-													<h4 class="panel-item-title">Price</h4>
-													<p class="price">from <strong>$37</strong>/ night</p>
-												</div>
-												<!-- OBJECT PRICE : end -->
+            <div class="form-group">
+                <label>Message</label>
+                <textarea class="form-control"></textarea>
+            </div><!-- /.form-group -->
 
-												<!-- OBJECT RATING : begin -->
-												<div class="panel-item object-rating">
-													<h4 class="panel-item-title">Object Rating</h4>
-													<p class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></p>
-												</div>
-												<!-- OBJECT RATING : end -->
+            <div class="form-group">
+                <input type="text" value="Contact" class="btn btn-block btn-primary btn-inversed">
+            </div><!-- /.form-group -->
+        </form>
+    </div><!-- /.widget-content -->
+</div><!-- /.widget -->                                        <div class="widget">
+    <h3 class="widget-title">Recent Properties</h3>
 
-												<!-- OBJECT OWNER : begin -->
-												<div class="panel-item object-owner">
-													<h4 class="panel-item-title">Object Owner</h4>
-													<div class="clearfix">
-														<div class="portrait">
-															<img src="dummies/portrait_02_240.jpg" alt="">
-															<h5 class="name"><i class="ico-person"></i> John Goodman</h5>
-														</div>
-													</div>
-												</div>
-												<!-- OBJECT OWNER : end -->
+    <div class="properties-small-list">
+        <div class="property-small clearfix">
+            <div class="property-small-picture col-sm-12 col-md-4">
+                <div class="property-small-picture-inner">
+                    <a href="#" class="property-small-picture-target">
+                        <img src="assets/img/tmp/properties/small/1.jpg" alt="">
+                    </a>
+                </div><!-- /.property-small-picture -->
+            </div><!-- /.property-small-picture -->
 
-												<!-- BOOK FORM : begin -->
-												<div class="panel-item contact-form">
-													<h4 class="panel-item-title">Message to Owner</h4>
-													<form class="default-form" action="property-details-rent.html">
-														<p class="alert-message warning validation" style="display: none;"><i class="ico fa fa-exclamation-circle"></i> Please fill all fields!</p>
-														<p class="form-row">
-															<input type="text" class="required" placeholder="Your Name">
-														</p>
-														<p class="form-row">
-															<input type="text" class="email required" placeholder="Your Email">
-														</p>
-														<p class="form-row">
-															<textarea class="required" placeholder="Message"></textarea>
-														</p>
-														<p class="form-row">
-															<button class="button submit-btn"><i class="fa fa-envelope"></i> Send Message</button>
-														</p>
-													</form>
-												</div>
-												<!-- BOOK FORM : end -->
+            <div class="property-small-content col-sm-12 col-md-8">
+                <h3 class="property-small-title"><a href="#">Evergreen Tr</a></h3><!-- /.property-small-title -->
+                <div class="property-small-price">$ 1,800 <span class="property-small-price-suffix">/ per month</span></div><!-- /.property-small-price -->
+            </div><!-- /.property-small-content -->
+        </div><!-- /.property-small -->
 
-											</div>
-											<!-- PROPERTY PANEL : end -->
+        <div class="property-small clearfix">
+            <div class="property-small-picture col-sm-12 col-md-4">
+                <div class="property-small-picture-inner">
+                    <a href="#" class="property-small-picture-target">
+                        <img src="assets/img/tmp/properties/small/3.jpg" alt="">
+                    </a>
+                </div><!-- /.property-small-picture -->
+            </div><!-- /.property-small-picture -->
 
-										</div>
-									</div>
+            <div class="property-small-content col-sm-12 col-md-8">
+                <h3 class="property-small-title"><a href="#">Everett Ave</a></h3><!-- /.property-small-title -->
+                <div class="property-small-price">$ 1,800 <span class="property-small-price-suffix">/ per month</span></div><!-- /.property-small-price -->
+            </div><!-- /.property-small-content -->
+        </div><!-- /.property-small -->
 
-								</div>
-								<!-- PROPERTY DETAILS : end -->
+        <div class="property-small clearfix">
+            <div class="property-small-picture col-sm-12 col-md-4">
+                <div class="property-small-picture-inner">
+                    <a href="#" class="property-small-picture-target">
+                        <img src="assets/img/tmp/properties/small/4.jpg" alt="">
+                    </a>
+                </div><!-- /.property-small-picture -->
+            </div><!-- /.property-small-picture -->
 
-							</div>
-							<div class="col-md-4 col-md-pull-8">
+            <div class="property-small-content col-sm-12 col-md-8">
+                <h3 class="property-small-title"><a href="#">Jefferson Blvd</a></h3><!-- /.property-small-title -->
+                <div class="property-small-price">$ 1,800 <span class="property-small-price-suffix">/ per month</span></div><!-- /.property-small-price -->
+            </div><!-- /.property-small-content -->
+        </div><!-- /.property-small -->
+    </div><!-- /.properties-small-list -->
+</div><!-- /.widget -->                                        <div class="widget">
+    <h3 class="widget-title">Assigned Agents</h3>
 
-								<!-- PROPERTY LOCATION DETAILS : begin -->
-								<aside class="property-location-details">
-									<h3 class="property-location-title">Location &amp; Details</h3>
+    <div class="agent-small">
+        <div class="agent-small-top">
+            <div class="clearfix">
+                <div class="agent-small-picture col-sm-12">
+                    <div class="agent-small-picture-inner">
+                        <a href="#" class="agent-small-picture-inner ">
+                            <img src="assets/img/tmp/agents/medium/3.jpg" alt="">
+                        </a><!-- /.agent-small-picture-target -->
+                    </div><!-- /.agent-small-picture-inner -->
+                </div><!-- /.agent-small-picture -->
+            </div><!-- /.row -->
+        </div><!-- /.agent-small-top -->
 
-									<!-- PROPERTY MAP : begin -->
-									<div class="property-map">
-										<iframe src="https://maps.google.com/maps?q=32.524526,-117.12392&amp;num=1&amp;ie=UTF8&amp;ll=32.514104,-117.110953&amp;spn=0.007843,0.013937&amp;t=m&amp;z=14&amp;output=embed"></iframe>
-										<a href="#" class="map-btn"><i class="fa fa-search-plus"></i></a>
-									</div>
-									<!-- PROPERTY MAP : end -->
+        <div class="agent-small-bottom">
+            <ul class="list-unstyled">
+                <li><i class="fa fa-phone"></i> +0-123-322-123</li>
+                <li><i class="fa fa-envelope-o"></i> <a href="#">hi@company.com</a></li>
+            </ul>
+        </div><!-- /.agent-small-bottom -->
+    </div><!-- /.agent-small -->
 
-									<!-- PROPERTY INFO : begin -->
-									<div class="property-info">
-										<h4 class="property-info-title">Details</h4>
+    <div class="agent-small">
+        <div class="agent-small-top">
+            <div class="clearfix">
+                <div class="agent-small-picture col-sm-12">
+                    <div class="agent-small-picture-inner">
+                        <a href="#" class="agent-small-picture-inner ">
+                            <img src="assets/img/tmp/agents/medium/1.jpg" alt="">
+                        </a><!-- /.agent-small-picture-target -->
+                    </div><!-- /.agent-small-picture-inner -->
+                </div><!-- /.agent-small-picture -->
+            </div><!-- /.row -->
+        </div><!-- /.agent-small-top -->
 
-										<!-- ADDRESS : begin -->
-										<div class="toggle-container property-address">
-											<h5 class="toggle-title">Address</h5>
-											<div class="toggle-content">
+        <div class="agent-small-bottom">
+            <ul class="list-unstyled">
+                <li><i class="fa fa-phone"></i> +0-123-322-123</li>
+                <li><i class="fa fa-envelope-o"></i> <a href="#">hi@company.com</a></li>
+            </ul>
+        </div><!-- /.agent-small-bottom -->
+    </div><!-- /.agent-small -->
+</div><!-- /.widget -->                                    </div><!-- /.sidebar-inner -->
+                                </div><!-- /.sidebar -->
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.block-content-inner -->
+                </div><!-- /.block-content -->
+            </div><!-- /.container -->
 
-												<p>Del Mar 110<br>
-												82010 Mazatlán, Sinaloa,<br>
-												Mexico</p>
-
-											</div>
-										</div>
-										<!-- ADDRESS : end -->
-
-										<!-- ACCOMODATION : begin -->
-										<div class="toggle-container property-accomodation">
-											<h5 class="toggle-title">Accomodation</h5>
-											<div class="toggle-content">
-
-												<ul class="custom-list">
-													<li>Beds <strong>2</strong></li>
-													<li>People allowed <strong>4</strong></li>
-													<li>Bathrooms <strong>1</strong></li>
-													<li>Year built <strong>2006</strong></li>
-												</ul>
-
-											</div>
-										</div>
-										<!-- ACCOMODATION : end -->
-
-										<!-- ADDITIONAL : begin -->
-										<div class="toggle-container property-additional">
-											<h5 class="toggle-title">Additional Information</h5>
-											<div class="toggle-content">
-
-												<ul class="custom-list check-list">
-													<li>Air Conditioning</li>
-													<li>Garden</li>
-													<li>Swimming Pool</li>
-													<li>Sea View</li>
-													<li>Pets Allowed</li>
-													<li>Parking</li>
-													<li>Internet Connection</li>
-													<li>Radio/TV</li>
-													<li>Separate Toilet</li>
-													<li>Children Friendly</li>
-												</ul>
-
-											</div>
-										</div>
-										<!-- ADDITIONAL : end -->
-
-									</div>
-									<!-- PROPERTY INFO : end -->
-
-								</aside>
-								<!-- PROPERTY LOCATION DETAILS : end -->
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- MAIN WRAPPER : end -->
-
-		</div>
-		<!-- CORE : end -->
 {% endblock %}
