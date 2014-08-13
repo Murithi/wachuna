@@ -9,7 +9,7 @@ from .forms import SokoPropertyForm
 class PropertyCreateView(LoginRequiredMixin, CreateView):
     form_class = SokoPropertyForm
     model = Property
-    template_name = 'property_form.html'
+    template_name = 'properties/property_form.html'
     success_url = reverse_lazy('dashboard_properties_list')
 
     def form_valid(self, form):
@@ -22,12 +22,12 @@ class PropertyCreateView(LoginRequiredMixin, CreateView):
 
 class PropertyListView(LoginRequiredMixin, ListView):
     model = Property
-    template_name = 'dashboard_property_list.html'
+    template_name = 'properties/dashboard_property_list.html'
 
 
 class EditPropertyView(UpdateView):
     model = Property
-    template_name = 'property_form.html'
+    template_name = 'properties/property_form.html'
     success_url = reverse_lazy('dashboard_properties_list')
     form_class = SokoPropertyForm
 

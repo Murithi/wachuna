@@ -46,7 +46,6 @@
 				<h1>
 					<!-- Main page logo -->
 					<a href="/" class="brand">homesoko</a>
-					
 		
 				</h1>
 				
@@ -120,11 +119,25 @@
 			
 				</div>
 				<!-- /Grid row -->
-				{% block content %}
+                <div class="row">
+                <!-- Data block -->
+                <article class="col-sm-12">
+                    <div class="blue data-block">
+                        <header>
+                            <h2>{% block header %}{% endblock %}</h2>
+                        </header>
+                        <section>
+                            <div class="row">
+                                {% block content %}
 
-				{% endblock %}
-			</section>
-		<!-- Main page footer -->
+                                {% endblock %}
+                            </div>
+                        </section>
+
+                    </div>
+                </article>
+        </div>
+	 	<!-- Main page footer -->
 		<footer id="footer">
 			<div class="container">
 
