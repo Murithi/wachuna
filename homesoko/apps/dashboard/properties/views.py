@@ -42,10 +42,7 @@ class EditPropertyView(UpdateView):
 
 class PropertyImagesUploadView(UploadView):
     model = PropertyImage
-    delete_url = 'users.organizationdocuments_delete'
-
-    def get_object_org(self):
-        return self.request.user.profile.organization
+    delete_url = 'dashboard.properties.images_delete'
 
     def get_context_data(self, **kwargs):
         context = super(PropertyImagesUploadView, self).get_context_data(**kwargs)
@@ -55,13 +52,10 @@ class PropertyImagesUploadView(UploadView):
 
 class PropertyImagesListView(UploadListView):
     model = PropertyImage
-    delete_url = 'users.organizationdocuments_delete'
-
-    def get_object_org(self):
-        return self.request.user.profile.organization
+    delete_url = 'dashboard.properties.images_delete'
 
     def get_queryset(self):
-        return PropertyImage.objects.filter(soko_property=self.kwargs['pk']).filter(deleted=False)
+        return PropertyImage.objects.filter(property=self.kwargs['pk'])
 
 
 class PropertyImagesDeleteView(UploadDeleteView):

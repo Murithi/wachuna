@@ -56,7 +56,7 @@
 						<!-- User profile avatar
 						<img alt="avatar" src="">
 						 -->
-						<!-- User profile info 
+						<!-- User profile info
 						<figcaption>
 							<strong><a href="/profile/account/" class="">{{ user.first_name }} {{ user.last_name }}</a></strong>
 							<ul>
@@ -83,7 +83,7 @@
 			
 					<!-- Widget block -->
 					<div class="col-sm-3 col-xs-6">
-						<a class="data-block widget-block" href="{% url "dashboard_properties_create" %}">
+						<a class="data-block widget-block" href="{% url "dashboard.properties.property_new" %}">
 							<span class="widget-icon elusive icon-file-new-alt"></span>
 							<strong>Add property</strong>
 						</a>
@@ -92,7 +92,7 @@
 					
 							<!-- Widget block -->
 					<div class="col-sm-3 col-xs-6">
-						<a class="data-block widget-block" href="{% url "dashboard_properties_list" %}">
+						<a class="data-block widget-block" href="{% url "dashboard.properties.property_list" %}">
 							<span class="widget-icon elusive icon-list"></span>
 							<strong>My Properties</strong>
 						</a>
