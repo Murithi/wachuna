@@ -6,12 +6,23 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
     {% load staticfiles %}
+    {# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
     <link rel="shortcut icon" href="#">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/font-awesome/css/font-awesome.css" media="screen, projection">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/jquery-bxslider/jquery.bxslider.css" media="screen, projection">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/flexslider/flexslider.css" media="screen, projection">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/variants/orange2.css" media="screen, projection" id="css-main">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/custom-css.css">
 
     <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
 
@@ -26,39 +37,16 @@
     <div id="main-wrapper">
         <div id="main">
             <div id="main-inner">
-                {% block content %}
+            {% block content %}
 
-                {% endblock %}
-
-
-        <hr>
-
-        <div class="row">
-    <div class="col-sm-9">
-        <ul class="footer-nav nav nav-pills">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Properties</a></li>
-            <li><a href="#">Agents</a></li>
-            <li><a href="#">Agencies</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul><!-- /.footer-nav -->
-    </div>
-
-    <div class="col-sm-3">
-        <form method="post" action="?" class="form-horizontal form-search">
-            <div class="form-group has-feedback no-margin">
-                <input type="text" class="form-control" placeholder="Search">
-
-                                        <span class="form-control-feedback">
-                                            <i class="fa fa-search"></i>
-                                        </span><!-- /.form-control-feedback -->
-            </div><!-- /.form-group -->
-        </form>
-    </div>
-</div><!-- /.row -->
-    </div><!-- /.container -->
-</div><!-- /.footer-top -->
+            {% endblock %}
+            </div> <!--main-inner -->
+        </div> <!--main -->
+    </div> <!--main-wrapper -->
+    <div id="footer-wrapper">
+        <div id="footer">
+            <div id="footer-inner">
+                {# include 'partials/footer_top.html' #}
                 <div class="footer-bottom">
                     <div class="container">
                         <p class="center no-margin">
@@ -70,12 +58,8 @@
                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-flickr"></i></a></li>
                                 <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
                             </ul><!-- /.social -->
                         </div><!-- /.center -->
                     </div><!-- /.container -->
@@ -84,8 +68,6 @@
         </div><!-- /#footer -->
     </div><!-- /#footer-wrapper -->
 </div><!-- /#wrapper -->
-
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}libraries/isotope/jquery.isotope.min.js"></script>
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>

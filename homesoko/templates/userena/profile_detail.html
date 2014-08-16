@@ -6,13 +6,6 @@
 {% block content_title %}<h2>{{ profile.user.username }} {% if profile.user.get_full_name %}({{ profile.user.get_full_name }}){% endif %}</h2>{% endblock %}
 
 {% block content %}
-	<!-- Data block -->
-	<article class="col-sm-12">
-		<div class="data-block">
-			<header>
-				<h2>User profile settings</h2>
-			</header>
-			<section>
 				<div class="data-block plan-block">
 					<div id="details">
 			      {% block profile_details %}
@@ -36,14 +29,7 @@
 			    </div>
 			  </div>
 			  <div class="row">
-			  	<a href="{% url "userena_profile_edit" username=user.username %}" class="btn btn-success btn-block btn-lg">Change Profile</a>
-			  	<a href="{% url "userena_password_change" username=user.username %}" class="btn btn-warning btn-block btn-lg">Change Password</a>
+			  	<a href="{% url "userena_profile_edit" username=user.username %}" class="btn btn-success">Change Profile</a>
+			  	<a href="{% url "userena_password_change" username=user.username %}" class="btn btn-warning">Change Password</a>
 			  </div>
-			</section>
-			<footer>
-				<p>Etiam sit amet dolor purus. Praesent eu lectus elit, dignissim iaculis libero. In hac habitasse platea dictumst.</p>
-			</footer>
-		</div>
-	</article>
-	<!-- /Data block -->
 {% endblock %}

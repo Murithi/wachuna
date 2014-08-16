@@ -1,60 +1,52 @@
-{% extends 'dashboard.html' %}
+{% extends 'frontend.html' %}
 {% load i18n %}
 {% load url from future %}
 
 {% block title %}{% trans "Signin" %}{% endblock %}
 
 {% block content %}
-<body class="login">
-<!-- Main page container -->
-		<section class="container" role="main">
+<div class="container">
+    <div class="block-content block-content-small-padding">
+        <div class="block-content-inner">
+            <div class="row">
+                <div class="col-sm-4 col-sm-offset-4">
+                    <h2 class="center">Homesoko Dashboard</h2>
 
-			<!-- Login header -->
-			<div class="login-logo">
-				<h1>Welcome to Homesoko</h1>
-			</div>
-			<!-- /Login header -->
+                    <div class="box">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                             {{ form.non_field_errors }}
+                            {% for field in form %}
+                            {{ field.errors }}
+                            {% comment %} Displaying checkboxes differently {% endcomment %}
+                            {% if field.name == 'identification' %}
+                            <div class="form-group">
+                                <label>Username/ Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="elusive icon-user"></span></span>
+                                    <input class="form-control required" type="text" placeholder="username or email" name="{{ field.name }}">
+                                </div>
+                            </div>
+                            {% elif field.name == 'password' %}
+                            <div class="form-group">
+                                <label>Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="elusive icon-key"></span></span>
+                                    <input class="required form-control" type="password" placeholder="Password" name="password">
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                          </fieldset>
+                          <input type="submit" value="{% trans "Signin" %}" class="btn btn-primary btn-inversed btn-block"/>
+                          <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
+                          {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
 
-			<!-- Login form -->
-			<form action="" method="post">
-			  {% csrf_token %}
-			  <fieldset>
-			    <legend>{% trans "Signin" %}</legend>
-			    {{ form.non_field_errors }}
-			    {% for field in form %}
-			    {{ field.errors }}
-			    {% comment %} Displaying checkboxes differently {% endcomment %}
-			    {% if field.name == 'remember_me' %}
-			    <p class="checkbox">
-			    <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-			    </p>
-			    {% elif field.name == 'identification' %}			    
-			    <div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon"><span class="elusive icon-user"></span></span>
-						<input class="form-control required" type="text" placeholder="username or email" name="{{ field.name }}">
-					</div>
-				</div>			    
-			    {% else %}			    
-			    <div class="form-group">
-					<div class="input-group">
-						<span class="input-group-addon"><span class="elusive icon-key"></span></span>
-						<input class="required form-control" type="password" placeholder="Password" name="password">
-					</div>
-				</div>
-			    {% endif %}
-			    {% endfor %}
-			  </fieldset>
-			  <input type="submit" value="{% trans "Signin" %}" class="btn btn-primary btn-lg btn-block"/>
-			  <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
-			  {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
-			</form>
-			<!-- /Login form -->
-			
-		</section>
-		<!-- /Main page container -->
-
-		<!-- Bootstrap scripts -->
-		<script src="{{ STATIC_URL }}js/bootstrap/bootstrap.min.js"></script>
-</body>
+                        </form>
+                    </div><!-- /.box -->
+                </div>
+            </div><!-- /.row -->
+        </div><!-- /.block-content-inner -->
+    </div><!-- /.block-content -->
+</div><!-- /.container -->
 {% endblock %}

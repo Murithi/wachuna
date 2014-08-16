@@ -4,7 +4,11 @@
 	Don't forget to link this CSS to all your HTML files (uncomment it in HEAD tag).
 
 ----------------------------------------------------------------------------- */
+    #wrapper{
+        background-image: url("../img/patterns/small/p5.png");
+        background-repeat: repeat
 
+    }
 	/* your CSS here */
 	.header-branding{
 		top: 14px;

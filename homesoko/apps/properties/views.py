@@ -5,6 +5,11 @@ from .models import Property, PropertyFilter
 class Homepage(TemplateView):
     template_name = "home.html"
 
+    def get_context_data(self, **kwargs):
+        context_data = super(Homepage, self).get_context_data(**kwargs)
+        context_data['properties'] = Property.objects.all()
+        return context_data
+
 
 class SaleProperties(TemplateView):
     template_name = "property_list.html"

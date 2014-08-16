@@ -16,3 +16,5 @@ django-filter==0.7
 django-haystack==2.1.0
 sorl-thumbnail==11.12
 django-select2==4.2.2
+# Pillow requires libjpeg. Install it using sudo apt-get install libjpeg-dev
+pillow==2.5.2

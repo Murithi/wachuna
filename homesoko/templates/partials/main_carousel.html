@@ -1,0 +1,23 @@
+<!-- homesoko featured properties -->
+<div id="featured-properties-carousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+      {% for property in properties %}
+        <li data-target="#featured-properties-carousel" data-slide-to="{{ forloop.counter }}" {% if forloop.first %}class="active"{% endif %}></li>
+      {% endfor %}
+  </ol>
+ {% for property in properties %}
+    <div class="item" {% if forloop.first %}class="active"{% endif %}>
+    <img src="{{ MEDIA_URL }}{{ property.slider_image }}" alt="{{ property.name }}">
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>{{ property.name }}</h1>
+          <p>{{ property.description }}</p>
+          <p><a class="btn btn-lg btn-danger" href="#" role="button">View Property</a></p>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  <a class="left carousel-control" href="#featured-properties-carousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+  <a class="right carousel-control" href="#featured-properties-carousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div><!-- /.carousel -->

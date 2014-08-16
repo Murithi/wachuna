@@ -1,4 +1,11 @@
 {% extends "frontend.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
 {% block content %}
-
+{% include 'partials/main_carousel.html' %}
+<div class="container">
+    {% include 'partials/recent_properties.html' %}
+    {# include 'partials/property_carousel.html' #}
+    {# include 'partials/site_features.html' #}
+</div><!-- /.container -->
 {% endblock %}

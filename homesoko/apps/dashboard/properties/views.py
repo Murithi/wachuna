@@ -25,7 +25,7 @@ class PropertyListView(LoginRequiredMixin, ListView):
     template_name = 'properties/dashboard_property_list.html'
 
 
-class EditPropertyView(UpdateView):
+class EditPropertyView(LoginRequiredMixin, UpdateView):
     model = Property
     template_name = 'properties/property_form.html'
     success_url = reverse_lazy('dashboard_properties_list')
@@ -40,7 +40,7 @@ class EditPropertyView(UpdateView):
         return UpdateView.form_valid(self, form)
 
 
-class PropertyImagesUploadView(UploadView):
+class PropertyImagesUploadView(LoginRequiredMixin, UploadView):
     model = PropertyImage
     delete_url = 'dashboard.properties.images_delete'
 
@@ -50,7 +50,7 @@ class PropertyImagesUploadView(UploadView):
         return context
 
 
-class PropertyImagesListView(UploadListView):
+class PropertyImagesListView(LoginRequiredMixin, UploadListView):
     model = PropertyImage
     delete_url = 'dashboard.properties.images_delete'
 
@@ -58,6 +58,7 @@ class PropertyImagesListView(UploadListView):
         return PropertyImage.objects.filter(property=self.kwargs['pk'])
 
 
-class PropertyImagesDeleteView(UploadDeleteView):
+class PropertyImagesDeleteView(LoginRequiredMixin, UploadDeleteView):
     model = PropertyImage
+
 

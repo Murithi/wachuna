@@ -81,7 +81,10 @@ class Property(TimeStampedModel):
     letting = LettingPropertiesManager()
 
     def primary_image_thumbnail(self):
-        return get_thumbnail(self.primary_image().file, '225x172', crop='center', quality=99)
+        return get_thumbnail(self.primary_image().file, '225x225', crop='center', quality=99)
+
+    def slider_image(self):
+        return get_thumbnail(self.primary_image().file, '1400x500', crop='center', quality=99)
 
     def primary_image(self):
         images = self.images.all()
@@ -107,15 +110,10 @@ class Features(TimeStampedModel):
 
 
 class PropertyImage(TimeStampedModel):
-    """
-    An image of a property
-    """
-    file = models.ImageField(
-        _("File"), upload_to="images", max_length=255)
-    property = models.ForeignKey(
-        Property, related_name='images', verbose_name=_("Soko Property"))
-    caption = models.CharField(
-        _("Caption"), max_length=200, blank=True, null=True)
+    file = models.ImageField("File", upload_to="images", max_length=255)
+    property = models.ForeignKey(Property, related_name='images', verbose_name=_("Property"))
+    caption = models.CharField(_("Caption"), max_length=200, blank=True, null=True)
+    deleted = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('property', 'file')
@@ -123,7 +121,11 @@ class PropertyImage(TimeStampedModel):
         verbose_name_plural = _('Property Images')
 
     def __unicode__(self):
-        return u"Image of '%s'" % self.soko_property
+        return u"Image of '%s'" % self.property
+
+    def delete(self):
+        self.deleted = True
+        self.save()
 
 
 class PropertyFilter(django_filters.FilterSet):
