@@ -1,45 +1,14 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
-    {% load staticfiles %}
-    {# Load the tag library #}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-    <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/font-awesome/css/font-awesome.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/jquery-bxslider/jquery.bxslider.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/flexslider/flexslider.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/variants/orange2.css" media="screen, projection" id="css-main">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/custom-css.css">
-
-    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
-
-    <title> Homesoko |</title>
-</head>
-
-<body>
-<div id="wrapper">
+{% extends 'base.html' %}
+{% block main %}
     {% block header %}
         {% include "partials/header.html" %}
     {% endblock %}
     <div id="main-wrapper">
         <div id="main">
             <div id="main-inner">
-            {% block content %}
+                {% block content %}
 
-            {% endblock %}
+                {% endblock %}
             </div> <!--main-inner -->
         </div> <!--main -->
     </div> <!--main-wrapper -->
@@ -68,19 +37,5 @@
         </div><!-- /#footer -->
     </div><!-- /#footer-wrapper -->
 </div><!-- /#wrapper -->
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/isotope/jquery.isotope.min.js"></script>
-
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.infobox.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.clusterer.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/map.js"></script>
-
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/jquery-bxslider/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/flexslider/jquery.flexslider.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.chained.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/realocation.js"></script>
-
-</body>
+{% endblock %}
 </html>
