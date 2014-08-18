@@ -6,8 +6,9 @@
         <li data-target="#featured-properties-carousel" data-slide-to="{{ forloop.counter }}" {% if forloop.first %}class="active"{% endif %}></li>
       {% endfor %}
   </ol>
+ <div class="carousel-inner">
  {% for property in properties %}
-    <div class="item" {% if forloop.first %}class="active"{% endif %}>
+    <div {% if forloop.first %}class="item active"{% else %}class="item"{% endif %}>
     <img src="{{ MEDIA_URL }}{{ property.slider_image }}" alt="{{ property.name }}">
       <div class="container">
         <div class="carousel-caption">
@@ -18,6 +19,7 @@
       </div>
     </div>
   {% endfor %}
+ </div>
   <a class="left carousel-control" href="#featured-properties-carousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
   <a class="right carousel-control" href="#featured-properties-carousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 </div><!-- /.carousel -->

@@ -87,7 +87,7 @@ class Property(TimeStampedModel):
         return get_thumbnail(self.primary_image().file, '1400x500', crop='center', quality=99)
 
     def primary_image(self):
-        images = self.images.all()
+        images = self.images.filter(deleted=False)
         try:
             return images[0]
         except IndexError:

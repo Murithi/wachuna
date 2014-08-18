@@ -1,22 +1,25 @@
+from decimal import Decimal
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import CreateView, ListView, UpdateView
 from braces.views import LoginRequiredMixin
 from homesoko.apps.properties.models import Property, PropertyImage
 from homesoko.apps.utils.djupload.views import UploadView, UploadListView, UploadDeleteView
-from .forms import SokoPropertyForm
+from .forms import PropertyForm
 
 
 class PropertyCreateView(LoginRequiredMixin, CreateView):
-    form_class = SokoPropertyForm
+    form_class = PropertyForm
     model = Property
     template_name = 'properties/property_form.html'
-    success_url = reverse_lazy('dashboard_properties_list')
+    success_url = reverse_lazy('dashboard.properties.property_list')
 
     def form_valid(self, form):
-        soko_property = form.save()
+        form.bedrooms = Decimal(form.cleaned_data['bedrooms'])
+        form.bathrooms = Decimal(form.cleaned_data['bedrooms'])
+        sokoproperty = form.save()
         features = form.cleaned_data['features']
         for feature in features:
-            soko_property.features.add(feature)
+            sokoproperty.features.add(feature)
         return CreateView.form_valid(self, form)
 
 
@@ -28,15 +31,17 @@ class PropertyListView(LoginRequiredMixin, ListView):
 class EditPropertyView(LoginRequiredMixin, UpdateView):
     model = Property
     template_name = 'properties/property_form.html'
-    success_url = reverse_lazy('dashboard_properties_list')
-    form_class = SokoPropertyForm
+    success_url = reverse_lazy('dashboard.properties.property_list')
+    form_class = PropertyForm
 
     def form_valid(self, form):
-        soko_property = form.save()
+        form.bedrooms = Decimal(form.cleaned_data['bedrooms'])
+        form.bathrooms = Decimal(form.cleaned_data['bedrooms'])
+        sokoproperty = form.save()
         features = form.cleaned_data['features']
-        soko_property.features.clear()
+        sokoproperty.features.clear()
         for feature in features:
-            soko_property.features.add(feature)
+            sokoproperty.features.add(feature)
         return UpdateView.form_valid(self, form)
 
 
@@ -55,7 +60,7 @@ class PropertyImagesListView(LoginRequiredMixin, UploadListView):
     delete_url = 'dashboard.properties.images_delete'
 
     def get_queryset(self):
-        return PropertyImage.objects.filter(property=self.kwargs['pk'])
+        return PropertyImage.objects.filter(property=self.kwargs['pk'], deleted=False)
 
 
 class PropertyImagesDeleteView(LoginRequiredMixin, UploadDeleteView):
