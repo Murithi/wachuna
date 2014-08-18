@@ -2,3 +2,7 @@
 .project
 .pydevproject
 .idea*
+
+# media and static
+media
+static
