@@ -36,12 +36,3 @@ class LettingPropertiesView(TemplateView):
         context_data['properties'] = Property.letting.all()
         return context_data
 
-
-class FilteredProperties(TemplateView):
-    template_name = 'property_list.html'
-'''
-    def get_context_data(self, **kwargs):
-        context_data = super(FilteredProperties, self).get_context_data(**kwargs)
-        context_data['properties'] = FilteredProperties(self.request.GET, queryset=SokoProperty.objects.all())
-        return context_data
-'''

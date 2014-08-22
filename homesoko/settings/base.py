@@ -114,3 +114,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
 )
+
+ADMINS = (('Savio Abuga', 'savioabuga@gmail.com'),)
