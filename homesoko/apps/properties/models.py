@@ -95,7 +95,7 @@ class Property(TimeStampedModel):
             # the ProductImage class so this missing image can be used
             # interchangably in templates.  Strategy pattern ftw!
             return {
-                'original': self.get_missing_image(),
+                #'original': self.get_missing_image(),
                 'caption': '',
                 'is_missing': True}
 
