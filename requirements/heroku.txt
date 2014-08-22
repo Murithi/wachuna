@@ -1,2 +1,8 @@
 -r local.txt #includes the base.txt requirements file
 django-toolbelt==0.0.1
+dj-database-url==0.3.0
+dj-static==0.0.6
+wsgiref==0.1.2
+static3==0.5.1
+psycopg2==2.5.3
+gunicorn==19.1.1
