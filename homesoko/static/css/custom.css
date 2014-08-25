@@ -4,10 +4,36 @@
 	Don't forget to link this CSS to all your HTML files (uncomment it in HEAD tag).
 
 ----------------------------------------------------------------------------- */
+    #wrapper{
+        background-image: url("../img/patterns/small/p5.png");
+        background-repeat: repeat
 
+    }
 	/* your CSS here */
-
-
+	.header-branding{
+		top: 14px;
+		max-width: 256px;
+	}
+	/**
+	#header  {
+		background-color: #292f33;
+	}
+	.header-form {
+		background-color: #292f33;
+	}
+	.header-nav a {
+		background-color: #292f33;
+	}
+	.banner-search .tab-content-list {
+		background-color: #292f33;
+		}
+	.banner-search .tab-title {
+		background-color: #292f33;
+	}
+	#footer {
+		background-color: #292f33;
+	}
+		
 /* -----------------------------------------------------------------------------
 
     RESPONSIVE DEFINITIONS

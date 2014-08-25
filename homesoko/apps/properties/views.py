@@ -16,7 +16,13 @@ class PropertyDetailView(DetailView):
     model = Property
     slug_url_kwarg = 'property_slug'
     slug_field = 'slug'
+    context_object_name = 'property'
 
+    def get_context_data(self, **kwargs):
+        context_data = super(PropertyDetailView, self).get_context_data(**kwargs)
+        sokoproperty = self.get_object()
+        context_data['images'] = sokoproperty.images.values
+        return context_data
 
 
 class SalePropertiesView(TemplateView):

@@ -1,53 +1,69 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
-    {% load staticfiles %}
-    {# Load the tag library #}
-{% load bootstrap3 %}
-
-{# Load CSS and JavaScript #}
-{% bootstrap_css %}
-{% bootstrap_javascript %}
-
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-    <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/font-awesome/css/font-awesome.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/jquery-bxslider/jquery.bxslider.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/flexslider/flexslider.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/variants/orange2.css" media="screen, projection" id="css-main">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/custom-css.css">
-
-    <link href="http://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet" type="text/css">
-
-    <title> Homesoko |</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Exo+2:200,300,400,500,600,600italic,700">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/chosen/chosen.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/rangeSlider/css/ion.rangeSlider.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/rangeSlider/css/ion.rangeSlider.skinNice.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/variants/real-estate.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/vihomesoko.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/bootstrap-vertical-tabs/bootstrap.vertical-tabs.min.css">
+    <title>Homesoko |Director </title>
 </head>
 
-<body>
-<div id="wrapper">
-    {% block main %}
+<body class="footer-top-dark">
 
+<div id="page">
+
+    {% block header %}
+        {% include "partials0/header.html" %}
     {% endblock %}
-</div><!-- /#wrapper -->
+    <div id="main-wrapper">
+        <div id="main">
+            <div id="main-inner">
+    {% block content %}
+
+    {% endblock  %}
+           </div> <!-- main-inner -->
+        </div> <!-- main-wrapper -->
+    </div><!-- main -->
+    {% block footer %}
+        {% include "partials0/footer.html" %}
+    {% endblock %}
+
+
+
+
+</div><!-- /#page -->
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/libraries/jquery.js"></script>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/libraries/gmap3.clusterer.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/libraries/gmap3.infobox.js"></script>
+
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bxslider/jquery.bxslider.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/chosen/chosen.jquery.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}libraries/isotope/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/rangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
 
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=true"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.infobox.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/gmap3.clusterer.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/map.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/flot/jquery.flot.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/flot/jquery.flot.canvas.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/flot/jquery.flot.resize.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/flot/jquery.flot.time.js"></script>
 
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap-sass/vendor/assets/javascripts/bootstrap/transition.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap-sass/vendor/assets/javascripts/bootstrap/collapse.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/jquery-bxslider/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}libraries/flexslider/jquery.flexslider.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.chained.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/realocation.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap/javascripts/bootstrap/carousel.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap/javascripts/bootstrap/collapse.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap/javascripts/bootstrap/dropdown.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap/javascripts/bootstrap/tab.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}libraries/bootstrap/javascripts/bootstrap/transition.js"></script>
+
+<script type="text/javascript" src="{{ STATIC_URL }}j/map.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/graph.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/director.js"></script>
 
 </body>
 </html>

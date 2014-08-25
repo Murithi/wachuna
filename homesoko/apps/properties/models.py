@@ -53,10 +53,11 @@ class Property(TimeStampedModel):
         Two = ChoiceItem(1, '2')
 
     class BathroomsOptions(DjangoChoices):
-        One = ChoiceItem(1, '1')
-        OneAndHalf = ChoiceItem(1.5, '1 and 1/2')
-        Two = ChoiceItem(2, '2')
-        TwoAndHalf = ChoiceItem(2.5, '2 and 1/2')
+        ensuite = ChoiceItem('Ensuite')
+        One = ChoiceItem('1', '1')
+        OneAndHalf = ChoiceItem('1 and 1/2', '1 and 1/2')
+        Two = ChoiceItem('2', '2')
+        TwoAndHalf = ChoiceItem('2 and 1/2', '2 and 1/2')
 
     class StateOptions(DjangoChoices):
         New = ChoiceItem('new', 'New')
@@ -68,7 +69,7 @@ class Property(TimeStampedModel):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(_('Description'), blank=True, null=True)
     bedrooms = models.IntegerField(max_length=5, null=True, blank=True, choices=BedroomOptions.choices)
-    bathrooms = models.DecimalField(max_digits=2, decimal_places=2, null=True, blank=True, choices=BathroomsOptions.choices)
+    bathrooms = models.CharField(max_length=10, null=True, blank=True, choices=BathroomsOptions.choices)
     structure_size = models.PositiveIntegerField(null=True, blank=True,
                                                  help_text='Size of the structure in square feet')
     lot_size = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,
@@ -80,22 +81,33 @@ class Property(TimeStampedModel):
     sale = SalePropertiesManager()
     letting = LettingPropertiesManager()
 
+    class Meta:
+        verbose_name_plural = 'properties'
+
     def primary_image_thumbnail(self):
-        return get_thumbnail(self.primary_image().file, '225x225', crop='center', quality=99)
+        if self.primary_image():
+            return get_thumbnail(self.primary_image().file, '225x225', crop='center', quality=99)
+        return None
 
     def slider_image(self):
-        return get_thumbnail(self.primary_image().file, '1400x500', crop='center', quality=99)
+        if self.primary_image():
+            return get_thumbnail(self.primary_image().file, '1400x500', crop='center', quality=99)
+        return None
+
+    def get_missing_image(self):
+        pass
 
     def primary_image(self):
         images = self.images.filter(deleted=False)
         try:
             return images[0]
         except IndexError:
+            return None
             # We return a dict with fields that mirror the key properties of
-            # the ProductImage class so this missing image can be used
+            # the PropertyImage class so this missing image can be used
             # interchangably in templates.  Strategy pattern ftw!
             return {
-                #'original': self.get_missing_image(),
+                'original': self.get_missing_image(),
                 'caption': '',
                 'is_missing': True}
 
@@ -127,8 +139,3 @@ class PropertyImage(TimeStampedModel):
         self.deleted = True
         self.save()
 
-
-class PropertyFilter(django_filters.FilterSet):
-    class Meta:
-        model = Property
-        fields = ['neighbourhood', 'city', 'bedrooms', 'price']

@@ -64,6 +64,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Application definition
 
 INSTALLED_APPS = (
+    'grappelli',  # always before django admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
     # homesoko apps
     'homesoko.apps.properties',
     'homesoko.apps.users',
@@ -116,3 +118,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 ADMINS = (('Savio Abuga', 'savioabuga@gmail.com'),)
+
+STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",
+                       "django.contrib.staticfiles.finders.AppDirectoriesFinder")

@@ -1,5 +1,7 @@
-{% extends "base.html" %}
-{% block content %}
+
+    <div id="main-wrapper">
+        <div id="main">
+            <div id="main-inner">
 <div class="google-map-wrapper">
     <div id="google-map">
         {% include 'partials/main_carousel.html' %}
@@ -101,7 +103,7 @@
 {% block recent %}
     {% include "partials0/recent.html" %}
 {% endblock %}
-       
+        </div><!-- /#main-inner -->
+    </div><!-- /#main -->
+</div><!-- /#main-wrapper -->
 
-
-{% endblock %}

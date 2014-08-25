@@ -6,6 +6,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', Homepage.as_view(), name='home'),
+    url(r'^grappelli/', include('grappelli.urls')),  # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
     url(r'^properties/', include('homesoko.apps.properties.urls')),
     url(r'^dashboard/properties/', include('homesoko.apps.dashboard.properties.urls')),

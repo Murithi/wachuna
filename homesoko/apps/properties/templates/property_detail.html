@@ -1,20 +1,16 @@
 {% extends "frontend.html" %}
+{% load humanize %}
 {% block content %}
     <div class="container">
                 <div class="block-content block-content-small-padding">
                     <div class="block-content-inner">
                         <div class="row">
                             <div class="col-sm-9">
-                                <h2 class="property-detail-title">{{ object.name }}</h2>
-                                <h3 class="property-detail-subtitle">New York, Brooklyn <strong>$ 680 000</strong></h3>
+                                <h2 class="property-detail-title">{{ property.name }}</h2>
+                                <h3 class="property-detail-subtitle">{{ property.neighbourhood }}, {{ property.city }} <strong>Ksh {{ property.price|floatformat|intcomma|intword }}</strong></h3>
 
                                 <div class="property-detail-overview">
                                     <div class="property-detail-overview-inner clearfix">
-                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
-                                            <strong>Price:</strong>
-                                            <span>$ 680 000</span>
-                                        </div><!-- /.property-detail-overview-item -->
-
                                         <div class="property-detail-overview-item col-sm-6 col-md-2">
                                             <strong>Type:</strong>
                                             <span>Sale</span>
@@ -44,22 +40,12 @@
 
                                 <div class="flexslider">
                                     <ul class="slides">
+                                        {% for image in images %}
+                                            <li data-thumb="{{ MEDIA_URL }}{{ image.file }}">
+                                                <img src="{{ MEDIA_URL }}{{ image.file }}" alt="">
+                                            </li>
+                                        {% endfor %}
 
-                                        <li data-thumb="assets/img/tmp/properties/large/3.jpg">
-                                            <img src="assets/img/tmp/properties/large/3.jpg" alt="">
-                                        </li>
-
-                                        <li data-thumb="assets/img/tmp/properties/large/12.jpg">
-                                            <img src="assets/img/tmp/properties/large/12.jpg" alt="">
-                                        </li>
-
-                                        <li data-thumb="assets/img/tmp/properties/large/5.jpg">
-                                            <img src="assets/img/tmp/properties/large/5.jpg" alt="">
-                                        </li>
-
-                                        <li data-thumb="assets/img/tmp/properties/large/6.jpg">
-                                          <img src="assets/img/tmp/properties/large/6.jpg" alt="">
-                                        </li>
                                     </ul><!-- /.slides -->
                                 </div><!-- /.flexslider -->
 
@@ -68,7 +54,7 @@
                                 <h2>Description</h2>
 
                                 <p>
-                                    Vestibulum feugiat tempor mattis. Maecenas venenatis at erat sit amet viverra. Fusce sagittis pretium est vel iaculis. Proin vel tincidunt nisi. Sed non vehicula purus. In auctor sodales metus, ac fermentum odio sagittis quis. Curabitur volutpat, erat nec varius dapibus, felis libero malesuada mauris, at vestibulum enim erat non nibh. Donec ac nibh dapibus, sagittis libero a, sodales enim. Quisque a viverra mi.
+                                    {{ property.description }}
                                 </p>
 
                                 <hr>
@@ -116,17 +102,7 @@
                             <div class="col-sm-3">
                                 <div class="sidebar">
                                     <div class="sidebar-inner">
-                                        <div class="widget">
-    <h3 class="widget-title">Social Networks</h3>
-
-    <ul class="social social-boxed">
-        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
-        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
-    </ul><!-- /.social-->
-</div><!-- /.widget -->                                        <div class="widget">
+                                                                           <div class="widget">
     <h3 class="widget-title">Enquire</h3>
 
     <div class="widget-content">

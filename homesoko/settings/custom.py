@@ -17,6 +17,7 @@ STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'custom-static'),
     os.path.join(PROJECT_DIR, 'frontend-static'),
+    os.path.join(PROJECT_DIR, 'assets/front'),
 )
 
 TEMPLATE_DIRS = (

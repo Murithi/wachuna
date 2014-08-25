@@ -9,8 +9,6 @@ ALLOWED_HOSTS = {
     'localhost',
 }
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
-STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 import sys
 if 'test' in sys.argv:

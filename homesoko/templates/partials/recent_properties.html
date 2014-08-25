@@ -1,4 +1,4 @@
-<!-- ISOTOPE GRID -->
+{% load humanize %}
 <div class="block-content block-content-small-padding">
 <div class="block-content-inner">
 <h2 class="center">Recent Properties</h2>
@@ -8,13 +8,13 @@
         <div class="property-item property-featured col-sm-6 col-md-3">
         <div class="property-box">
             <div class="property-box-inner">
-                <h3 class="property-box-title"><a href="property-detail.html">{{ property.name }}</a></h3>
-                <h4 class="property-box-subtitle"><a href="property-detail.html">{{ property.neighbourhood }}</a></h4>
+                <h3 class="property-box-title"><a href="{% url 'properties.listing' property_slug=property.slug %}">{{ property.name }}</a></h3>
+                <h4 class="property-box-subtitle"><a href="{% url 'properties.listing' property_slug=property.slug %}">{{ property.neighbourhood }}</a></h4>
                 <div class="property-box-picture">
-                    <div class="property-box-price">Ksh {{ property.price }}</div>
+                    <div class="property-box-price">Ksh {{ property.price|floatformat|intcomma|intword }}</div>
                     <!-- /.property-box-price -->
                     <div class="property-box-picture-inner">
-                        <a href="#" class="property-box-picture-target">
+                        <a href="{% url 'properties.listing' property_slug=property.slug %}" class="property-box-picture-target">
                             <img src="{{ MEDIA_URL }}{{ property.primary_image_thumbnail }}" alt="">
                         </a><!-- /.property-box-picture-target -->
                     </div>
@@ -36,7 +36,7 @@
                     <!-- /.col-sm-3 -->
 
                     <div class="property-box-meta-item col-xs-3 col-sm-3">
-                        <strong>{{ property.lot_size }}</strong>
+                        <strong>{{ property.lot_size|floatformat }}</strong>
                         <span>Area</span>
                     </div>
                     <!-- /.col-sm-3 -->

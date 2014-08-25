@@ -6,5 +6,5 @@ urlpatterns = patterns('',
                        #url(r'list/$', FilteredProperties.as_view()),
                        url(r'list/for-sale/$', SalePropertiesView.as_view(), name='properties.list_sale'),
                        url(r'list/letting/$', LettingPropertiesView.as_view(), name='properties.list_letting'),
-                       url(r'listing/(?P<property_slug>[\w-]+)/$', PropertyDetailView.as_view()),
+                       url(r'listing/(?P<property_slug>[\w-]+)/$', PropertyDetailView.as_view(), name='properties.listing'),
                        )

@@ -4,18 +4,17 @@
 
 {% block title %}{% trans "Signin" %}{% endblock %}
 
-{% block main %}
+{% block content %}
 <div class="container">
-    <div class="block-content block-content-small-padding">
-        <div class="block-content-inner">
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
-                    <div class="center">
-                        <a href="{% url 'home' %}"><img src="{{ STATIC_URL }}img/homesoko.png" alt="Homesoko"></a>
-                    </div>
+	<div class="block-content">
+    	<div class="block-content-inner clearfix">
+			<div class="page-header page-header-no-rules center">
+				<h1>Login</h1>
+			</div><!-- /.page-header -->
 
-                    <div class="box">
-                        <form method="post" action="">
+			<div class="col-sm-4 col-sm-offset-4">
+    <form method="post" action="?">
+                        <form method="post" action="" class="form-vertical">
                             {% csrf_token %}
                              {{ form.non_field_errors }}
                             {% for field in form %}
@@ -25,7 +24,7 @@
                             <div class="form-group">
                                 <label>Username/ Email</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                    <span class="input-group-addon"><span class="fa fa-user"></span></span>
                                     <input class="form-control required" type="text" placeholder="username or email" name="{{ field.name }}">
                                 </div>
                             </div>
@@ -33,22 +32,20 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <div class="input-group">
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                    <span class="input-group-addon"><span class="fa fa-lock"></span></span>
                                     <input class="required form-control" type="password" placeholder="Password" name="password">
                                 </div>
                             </div>
                             {% endif %}
                             {% endfor %}
                           </fieldset>
-                          <input type="submit" value="{% trans "Signin" %}" class="btn btn-primary btn-inversed btn-block"/>
+                          <input type="submit" value="{% trans "Signin" %}" class="btn btn-terciary btn-block"/>
                           <p class="forgot-password"><a href="{% url 'userena_password_reset' %}" title="{% trans 'Forgot your password?' %}">{% trans "Forgot your password?" %}</a></p>
                           {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
 
-                        </form>
-                    </div><!-- /.box -->
-                </div>
-            </div><!-- /.row -->
-        </div><!-- /.block-content-inner -->
-    </div><!-- /.block-content -->
-</div><!-- /.container -->
+   </form>
+</div>	    </div><!-- /.block-content-inner -->
+	</div><!-- /.block-content -->
+</div>
+
 {% endblock %}

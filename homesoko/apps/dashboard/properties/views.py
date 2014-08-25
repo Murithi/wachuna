@@ -35,8 +35,6 @@ class EditPropertyView(LoginRequiredMixin, UpdateView):
     form_class = PropertyForm
 
     def form_valid(self, form):
-        form.bedrooms = Decimal(form.cleaned_data['bedrooms'])
-        form.bathrooms = Decimal(form.cleaned_data['bedrooms'])
         sokoproperty = form.save()
         features = form.cleaned_data['features']
         sokoproperty.features.clear()

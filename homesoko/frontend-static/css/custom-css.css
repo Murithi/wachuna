@@ -1,8 +1,13 @@
-#wrapper, .header-top {
-    background-image: url("../img/patterns/p5.png");
+.footer-bottom, .header-top {
+    background-image: url("../img/patterns/header-bg.png");
     background-repeat: repeat;
 }
 
+.box{
+ -webkit-box-shadow: 0px 1px 6px 0px rgba(46, 50, 50, 0.75);
+-moz-box-shadow:    0px 1px 6px 0px rgba(46, 50, 50, 0.75);
+box-shadow:         0px 1px 6px 0px rgba(46, 50, 50, 0.75);
+}
 
 .static-image-description-wrapper {
 top: 20%;
@@ -24,7 +29,7 @@ color: #fff;
 
 /* Carousel base class */
 .carousel {
-  height: 500px;
+  height: 600px;
   margin-bottom: 60px;
 }
 /* Since positioning the image, we need to help out the caption */
