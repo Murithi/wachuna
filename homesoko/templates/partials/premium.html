@@ -36,14 +36,14 @@
                                         </table>
                                     </div><!-- /.box-content -->
 
-                                    <a href="#">
-                                        <img src="{{ MEDIA_URL }}{{ property.primary_image_thumbnail }}" alt="">
+                                    <a href="{% url 'properties.listing' property.slug %}">
+                                        <img src="{{ MEDIA_URL }}{{ property.primary_image_thumbnail }}" alt="{{ property.name }}">
                                     </a>
                                 </div><!-- /.box-picture -->
 
                                 <div class="box-body">
                                     <h2 class="box-title-plain">
-                                        <a href="#">{{ property.name }}</a>
+                                        <a href="{% url 'properties.listing' property.slug %}">{{ property.name }}</a>
                                     </h2><!-- /.box-title -->
 
                                     <div class="box-location box-subtitle">

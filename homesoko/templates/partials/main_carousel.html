@@ -14,7 +14,7 @@
         <div class="carousel-caption">
           <h1>{{ property.name }}</h1>
           <p>{{ property.description }}</p>
-          <p><a class="btn btn-lg btn-danger" href="#" role="button">View Property</a></p>
+          <p><a class="btn btn-lg btn-danger" href="{% url 'properties.listing' property.slug %}" role="button">View Property</a></p>
         </div>
       </div>
     </div>

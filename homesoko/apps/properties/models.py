@@ -35,7 +35,7 @@ class SalePropertiesManager(models.Manager):
 
 class LettingPropertiesManager(models.Manager):
     def get_query_set(self):
-        return super(LettingPropertiesManager, self).get_query_set().filter(category=Property.CategoryOptions.Sale)
+        return super(LettingPropertiesManager, self).get_query_set().filter(category=Property.CategoryOptions.Letting)
 
 
 @with_author

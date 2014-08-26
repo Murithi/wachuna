@@ -1,65 +1,63 @@
-{% extends "front.html" %}
+{% extends "base.html" %}
 {% load humanize %}
 {% block content %}
-    <div class="container">
-                <div class="block-content block-content-small-padding">
-                    <div class="block-content-inner">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                <h2 class="property-detail-title">{{ property.name }}</h2>
-                                <h3 class="property-detail-subtitle">{{ property.neighbourhood }}, {{ property.city }} <strong>Ksh {{ property.price|floatformat|intcomma|intword }}</strong></h3>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="block-content">
+                <h2 class="widgetized-title">
+                    {{ property.name }} <small class="subtitle">{{ property.neighbourhood }}, {{ property.city }}</small>
+                </h2>
 
-                                <div class="property-detail-overview">
-                                    <div class="property-detail-overview-inner clearfix">
-                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
-                                            <strong>Type:</strong>
-                                            <span>Sale</span>
-                                        </div><!-- /.property-detail-overview-item -->
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" {% if forloop.first %}class="active"{% endif %}></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>
 
-                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
-                                            <strong>Area:</strong>
-                                            <span>250m<sup>2</sup></span>
-                                        </div><!-- /.property-detail-overview-item -->
+                    <div class="carousel-inner">
+                        {% for image in images %}
+                            <div {% if forloop.first %}class="item active"{% else %}class="item"{% endif %}>
+                                <img alt="{{ property.name }}" src="{{ MEDIA_URL }}{{ image.file }}">
+                            </div>
+                        {% endfor %}
+                    </div><!-- /.carousel-inner -->
+                </div><!-- /.carousel -->
 
-                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
-                                            <strong>Baths:</strong>
-                                            <span>3</span>
-                                        </div><!-- /.property-detail-overview-item -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h3 class="widgetized-title">Overview</h3>
 
-                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
-                                            <strong>Beds:</strong>
-                                            <span>4</span>
-                                        </div><!-- /.property-detail-overview-item -->
+                        <div class="box background-white">
+                            <div class="box-body">
+                                <div class="box-content">
+                                    <dl class="dl-horizontal no-top-margin">
+                                        <dt class="odd">Price</dt>
+                                        <dd class="odd">Ksh {{ property.price|floatformat|intcomma|intword }}</dd>
+                                        <dt>Baths</dt>
+                                        <dd>2</dd>
+                                        <dt class="odd">Beds</dt>
+                                        <dd class="odd">{{ property.bedrooms }}</dd>
+                                        <dt>Type</dt>
+                                        <dd>{{ property.property_type }}</dd>
+                                        <dt class="odd">Garage</dt>
+                                        <dd class="odd">Yes</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div><!-- /.box -->
+                    </div>
 
-                                        <div class="property-detail-overview-item col-sm-6 col-md-2">
-                                            <strong>Garages:</strong>
-                                            <span>2</span>
-                                        </div><!-- /.property-detail-overview-item -->
-                                    </div><!-- /.property-detail-overview-inner -->
-                                </div><!-- /.property-detail-overview -->
+                    <div class="col-sm-8">
+                        <h3 class="widgetized-title">Description</h3>
+                        <p>
+                            {{ property.description }}
+                        </p>
+                    </div>
+                </div>
 
-                                <div class="flexslider">
-                                    <ul class="slides">
-                                        {% for image in images %}
-                                            <li data-thumb="{{ MEDIA_URL }}{{ image.file }}">
-                                                <img src="{{ MEDIA_URL }}{{ image.file }}" alt="">
-                                            </li>
-                                        {% endfor %}
-
-                                    </ul><!-- /.slides -->
-                                </div><!-- /.flexslider -->
-
-                                <hr>
-
-                                <h2>Description</h2>
-
-                                <p>
-                                    {{ property.description }}
-                                </p>
-
-                                <hr>
-
-                                <h2>Amenities</h2>
+                    <h3 class="widgetized-title">Available</h3>
 
                                 <div class="row">
                                     <ul class="property-detail-amenities">
@@ -97,140 +95,148 @@
                                         <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Video</li>
                                     </ul>
                                 </div><!-- /.row -->
-                            </div>
+            </div><!-- /.block-content -->
+        </div>
 
-                            <div class="col-sm-3">
-                                <div class="sidebar">
-                                    <div class="sidebar-inner">
-                                                                           <div class="widget">
-    <h3 class="widget-title">Enquire</h3>
+        <div class="col-sm-3">
+            <div class="sidebar">
+                <div class="block-content">
+                    <div class="widget widget-boxed">
+    <h3>Enquire Now</h3>
 
-    <div class="widget-content">
-        <form method="post" action="?">
-            <div class="form-group">
-                <label>Your e-mail</label>
-                <input type="text" value="" class="form-control">
-            </div><!-- /.form-group -->
+    <form method="post">
+        <div class="form-group">
+            <label>Subject</label>
+            <input type="text" class="form-control">
+        </div><!-- /.form-group -->
 
-            <div class="form-group">
-                <label>Date From</label>
-                <input type="date" value="" class="form-control">
-            </div><!-- /.form-group -->
+        <div class="form-group">
+            <label>Date</label>
+            <input type="date" class="form-control">
+        </div><!-- /.form-group -->
 
-            <div class="form-group">
-                <label>Date To</label>
-                <input type="date" value="" class="form-control">
-            </div><!-- /.form-group -->
+        <div class="form-group">
+            <label>Message</label>
+            <textarea class="form-control"></textarea>
+        </div><!-- /.form-group -->
 
-            <div class="form-group">
-                <label>Message</label>
-                <textarea class="form-control"></textarea>
-            </div><!-- /.form-group -->
+        <input type="submit" class="btn btn-block btn-secondary" value="Send">
+    </form>
+</div><!-- /.widget -->
+                    <div class="widget widget-boxed widget-boxed-secondary">
+    <form method="post">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control">
+        </div><!-- /.form-group -->
 
-            <div class="form-group">
-                <input type="text" value="Contact" class="btn btn-block btn-primary btn-inversed">
-            </div><!-- /.form-group -->
-        </form>
-    </div><!-- /.widget-content -->
-</div><!-- /.widget -->                                        <div class="widget">
-    <h3 class="widget-title">Recent Properties</h3>
 
-    <div class="properties-small-list">
-        <div class="property-small clearfix">
-            <div class="property-small-picture col-sm-12 col-md-4">
-                <div class="property-small-picture-inner">
-                    <a href="#" class="property-small-picture-target">
-                        <img src="assets/img/tmp/properties/small/1.jpg" alt="">
-                    </a>
-                </div><!-- /.property-small-picture -->
-            </div><!-- /.property-small-picture -->
+        <div class="form-group">
+            <label>Type</label>
 
-            <div class="property-small-content col-sm-12 col-md-8">
-                <h3 class="property-small-title"><a href="#">Evergreen Tr</a></h3><!-- /.property-small-title -->
-                <div class="property-small-price">$ 1,800 <span class="property-small-price-suffix">/ per month</span></div><!-- /.property-small-price -->
-            </div><!-- /.property-small-content -->
-        </div><!-- /.property-small -->
+            <select class="form-control">
+                <option value="">Apartman</option>
+                <option value="">Building Area</option>
+                <option value="">Condo</option>
+                <option value="">House</option>
+                <option value="">Warehouse</option>
+            </select>
+        </div><!-- /.form-group -->
 
-        <div class="property-small clearfix">
-            <div class="property-small-picture col-sm-12 col-md-4">
-                <div class="property-small-picture-inner">
-                    <a href="#" class="property-small-picture-target">
-                        <img src="assets/img/tmp/properties/small/3.jpg" alt="">
-                    </a>
-                </div><!-- /.property-small-picture -->
-            </div><!-- /.property-small-picture -->
 
-            <div class="property-small-content col-sm-12 col-md-8">
-                <h3 class="property-small-title"><a href="#">Everett Ave</a></h3><!-- /.property-small-title -->
-                <div class="property-small-price">$ 1,800 <span class="property-small-price-suffix">/ per month</span></div><!-- /.property-small-price -->
-            </div><!-- /.property-small-content -->
-        </div><!-- /.property-small -->
+        <div class="form-group">
+            <label>Price From</label>
 
-        <div class="property-small clearfix">
-            <div class="property-small-picture col-sm-12 col-md-4">
-                <div class="property-small-picture-inner">
-                    <a href="#" class="property-small-picture-target">
-                        <img src="assets/img/tmp/properties/small/4.jpg" alt="">
-                    </a>
-                </div><!-- /.property-small-picture -->
-            </div><!-- /.property-small-picture -->
+            <select class="form-control">
+                <option value="">2000 €</option>
+                <option value="">3000 €</option>
+                <option value="">5000 €</option>
+            </select>
+        </div><!-- /.form-group -->
 
-            <div class="property-small-content col-sm-12 col-md-8">
-                <h3 class="property-small-title"><a href="#">Jefferson Blvd</a></h3><!-- /.property-small-title -->
-                <div class="property-small-price">$ 1,800 <span class="property-small-price-suffix">/ per month</span></div><!-- /.property-small-price -->
-            </div><!-- /.property-small-content -->
-        </div><!-- /.property-small -->
-    </div><!-- /.properties-small-list -->
-</div><!-- /.widget -->                                        <div class="widget">
-    <h3 class="widget-title">Assigned Agents</h3>
+        <div class="form-group">
+            <label>Price To</label>
 
-    <div class="agent-small">
-        <div class="agent-small-top">
-            <div class="clearfix">
-                <div class="agent-small-picture col-sm-12">
-                    <div class="agent-small-picture-inner">
-                        <a href="#" class="agent-small-picture-inner ">
-                            <img src="assets/img/tmp/agents/medium/3.jpg" alt="">
-                        </a><!-- /.agent-small-picture-target -->
-                    </div><!-- /.agent-small-picture-inner -->
-                </div><!-- /.agent-small-picture -->
-            </div><!-- /.row -->
-        </div><!-- /.agent-small-top -->
+            <select class="form-control">
+                <option value="">2000 €</option>
+                <option value="">3000 €</option>
+                <option value="">5000 €</option>
+            </select>
+        </div><!-- /.form-group -->
 
-        <div class="agent-small-bottom">
-            <ul class="list-unstyled">
-                <li><i class="fa fa-phone"></i> +0-123-322-123</li>
-                <li><i class="fa fa-envelope-o"></i> <a href="#">hi@company.com</a></li>
-            </ul>
-        </div><!-- /.agent-small-bottom -->
-    </div><!-- /.agent-small -->
+        <div class="form-group">
+            <label>Baths</label>
 
-    <div class="agent-small">
-        <div class="agent-small-top">
-            <div class="clearfix">
-                <div class="agent-small-picture col-sm-12">
-                    <div class="agent-small-picture-inner">
-                        <a href="#" class="agent-small-picture-inner ">
-                            <img src="assets/img/tmp/agents/medium/1.jpg" alt="">
-                        </a><!-- /.agent-small-picture-target -->
-                    </div><!-- /.agent-small-picture-inner -->
-                </div><!-- /.agent-small-picture -->
-            </div><!-- /.row -->
-        </div><!-- /.agent-small-top -->
+            <select class="form-control">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+            </select>
+        </div><!-- /.form-group -->
 
-        <div class="agent-small-bottom">
-            <ul class="list-unstyled">
-                <li><i class="fa fa-phone"></i> +0-123-322-123</li>
-                <li><i class="fa fa-envelope-o"></i> <a href="#">hi@company.com</a></li>
-            </ul>
-        </div><!-- /.agent-small-bottom -->
-    </div><!-- /.agent-small -->
-</div><!-- /.widget -->                                    </div><!-- /.sidebar-inner -->
-                                </div><!-- /.sidebar -->
-                            </div>
-                        </div><!-- /.row -->
-                    </div><!-- /.block-content-inner -->
-                </div><!-- /.block-content -->
-            </div><!-- /.container -->
+        <div class="form-group">
+            <label>Beds</label>
 
+            <select class="form-control">
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+            </select>
+        </div><!-- /.form-group -->
+
+        <input type="submit" class="btn btn-block btn-secondary" value="Filter">
+    </form>
+</div><!-- /.widget -->
+                    <div class="widget widget-boxed widget-boxed-dark">
+    <h3>Resellers</h3>
+
+    <div class="list-group">
+        <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Apartman<span class="badge">149</span></a>
+        <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Building Area<span class="badge">35</span></a>
+        <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Condo<span class="badge">1254</span></a>
+        <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> House<span class="badge">35</span></a>
+        <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Warehouse<span class="badge">351</span></a>
+    </div><!-- /.list-group -->
+</div><!-- /.widget -->                 </div><!-- /.block-content -->
+            </div><!-- /.sidebar -->
+        </div>
+    </div><!-- /.row -->
+
+    <div class="block-content background-secondary fullwidth" data-background-image="../../assets/img/tmp/real-estate/banner3.png">
+        <div class="block-content-inner">
+            <h3 class="widgetized-title">Contact Agent</h3>
+
+            <form method="post" action="?" class="ng-pristine ng-valid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your name" required="required">
+                        </div><!-- /.form-group -->
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-mail" required="required">
+                        </div><!-- /.form-group -->
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Phone" required="required">
+                        </div><!-- /.form-group -->
+                    </div>
+
+                    <div class="col-sm-6">
+                        <textarea placeholder="Message" required="required" class="form-control h155" rows="4"></textarea>
+                    </div>
+                </div><!-- /.row -->
+
+                <div class="clearfix">
+                    <p class="pull-left">* Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+                    <a href="#" class="btn btn-primary pull-right">Send</a>
+                </div>
+            </form>
+        </div><!-- /.block-content-inner -->
+    </div><!-- /.block-content -->
+</div>
 {% endblock %}

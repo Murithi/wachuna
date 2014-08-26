@@ -31,6 +31,7 @@ class SalePropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(SalePropertiesView, self).get_context_data(**kwargs)
         context_data['properties'] = Property.sale.all()
+        context_data['page_title'] = 'Property for sale'
         return context_data
 
 
@@ -40,5 +41,6 @@ class LettingPropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(LettingPropertiesView, self).get_context_data(**kwargs)
         context_data['properties'] = Property.letting.all()
+        context_data['page_title'] = 'Property for letting'
         return context_data
 
