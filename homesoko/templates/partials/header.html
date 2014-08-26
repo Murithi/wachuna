@@ -1,91 +1,108 @@
-<div id="header-wrapper">
-<div id="header">
-<div id="header-inner">
-    <div class="header-bar">
-        <div class="container">
-            <div class="header-infobox">
-                <strong>E-mail:</strong> <a href="#">soko@homesoko.com</a>
-            </div><!-- /.header-infobox-->
+    <div id="header-wrapper">
+        <div id="header">
+            <div id="header-inner">
+                <nav class="navbar navbar-default">
+                    <div class="header-secondary">
+                        <div class="container clearfix">
+                            <ul class="header-submenu pull-right">
+                            {% if  user.is_authenticated %}
+                                <li><a href="{% url 'dashboard.properties.property_list' %}"><i class="fa fa-dashboard"></i> <span class="hidden-xs">Dashboard</span></a></li>
+                            {% else %}
+                                <li><a href="{% url 'userena_signup' %}"><i class="fa fa-users color-gray-dark"></i> <span class="hidden-xs">Register</span></a></li>
+                                <li><a href="{% url 'userena_signin' %}"><i class="fa fa-sign-in color-gray-dark"></i> <span class="hidden-xs">Login</span></a></li>
+                                <li><a href="{% url 'userena_signin' %}"><i class="fa fa-plus-square"></i> Submit</a></li>
+                            {% endif %}
+                            </ul>
+                        </div><!-- /.container -->
+                    </div><!-- /.header-secondary -->
 
-            <div class="header-infobox">
-                <strong>Phone:</strong> +254-727-843-600
-            </div><!-- /.header-infobox-->
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
 
-                <ul class="header-bar-nav nav nav-register">
-                        <li><a href="{% url 'userena_signin' %}">Login</a></li>
-                        <li><a href="{% url 'userena_signup' %}">Register</a></li>
-                        <li><a href="{% url 'userena_password_reset' %}">Renew Password</a></li>
-                    </ul>
-        </div><!-- /.container -->
-    </div><!-- /.header-bar -->
-    <div class="header-top">
-        <div class="container">
-            <div class="header-identity">
-                <div class="header-branding">
-                    <a href="{% url 'home' %}"><img src="{{ STATIC_URL }}img/homesoko.png" alt="Homesoko"></a>
-                </div>
-            </div><!-- /.header-identity -->
+                            <a class="navbar-brand" href="/">
+                                <span class="logo-styled">
+                                    <span class="logo-title">
+                                        <img src="{{ STATIC_URL }}img/homesoko.png" alt="">
+                                    </span><!-- /.logo-title -->
+                                </span><!-- /.logo-styled -->
+                            </a>
+                        </div>
 
-            <div class="header-actions pull-right">
-                <a href="{% url 'userena_signup' %}" class="btn btn-regular">Create Agency Profile</a> <strong class="separator">or</strong> <a href="submit-property.html" class="btn btn-primary"><i class="fa fa-plus"></i>Submit Property</a>
-            </div><!-- /.header-actions -->
+                        <div class="collapse navbar-collapse" id="navbar-main">
+                            <ul class="nav navbar-nav navbar-right">
+    <li class="menuparent hidden-sm">
+        <a href="/">Home</a>
+    </li>
 
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".header-navigation">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div><!-- /.container -->
-    </div><!-- .header-top -->
 
-    <div class="header-navigation">
-        <div class="container">
-            <div class="row">
-                <ul class="header-nav nav nav-pills">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li class="menuparent">
-                        <a href="#">Rent</a>
 
-                        <ul class="sub-menu">
-                            <li><a href="#">Apartments</a></li>
-                            <li><a href="#">Villas</a></li>
-                        </ul>
-                    </li>
-                    <li class="menuparent">
-                        <a href="#">Buy</a>
+    <li class="menuparent megamenu columns4">
+        <a href="#">Properties</a>
+        <ul>
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> For rent</a></li>
+                    <li><a href="portfolio-4-columns-standard-fullwidth.html">All listings for rent</a></li>
+                    <li><a href="portfolio-4-columns-no-spacing-fullwidth.html">Apartments</a></li>
+                    <li><a href="portfolio-4-columns-isotope-fullwidth.html">Offices</a></li>
+                    <li><a href="portfolio-4-columns-standard-left-sidebar.html">Condos</a></li>
+                    <li><a href="portfolio-4-columns-no-spacing-left-sidebar.html">Townhouses</a></li>
+                </ul>
+            </li>
 
-                        <ul class="sub-menu">
-                            <li><a href="#">Apartments</a></li>
-                            <li><a href="#">Villas</a></li>
-                        </ul>
-                    </li>
-                    <li class="menuparent">
-                        <a href="#">Neighbourhoods</a>
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> For Sale</a></li>
+                    <li><a href="portfolio-3-columns-standard-fullwidth.html">All listings for letting</a></li>
+                    <li><a href="portfolio-3-columns-no-spacing-fullwidth.html">Apartments</a></li>
+                    <li><a href="portfolio-3-columns-isotope-fullwidth.html">Houses</a></li>
+                    <li><a href="portfolio-3-columns-standard-left-sidebar.html">Offices</a></li>
+                    <li><a href="portfolio-3-columns-no-spacing-left-sidebar.html">Luxury homes</a></li>
+                    <li><a href="portfolio-3-columns-isotope-left-sidebar.html">Land</a></li>
+                    <li><a href="portfolio-3-columns-standard-right-sidebar.html">Townhouses</a></li>
+                </ul>
+            </li>
 
-                        <ul class="sub-menu">
-                            <li><a href="#">Donholm</a></li>
-                            <li><a href="#">Riverside</a></li>
-                            <li><a href="#">Miotoni</a></li>
-                        </ul>
-                    </li>
-                    <li class="menuparent">
-                        <a href="#">Cities</a>
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> Towns</a></li>
+                    <li><a href="portfolio-2-columns-standard-fullwidth.html">Nairobi</a></li>
+                    <li><a href="portfolio-2-columns-no-spacing-fullwidth.html">Mombasa</a></li>
+                    <li><a href="portfolio-2-columns-isotope-fullwidth.html">Kisumu</a></li>
+                    <li><a href="portfolio-2-columns-standard-left-sidebar.html">Nakuru</a></li>
+                    <li><a href="portfolio-2-columns-no-spacing-left-sidebar.html">Eldoret</a></li>
+                </ul>
+            </li>
 
-                        <ul class="sub-menu">
-                            <li><a href="#">Nairobi</a></li>
-                            <li><a href="#">Mombasa</a></li>
-                            <li><a href="#">Kisumu</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Agents</a></li>
-                    <li><a href="#">Contact</a></li>
-                    </ul><!-- /.header-nav -->
 
-            </div>
-        </div><!-- /.container -->
-     </div><!-- /.header-navigation -->
-</div><!-- /.header-inner -->
-</div><!-- /#header -->
-</div><!-- /#header-wrapper -->
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> Neighbourhoods</a></li>
+                    <li><a href="portfolio-2-columns-standard-fullwidth.html">Kileleshwa</a></li>
+                    <li><a href="portfolio-2-columns-no-spacing-fullwidth.html">Milimani</a></li>
+                    <li><a href="portfolio-2-columns-isotope-fullwidth.html">Riveside</a></li>
+                    <li><a href="portfolio-2-columns-standard-left-sidebar.html">Rongai</a></li>
+                    <li><a href="portfolio-2-columns-no-spacing-left-sidebar.html">Donholm</a></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+    <li class="menuparent">
+        <a href="#">Agents</a>
+    </li>
+    <li>
+        <a href="page-contact.html">Contact</a>
+    </li>
+</ul><!-- /.nav -->                        </div><!-- /.navbar-collapse -->
+                    </div>
+                </nav>
+            </div><!-- /#header-inner -->
+        </div><!-- /#header -->
+    </div><!-- /#header-wrapper -->
