@@ -44,3 +44,8 @@ DDF_USE_LIBRARY = True
 import warnings
 warnings.filterwarnings('error', r"DateTimeField received a naive datetime",
                         RuntimeWarning, r'django\.db\.models\.fields')
+
+# Email backend
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+

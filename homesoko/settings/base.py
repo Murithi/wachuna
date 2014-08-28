@@ -117,7 +117,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
 )
 
-ADMINS = (('Savio Abuga', 'savioabuga@gmail.com'),)
 
 STATICFILES_FINDERS = ("django.contrib.staticfiles.finders.FileSystemFinder",
                        "django.contrib.staticfiles.finders.AppDirectoriesFinder")

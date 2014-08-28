@@ -25,28 +25,28 @@ TEMPLATE_DIRS = (
 ###########################################
 # django-userena settings
 ###########################################
-EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
 ANONYMOUS_USER_ID = -1
+
 AUTH_PROFILE_MODULE = 'users.Profile'
+
 USERENA_MUGSHOT_GRAVATAR = False
+
 USERENA_SIGNIN_REDIRECT_URL = '/dashboard/properties'
+
 LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+
 LOGIN_URL = '/accounts/signin/'
+
 LOGOUT_URL = '/accounts/signout/'
 
-##################################################################
-# Haystack settings
-##################################################################
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr'
-        # ...or for multicore...
-        # 'URL': 'http://127.0.0.1:8983/solr/mysite',
-    },
-}
+#======================================================
+# Grappelli
+#======================================================
+GRAPPELLI_ADMIN_TITLE = 'Homesoko Admin'
