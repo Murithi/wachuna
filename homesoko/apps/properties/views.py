@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView, DetailView
 from .models import Property
+from .filters import PropertyFilter
 
 
 class Homepage(TemplateView):
@@ -44,3 +45,6 @@ class LettingPropertiesView(TemplateView):
         context_data['page_title'] = 'Property for letting'
         return context_data
 
+
+class PropertyListView(TemplateView):
+    pass
