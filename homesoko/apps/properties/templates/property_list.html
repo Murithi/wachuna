@@ -5,13 +5,16 @@
 	<div class="block-content">
 		<div class="block-content-inner">
 			<h2 class="mb40">
-				{{ page_title }}
+                {% if properties %}
+				    {{ page_title }}
+                {% endif %}
 			</h2>
 
             <div class="boxes">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="row">
+                            {% if properties %}
                             {% for property in properties %}
                             <div class="col-sm-4 col-md-3">
                                 <div class="box background-white">
@@ -43,6 +46,14 @@
                                 </div><!-- /.box -->
                                </div>
                             {% endfor %}
+                            {% else %}
+                                <div class="col-sm-6 col-sm-offset-3">
+                                <h2>Sorry...no properties for now.</h2>
+                                <img src="{{ STATIC_URL }}img/sowwie.png">
+                                </div>
+                            {% endif %}
+
+
                         </div>
                         </div><!-- /.row -->
                     </div>

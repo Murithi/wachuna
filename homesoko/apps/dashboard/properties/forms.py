@@ -8,7 +8,7 @@ from django_select2.widgets import Select2MultipleWidget
 class PropertyForm(forms.ModelForm):
     name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}), error_messages={'required':'The name of the property is required'})
     price = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    type = forms.ChoiceField(choices=Property.PropertyTypeOptions.choices, widget=forms.Select(attrs={'class': 'form-control'}))
+    property_type = forms.ChoiceField(choices=Property.PropertyTypeOptions.choices, widget=forms.Select(attrs={'class': 'form-control'}))
     category = forms.ChoiceField(choices=Property.CategoryOptions.choices, widget=forms.Select(attrs={'class': 'form-control'}))
     bedrooms = forms.ChoiceField(choices=Property.BedroomOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     bathrooms = forms.ChoiceField(choices=Property.BathroomsOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
@@ -31,7 +31,7 @@ class PropertyForm(forms.ModelForm):
 
     class Meta:
         model = Property
-        exclude = ['author', 'updated_by', 'bathrooms']
+        exclude = ['author', 'updated_by']
 
     class Media:
         js = (settings.STATIC_URL + 'js/properties/jquery.duplicate.min.js',

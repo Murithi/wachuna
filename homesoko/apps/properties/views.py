@@ -31,7 +31,11 @@ class SalePropertiesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context_data = super(SalePropertiesView, self).get_context_data(**kwargs)
-        context_data['properties'] = Property.sale.all()
+        if kwargs['type']:
+            context_data['properties'] = Property.sale.filter(property_type=kwargs['type'])
+        else:
+            context_data['properties'] = Property.sale.all()
+        context_data['page_title'] = 'Property for letting'
         context_data['page_title'] = 'Property for sale'
         return context_data
 
@@ -41,10 +45,50 @@ class LettingPropertiesView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context_data = super(LettingPropertiesView, self).get_context_data(**kwargs)
-        context_data['properties'] = Property.letting.all()
+        if kwargs['type']:
+            context_data['properties'] = Property.letting.filter(property_type=kwargs['type'])
+        else:
+            context_data['properties'] = Property.letting.all()
         context_data['page_title'] = 'Property for letting'
         return context_data
 
 
+class CityPropertiesView(TemplateView):
+    template_name = "property_list.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(CityPropertiesView, self).get_context_data(**kwargs)
+        city = kwargs['city']
+        queryset = Property.objects.filter(city__name=city)
+        if kwargs['type']:
+            context_data['properties'] = queryset.filter(property_type=kwargs['type'])
+        else:
+            context_data['properties'] = queryset
+        context_data['page_title'] = 'Propertes in ' + city
+        return context_data
+
+
+class NeighbourhoodPropertiesView(TemplateView):
+    template_name = "property_list.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(NeighbourhoodPropertiesView, self).get_context_data(**kwargs)
+        neighbourhood = kwargs['neighbourhood']
+        queryset = Property.objects.filter(neighbourhood__name=neighbourhood)
+        if kwargs['type']:
+            context_data['properties'] = queryset.filter(property_type=kwargs['type'])
+        else:
+            context_data['properties'] = queryset
+        context_data['page_title'] = 'Propertes in ' + neighbourhood
+        return context_data
+
+
 class PropertyListView(TemplateView):
-    pass
+    template_name = "property_list.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(PropertyListView, self).get_context_data(**kwargs)
+        context_data['properties'] = PropertyFilter(self.request.GET, queryset=Property.objects.all())
+        context_data['page_title'] = 'Property List'
+        return context_data
+

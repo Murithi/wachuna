@@ -48,35 +48,34 @@
             <li>
                 <ul>
                     <li class="header"><a href="#"><i class="fa fa-columns"></i> For rent</a></li>
-                    <li><a href="portfolio-4-columns-standard-fullwidth.html">All listings for rent</a></li>
-                    <li><a href="portfolio-4-columns-no-spacing-fullwidth.html">Apartments</a></li>
-                    <li><a href="portfolio-4-columns-isotope-fullwidth.html">Offices</a></li>
-                    <li><a href="portfolio-4-columns-standard-left-sidebar.html">Condos</a></li>
-                    <li><a href="portfolio-4-columns-no-spacing-left-sidebar.html">Townhouses</a></li>
+                    <li><a href="{% url 'properties.list_letting' %}">All properties for rent</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='apartment' %}">Apartments</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='office' %}">Offices</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='house' %}">Houses</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='townhouse' %}">Townhouses</a></li>
                 </ul>
             </li>
 
             <li>
                 <ul>
                     <li class="header"><a href="#"><i class="fa fa-columns"></i> For Sale</a></li>
-                    <li><a href="portfolio-3-columns-standard-fullwidth.html">All listings for letting</a></li>
-                    <li><a href="portfolio-3-columns-no-spacing-fullwidth.html">Apartments</a></li>
-                    <li><a href="portfolio-3-columns-isotope-fullwidth.html">Houses</a></li>
-                    <li><a href="portfolio-3-columns-standard-left-sidebar.html">Offices</a></li>
-                    <li><a href="portfolio-3-columns-no-spacing-left-sidebar.html">Luxury homes</a></li>
-                    <li><a href="portfolio-3-columns-isotope-left-sidebar.html">Land</a></li>
-                    <li><a href="portfolio-3-columns-standard-right-sidebar.html">Townhouses</a></li>
+                    <li><a href="{% url 'properties.list_sale' %}">All properties on sale</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='apartment' %}">Apartments</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='office' %}">Offices</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='house' %}">Houses</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='townhouse' %}">Townhouses</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='land' %}">Land</a></li>
                 </ul>
             </li>
 
             <li>
                 <ul>
                     <li class="header"><a href="#"><i class="fa fa-columns"></i> Towns</a></li>
-                    <li><a href="portfolio-2-columns-standard-fullwidth.html">Nairobi</a></li>
-                    <li><a href="portfolio-2-columns-no-spacing-fullwidth.html">Mombasa</a></li>
-                    <li><a href="portfolio-2-columns-isotope-fullwidth.html">Kisumu</a></li>
-                    <li><a href="portfolio-2-columns-standard-left-sidebar.html">Nakuru</a></li>
-                    <li><a href="portfolio-2-columns-no-spacing-left-sidebar.html">Eldoret</a></li>
+                    <li><a href="{% url 'properties.list_city' city='nairobi' %}">Nairobi</a></li>
+                    <li><a href="{% url 'properties.list_city' city='mombasa' %}">Mombasa</a></li>
+                    <li><a href="{% url 'properties.list_city' city='kisumu' %}">Kisumu</a></li>
+                    <li><a href="{% url 'properties.list_city' city='nakuru' %}">Nakuru</a></li>
+                    <li><a href="{% url 'properties.list_city' city='eldoret' %}">Eldoret</a></li>
                 </ul>
             </li>
 
@@ -84,11 +83,11 @@
             <li>
                 <ul>
                     <li class="header"><a href="#"><i class="fa fa-columns"></i> Neighbourhoods</a></li>
-                    <li><a href="portfolio-2-columns-standard-fullwidth.html">Kileleshwa</a></li>
-                    <li><a href="portfolio-2-columns-no-spacing-fullwidth.html">Milimani</a></li>
-                    <li><a href="portfolio-2-columns-isotope-fullwidth.html">Riveside</a></li>
-                    <li><a href="portfolio-2-columns-standard-left-sidebar.html">Rongai</a></li>
-                    <li><a href="portfolio-2-columns-no-spacing-left-sidebar.html">Donholm</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='kileleshwa' %}">Kileleshwa</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='vipingo' %}">Vipingo</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='riverside' %}">Riveside</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='rongai' %}">Rongai</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='donholm' %}">Donholm</a></li>
                 </ul>
             </li>
         </ul>

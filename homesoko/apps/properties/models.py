@@ -41,8 +41,11 @@ class LettingPropertiesManager(models.Manager):
 @with_author
 class Property(TimeStampedModel):
     class PropertyTypeOptions(DjangoChoices):
-        Land = ChoiceItem('land', 'Land')
         Apartment = ChoiceItem('apartment', 'Apartment')
+        House = ChoiceItem('house', 'House')
+        Office = ChoiceItem('office', 'Office')
+        Land = ChoiceItem('land', 'Land')
+        Townhouse = ChoiceItem('townhouse', 'Townhouse')
 
     class CategoryOptions(DjangoChoices):
         Letting = ChoiceItem('letting', 'Letting')
@@ -76,7 +79,8 @@ class Property(TimeStampedModel):
                                    help_text='Size of the lot in acres')
     city = models.ForeignKey(City, null=False, blank=False)
     neighbourhood = models.ForeignKey(Neighbourhood, null=False, blank=False)
-    category = models.CharField(max_length=14, null=True, blank=True, choices=CategoryOptions.choices)
+    category = models.CharField(max_length=14, blank=True, choices=CategoryOptions.choices)
+    property_type = models.CharField(max_length=20, blank=True, choices=PropertyTypeOptions.choices)
     objects = models.Manager()
     sale = SalePropertiesManager()
     letting = LettingPropertiesManager()
