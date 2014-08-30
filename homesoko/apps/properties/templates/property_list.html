@@ -17,7 +17,7 @@
                             {% if properties %}
                             {% for property in properties %}
                             <div class="col-sm-4 col-md-3">
-                                <div class="box background-white">
+                                <div class="box lifted background-white">
                                     <div class="box-picture">
                                         <a href="{% url 'properties.listing' property.slug %}">
                                             <img src="{{ MEDIA_URL }}{{ property.primary_image_thumbnail }}" alt="{{ property.name }}">
@@ -61,13 +61,13 @@
             </div><!-- /.boxes -->
         <div class="center">
                 <ul class="pagination">
-                    <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#"><i class="fa fa-angle-double-right"></i></a></li>
+                    {% if properties.has_previous %}
+                        <li><a href="?page={{ contacts.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
+                    {% endif %}
+                        <li class="active">Page {{ properties.number }} of {{ properties.paginator.num_pages }}</li>
+                    {% if properties.has_next %}
+                        <li><a href="?page={{ contacts.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
+                    {% endif %}
                 </ul>
             </div><!-- /.center -->
 		</div><!-- /.block-content-inner -->

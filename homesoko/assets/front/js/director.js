@@ -43,11 +43,11 @@ $(document).ready(function() {
 
     /***********************************************************
      * CHOSEN
-     ***********************************************************/
+
     $('select').chosen({
         'disable_search_threshold': 5
     });
-
+    ***********************************************************/
     /***********************************************************
      * ACCORDION
      ***********************************************************/
@@ -188,7 +188,7 @@ $(document).ready(function() {
             styles: styles[0]
         });
     }
-
+    /** Google maps not in use now
     if ($('#google-map').length !== 0) {
         var map = $('#google-map').pragmatic_mates_map({
             locations: locations,
@@ -205,5 +205,6 @@ $(document).ready(function() {
             enableGeolocation: false,
             styles: styles[0]
         });
-    }     
+    }
+    */
 });

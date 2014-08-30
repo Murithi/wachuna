@@ -3,7 +3,7 @@
     {% for property in properties %}
         <div class="box-image no-border col-xs-12 col-sm-4 col-md-3 col-lg-2 hidden-xs hidden-sm hidden-md">
         <a href="{% url 'properties.listing' property.slug %}">
-            <img src="{{ MEDIA_URL }}{{ property.primary_image_thumbnail }}" alt="">
+            <img src="{{ MEDIA_URL }}{{ property.primary_image_thumbnail }}" alt="{{ property.name }}">
 
             <span class="flag">Ksh {{ property.price|floatformat|intcomma|intword }}</span>
 

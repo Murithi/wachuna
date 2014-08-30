@@ -95,7 +95,7 @@ class Property(TimeStampedModel):
 
     def slider_image(self):
         if self.primary_image():
-            return get_thumbnail(self.primary_image().file, '1400x500', crop='center', quality=99)
+            return get_thumbnail(self.primary_image().file, '1400x600', crop='center', quality=99)
         return None
 
     def get_missing_image(self):

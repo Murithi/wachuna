@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView, DetailView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Property
 from .filters import PropertyFilter
 
@@ -32,11 +33,24 @@ class SalePropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(SalePropertiesView, self).get_context_data(**kwargs)
         if kwargs['type']:
-            context_data['properties'] = Property.sale.filter(property_type=kwargs['type'])
+            properties_list = Property.sale.filter(property_type=kwargs['type'])
         else:
-            context_data['properties'] = Property.sale.all()
+            properties_list = Property.sale.all()
+
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 properties per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
         context_data['page_title'] = 'Property for letting'
-        context_data['page_title'] = 'Property for sale'
+        context_data['page_title'] = 'Properties for sale'
         return context_data
 
 
@@ -46,10 +60,23 @@ class LettingPropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(LettingPropertiesView, self).get_context_data(**kwargs)
         if kwargs['type']:
-            context_data['properties'] = Property.letting.filter(property_type=kwargs['type'])
+            properties_list = Property.letting.filter(property_type=kwargs['type'])
         else:
-            context_data['properties'] = Property.letting.all()
-        context_data['page_title'] = 'Property for letting'
+            properties_list = Property.letting.all()
+
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 properties per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = 'Properties for letting'
         return context_data
 
 
@@ -61,10 +88,23 @@ class CityPropertiesView(TemplateView):
         city = kwargs['city']
         queryset = Property.objects.filter(city__name=city)
         if kwargs['type']:
-            context_data['properties'] = queryset.filter(property_type=kwargs['type'])
+            properties_list = queryset.filter(property_type=kwargs['type'])
         else:
-            context_data['properties'] = queryset
-        context_data['page_title'] = 'Propertes in ' + city
+            properties_list = queryset
+
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 properties per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = 'Properteis in ' + city
         return context_data
 
 
@@ -76,10 +116,23 @@ class NeighbourhoodPropertiesView(TemplateView):
         neighbourhood = kwargs['neighbourhood']
         queryset = Property.objects.filter(neighbourhood__name=neighbourhood)
         if kwargs['type']:
-            context_data['properties'] = queryset.filter(property_type=kwargs['type'])
+            properties_list = queryset.filter(property_type=kwargs['type'])
         else:
-            context_data['properties'] = queryset
-        context_data['page_title'] = 'Propertes in ' + neighbourhood
+            properties_list = queryset
+
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 properties per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = 'Properties in ' + neighbourhood
         return context_data
 
 

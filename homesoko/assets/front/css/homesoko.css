@@ -79,4 +79,30 @@ box-title-plain, .box-title-plain a {
     color: #ff6600;
 }
 
+#google-map, #google-map-directory {
+    height: 600px;
+}
+#search-header{
+    color: #ffffff;
+}
+
+.search {
+    margin-top: -40%;
+}
+.search .form-section{
+    background: rgba(0,0,0,0.4);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.form-control {
+    padding: 8px 10px;
+}
+
+.btn-terciary {
+    background-color: #ff9900;
+}
+.btn-terciary:active, .btn-terciary:focus, .btn-terciary:hover {
+background-color: #ff6600;
+}
 
