@@ -37,6 +37,13 @@ class LettingPropertiesManager(models.Manager):
     def get_query_set(self):
         return super(LettingPropertiesManager, self).get_query_set().filter(category=Property.CategoryOptions.Letting)
 
+@with_author
+class Feature(TimeStampedModel):
+    name = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.name
+
 
 @with_author
 class Property(TimeStampedModel):
@@ -81,12 +88,17 @@ class Property(TimeStampedModel):
     neighbourhood = models.ForeignKey(Neighbourhood, null=False, blank=False)
     category = models.CharField(max_length=14, blank=True, choices=CategoryOptions.choices)
     property_type = models.CharField(max_length=20, blank=True, choices=PropertyTypeOptions.choices)
+    features = models.ManyToManyField(Feature, related_name='property', null=True, blank=True)
     objects = models.Manager()
     sale = SalePropertiesManager()
     letting = LettingPropertiesManager()
 
     class Meta:
         verbose_name_plural = 'properties'
+
+    @property
+    def details(self):
+        return "Price: %d,Category: %s,Type: %s,Location: %s-%s" % (self.price, self.category, self.property_type, self.neighbourhood, self.city)
 
     def primary_image_thumbnail(self):
         if self.primary_image():
@@ -114,15 +126,6 @@ class Property(TimeStampedModel):
                 'original': self.get_missing_image(),
                 'caption': '',
                 'is_missing': True}
-
-
-@with_author
-class Features(TimeStampedModel):
-    name = models.CharField(max_length=20)
-    property = models.ManyToManyField(Property, related_name='features', null=True, blank=True)
-
-    def __unicode__(self):
-        return self.name
 
 
 class PropertyImage(TimeStampedModel):

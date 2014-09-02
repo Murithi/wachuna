@@ -89,7 +89,8 @@ INSTALLED_APPS = (
     'django_extensions',
     'django_select2',
     'sorl.thumbnail',
-    'django_filters'
+    'django_filters',
+    'django_tables2',
 )
 
 MIDDLEWARE_CLASSES = (

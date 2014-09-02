@@ -9,4 +9,4 @@ class PropertyFilter(django_filters.FilterSet):
 
     class Meta:
         model = Property
-        fields = ['city__name', 'bedrooms', 'bathrooms', 'neighbourhood__name', 'category', 'price']
+        fields = ['city__name', 'bedrooms', 'bathrooms', 'neighbourhood__name', 'category', 'price', 'property_type']

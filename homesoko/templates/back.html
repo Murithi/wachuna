@@ -14,8 +14,11 @@
 		<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/libs/jquery.js"><\/script>')</script>
         {% load bootstrap3 %}
         {# Load CSS and JavaScript #}
+        {# Load CSS and JavaScript #}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
+
+
 
         {# Display django.contrib.messages as Bootstrap alerts #}
         {% bootstrap_messages %}
@@ -71,6 +74,86 @@
 		<!-- /Full height wrapper -->
 		
 				<!-- /User profile -->
+                <!-- Main navigation -->
+				<nav class="main-navigation navbar navbar-default" role="navigation">
+
+					<!-- Collapse navigation for mobile -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-navigation-collapse">
+							<span class="elusive icon-file"></span> Online store
+						</button>
+					</div>
+					<!-- /Collapse navigation for mobile -->
+
+					<!-- Navigation -->
+					<div class="main-navigation-collapse collapse navbar-collapse">
+
+						<!-- Navigation items -->
+						<ul class="nav navbar-nav">
+
+							<li>
+								<a href="index.html"><span class="elusive"></span> Dashboard</a>
+							</li>
+
+							<!-- Dropdown navigation items -->
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="elusive icon-home-alt"></span> Properties <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="tables.html"><span class="elusive icon-th-list"></span> My Properties</a></li>
+									<li><a href="forms.html"><span class="elusive icon-file-new-alt"></span> Add new Property</a></li>
+								</ul>
+							</li>
+							<!-- /Dropdown navigation items -->
+
+							<!-- Dropdown navigation with multi-level dropdown -->
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="elusive icon-cogs"></span> My Account <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li class="active"><a href="eshop.html"><span class="elusive icon-file"></span> Online store</a></li>
+									<li><a href="add-item.html"><span class="elusive icon-file"></span> Add item / product</a></li>
+									<li><a href="invoice.html"><span class="elusive icon-file"></span> Invoice</a></li>
+									<li><a href="user-profile.html"><span class="elusive icon-file"></span> User profile</a></li>
+									<li class="divider"></li>
+
+									<!-- 2nd level dropdown -->
+									<li class="dropdown-submenu">
+										<a href="#">Login Pages</a>
+										<ul class="dropdown-menu">
+											<li role="presentation" class="dropdown-header">Login Pages</li>
+											<li><a href="login.html"><span class="elusive icon-file"></span> Login page</a></li>
+											<li><a href="lost-password.html"><span class="elusive icon-file"></span> Lost password</a></li>
+										</ul>
+									</li>
+									<!-- /2nd level dropdown -->
+
+									<li class="dropdown-submenu">
+										<a href="#">Error Pages</a>
+										<ul class="dropdown-menu">
+											<li role="presentation" class="dropdown-header">Error Pages</li>
+											<li><a href="401.html"><span class="elusive icon-file"></span> Error 401</a></li>
+											<li><a href="403.html"><span class="elusive icon-file"></span> Error 403</a></li>
+											<li><a href="404.html"><span class="elusive icon-file"></span> Error 404</a></li>
+											<li><a href="500.html"><span class="elusive icon-file"></span> Error 500</a></li>
+											<li><a href="503.html"><span class="elusive icon-file"></span> Error 503</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<!-- /Dropdown navigation with multi-level dropdown -->
+
+							<li>
+								<a href="docs/index.html"><span class="elusive icon-lock-alt"></span> Logout</a>
+							</li>
+						</ul>
+						<!-- /Navigation items -->
+
+
+					</div>
+					<!-- /Navigation -->
+
+				</nav>
+				<!-- /Main navigation -->
+
 
 
 			</header>

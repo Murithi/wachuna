@@ -1,5 +1,7 @@
-from django.views.generic import TemplateView, DetailView
+from django.views.generic import View, TemplateView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.urlresolvers import reverse
+from django.shortcuts import render
 from .models import Property
 from .filters import PropertyFilter
 
@@ -136,12 +138,42 @@ class NeighbourhoodPropertiesView(TemplateView):
         return context_data
 
 
-class PropertyListView(TemplateView):
+class PropertyListView(View):
+    initial = {'key': 'value'}
     template_name = "property_list.html"
 
-    def get_context_data(self, **kwargs):
-        context_data = super(PropertyListView, self).get_context_data(**kwargs)
-        context_data['properties'] = PropertyFilter(self.request.GET, queryset=Property.objects.all())
-        context_data['page_title'] = 'Property List'
-        return context_data
+    def get(self, request, *args, **kwargs):
+        context_data = {'page_title': 'Property List'}
+        properties_list = Property.objects.all()
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 properties per page
+        page = request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, context_data)
+
+    def post(self, request, *args, **kwargs):
+        context_data = {'page_title':  'Property List'}
+        properties_list = PropertyFilter(request.POST, queryset=Property.objects.all())
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 properties per page
+        page = request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, context_data)
+
 

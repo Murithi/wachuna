@@ -82,3 +82,21 @@
 		/* your CSS here */
 
 	}
+
+/******* bootstrap-tables-2********/
+.table-container th.asc:after {
+  content: '\0000a0\0025b2';
+}
+.table-container th.desc:after {
+  content: '\0000a0\0025bc';
+}
+.pagination {
+  text-align: center;
+}
+
+.table td.details { white-space:pre }
+ul.no-style, ul#id_features  {
+    list-style-type: none;
+    padding: 4px;
+    margin: 0px;
+}

@@ -1,10 +1,13 @@
 from decimal import Decimal
-from django.core.urlresolvers import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView
+from django.core.urlresolvers import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.views.generic import CreateView, ListView, UpdateView, View
 from braces.views import LoginRequiredMixin
 from homesoko.apps.properties.models import Property, PropertyImage
 from homesoko.apps.utils.djupload.views import UploadView, UploadListView, UploadDeleteView
-from .forms import PropertyForm
+from .forms import PropertyForm, AddPropertyFeaturesForm
+from .tables import PropertyTable
 
 
 class PropertyCreateView(LoginRequiredMixin, CreateView):
@@ -25,7 +28,16 @@ class PropertyCreateView(LoginRequiredMixin, CreateView):
 
 class PropertyListView(LoginRequiredMixin, ListView):
     model = Property
-    template_name = 'properties/dashboard_property_list.html'
+    #template_name = 'properties/dashboard_property_list.html'
+    template_name = 'properties/tables.html'
+
+    def get_queryset(self):
+        return Property.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(PropertyListView, self).get_context_data(**kwargs)
+        context['table'] = PropertyTable(Property.objects.all())
+        return context
 
 
 class EditPropertyView(LoginRequiredMixin, UpdateView):
@@ -64,4 +76,25 @@ class PropertyImagesListView(LoginRequiredMixin, UploadListView):
 class PropertyImagesDeleteView(LoginRequiredMixin, UploadDeleteView):
     model = PropertyImage
 
+
+class AddPropertyFeaturesView(View):
+    template_name = 'properties/property_add_features.html'
+    form_class = AddPropertyFeaturesForm
+    initial = {'key': 'value'}
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        sokoproperty = Property.objects.get(id=int(kwargs['pk']))
+        if form.is_valid():
+            # if images have been added redirect to list else to the images page
+            if sokoproperty.images.all():
+                return HttpResponseRedirect(reverse('dashboard.properties.property_list'))
+            else:
+                return HttpResponseRedirect(reverse('dashboard.properties.images_upload', kwargs={'pk': sokoproperty.id}))
+
+        return render(request, self.template_name, {'form': form})
 

@@ -188,6 +188,7 @@ $(document).ready(function() {
             styles: styles[0]
         });
     }
+
     /** Google maps not in use now
     if ($('#google-map').length !== 0) {
         var map = $('#google-map').pragmatic_mates_map({

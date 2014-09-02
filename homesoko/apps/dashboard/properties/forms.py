@@ -1,8 +1,21 @@
 from django import forms
 from django.conf import settings
-from homesoko.apps.properties.models import Property, City, Neighbourhood, Features
-from django_select2.fields import HeavyModelSelect2MultipleChoiceField
-from django_select2.widgets import Select2MultipleWidget
+from homesoko.apps.properties.models import Property, City, Neighbourhood, Feature
+from django.forms.models import ModelMultipleChoiceField
+
+
+# Thanks to http://stackoverflow.com/questions/8630977/manytomany-field-in-form-with-checkboxes-insted-select-field-in-django-template
+class CustomSelectMultiple(ModelMultipleChoiceField):
+    def label_from_instance(self, obj):
+        return "%s" % obj.name
+
+
+class AddPropertyFeaturesForm(forms.ModelForm):
+    features = CustomSelectMultiple(widget=forms.CheckboxSelectMultiple, queryset=Feature.objects.all())
+
+    class Meta:
+        fields = ('features',)
+        model = Property
 
 
 class PropertyForm(forms.ModelForm):
@@ -17,12 +30,6 @@ class PropertyForm(forms.ModelForm):
     lot_size = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
     neighbourhood = forms.ModelChoiceField(queryset=Neighbourhood.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
-    features = HeavyModelSelect2MultipleChoiceField(
-                            label='Features',
-                            required=False,
-                            queryset=Features.objects.all(),  # Correct filter will be added by the view, since it depends on the request
-                            # This will be dynamically changed to a HeavySelect2MultipleWidget in the view, because doing it here causes cyclic imports
-                            widget=Select2MultipleWidget, select2_options={'class': 'none', 'minimumInputLength': 0, 'placeholder': 'Select features', 'width': 'resolve'})
 
     def __init__(self, *args, **kwargs):
         super(PropertyForm, self).__init__(*args, **kwargs)
@@ -31,7 +38,7 @@ class PropertyForm(forms.ModelForm):
 
     class Meta:
         model = Property
-        exclude = ['author', 'updated_by']
+        exclude = ['author', 'updated_by', 'features']
 
     class Media:
         js = (settings.STATIC_URL + 'js/properties/jquery.duplicate.min.js',
