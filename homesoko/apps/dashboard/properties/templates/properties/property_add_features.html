@@ -1,13 +1,19 @@
 {% extends "back.html" %}
 {% load bootstrap3 %}
 {% block header %} Properties Features {% endblock %}
+{% block header_actions %}
+<li class="active"><a href="{% url "dashboard.properties.property_list" %}" class="btn btn-alt"><span class="elusive icon-list"></span> My Properties</a></li>
+{% endblock %}
 {% block content %}
-
+    <ul class="list-unstyled">
+    {% for feature in current_features %}
+        <li><span class="elusive icon-ok"></span>{{ feature }}</li>
+    {% endfor %}
+    </ul>
+    <hr>
     <form class="form-horizontal" role="form" method="post">
         {% csrf_token %}
-        {{ form }}
-        {% buttons submit='Save' reset='Cancel' layout='horizontal' %}{% endbuttons %}
-
+        {{ form.features }}
+        {% buttons submit='Update' reset='Cancel' layout='horizontal' %}{% endbuttons %}
     </form>
-
 {% endblock %}

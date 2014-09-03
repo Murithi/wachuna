@@ -31,11 +31,6 @@ class PropertyForm(forms.ModelForm):
     city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
     neighbourhood = forms.ModelChoiceField(queryset=Neighbourhood.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
 
-    def __init__(self, *args, **kwargs):
-        super(PropertyForm, self).__init__(*args, **kwargs)
-        if kwargs['instance']:
-            self.fields['features'].initial = kwargs['instance'].features.all()
-
     class Meta:
         model = Property
         exclude = ['author', 'updated_by', 'features']

@@ -16,20 +16,10 @@ class PropertyCreateView(LoginRequiredMixin, CreateView):
     template_name = 'properties/property_form.html'
     success_url = reverse_lazy('dashboard.properties.property_list')
 
-    def form_valid(self, form):
-        form.bedrooms = Decimal(form.cleaned_data['bedrooms'])
-        form.bathrooms = Decimal(form.cleaned_data['bedrooms'])
-        sokoproperty = form.save()
-        features = form.cleaned_data['features']
-        for feature in features:
-            sokoproperty.features.add(feature)
-        return CreateView.form_valid(self, form)
-
 
 class PropertyListView(LoginRequiredMixin, ListView):
     model = Property
-    #template_name = 'properties/dashboard_property_list.html'
-    template_name = 'properties/tables.html'
+    template_name = 'properties/dashboard_property_list.html'
 
     def get_queryset(self):
         return Property.objects.all()
@@ -45,14 +35,6 @@ class EditPropertyView(LoginRequiredMixin, UpdateView):
     template_name = 'properties/property_form.html'
     success_url = reverse_lazy('dashboard.properties.property_list')
     form_class = PropertyForm
-
-    def form_valid(self, form):
-        sokoproperty = form.save()
-        features = form.cleaned_data['features']
-        sokoproperty.features.clear()
-        for feature in features:
-            sokoproperty.features.add(feature)
-        return UpdateView.form_valid(self, form)
 
 
 class PropertyImagesUploadView(LoginRequiredMixin, UploadView):
@@ -83,13 +65,28 @@ class AddPropertyFeaturesView(View):
     initial = {'key': 'value'}
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
+        sokoproperty = Property.objects.get(id=int(kwargs['pk']))
+        current_features = sokoproperty.features.all()
+        context = {'form': self.form_class(initial=self.initial), 'current_features': current_features}
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         sokoproperty = Property.objects.get(id=int(kwargs['pk']))
         if form.is_valid():
+
+            features = request.POST.getlist('features')
+            current_features = [str(feature.id) for feature in sokoproperty.features.all()]
+
+            # Add new features
+            for feature in features:
+                if feature not in current_features:
+                    sokoproperty.features.add(feature)
+            # Remove other features
+            if current_features:
+                for feature in current_features:
+                    if feature not in features:
+                        sokoproperty.features.remove(feature)
             # if images have been added redirect to list else to the images page
             if sokoproperty.images.all():
                 return HttpResponseRedirect(reverse('dashboard.properties.property_list'))

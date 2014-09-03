@@ -1,37 +1,63 @@
-﻿/* -----------------------------------------------------------------------------
+﻿
+#wrapper{
+    background-color: #ffffff;
+    background-image: url(../img/bg.png);
+}
 
-    This file is used to add your own CSS definitions.
-	Don't forget to link this CSS to all your HTML files (uncomment it in HEAD tag).
+.main-navigation .navbar-collapse {
+    background-color: #0099ff;
+}
+.main-navigation.navbar-default .navbar-nav > li > a{
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #ffffff;
+    background-color: #ff9900;
+}
+.header-branding{
+    top: 14px;
+    max-width: 256px;
+}
 
------------------------------------------------------------------------------ */
-    #wrapper{
-
-
+.data-block.blue header {
+    background: #ff9900;
+}
+/**
+#header  {
+    background-color: #292f33;
+}
+.header-form {
+    background-color: #292f33;
+}
+.header-nav a {
+    background-color: #292f33;
+}
+.banner-search .tab-content-list {
+    background-color: #292f33;
     }
-	/* your CSS here */
-	.header-branding{
-		top: 14px;
-		max-width: 256px;
-	}
-	/**
-	#header  {
-		background-color: #292f33;
-	}
-	.header-form {
-		background-color: #292f33;
-	}
-	.header-nav a {
-		background-color: #292f33;
-	}
-	.banner-search .tab-content-list {
-		background-color: #292f33;
-		}
-	.banner-search .tab-title {
-		background-color: #292f33;
-	}
-	#footer {
-		background-color: #292f33;
-	}
+.banner-search .tab-title {
+    background-color: #292f33;
+}
+#footer {
+    background-color: #292f33;
+}
+/******* bootstrap-tables-2********/
+.table-container th.asc:after {
+  content: '\0000a0\0025b2';
+}
+.table-container th.desc:after {
+  content: '\0000a0\0025bc';
+}
+.pagination {
+  text-align: center;
+}
+
+.table td.details { white-space:pre }
+ul.no-style, ul#id_features  {
+    list-style-type: none;
+    padding: 4px;
+    margin: 0px;
+}
 		
 /* -----------------------------------------------------------------------------
 
@@ -83,20 +109,4 @@
 
 	}
 
-/******* bootstrap-tables-2********/
-.table-container th.asc:after {
-  content: '\0000a0\0025b2';
-}
-.table-container th.desc:after {
-  content: '\0000a0\0025bc';
-}
-.pagination {
-  text-align: center;
-}
 
-.table td.details { white-space:pre }
-ul.no-style, ul#id_features  {
-    list-style-type: none;
-    padding: 4px;
-    margin: 0px;
-}
