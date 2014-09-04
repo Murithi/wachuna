@@ -47,9 +47,10 @@
                                </div>
                             {% endfor %}
                             {% else %}
-                                <div class="col-sm-6 col-sm-offset-3">
-                                <h2>Sorry...no properties for now.</h2>
-                                <img src="{{ STATIC_URL }}img/sowwie.png">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <div class="page-header center">
+                                        <h1>No properties found!</h1>
+                                    </div>
                                 </div>
                             {% endif %}
 
@@ -60,6 +61,7 @@
                 </div><!-- /.row -->
             </div><!-- /.boxes -->
         <div class="center">
+                {% if properties %}
                 <ul class="pagination">
                     {% if properties.has_previous %}
                         <li><a href="?page={{ contacts.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a></li>
@@ -69,6 +71,7 @@
                         <li><a href="?page={{ contacts.next_page_number }}"><i class="fa fa-angle-double-right"></i></a></li>
                     {% endif %}
                 </ul>
+                {% endif %}
             </div><!-- /.center -->
 		</div><!-- /.block-content-inner -->
 	</div><!-- /.block-content -->
