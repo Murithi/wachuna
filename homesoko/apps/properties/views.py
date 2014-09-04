@@ -1,6 +1,5 @@
 from django.views.generic import View, TemplateView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from .models import Property
 from .filters import PropertyFilter

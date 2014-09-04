@@ -26,15 +26,14 @@ class PropertyForm(forms.ModelForm):
     bedrooms = forms.ChoiceField(choices=Property.BedroomOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     bathrooms = forms.ChoiceField(choices=Property.BathroomsOptions.choices, required=False, widget=forms.Select(attrs={'class': 'form-control'}))
     description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '8'}))
-    structure_size = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    lot_size = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'form-control'}))
+    structure_size = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}), help_text='Size of the structure in square feet',
+                                        required=False)
+    lot_size = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'form-control'}), help_text='Size of the lot in acres',
+                                  required=False)
     city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
     neighbourhood = forms.ModelChoiceField(queryset=Neighbourhood.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta:
         model = Property
-        exclude = ['author', 'updated_by', 'features']
+        exclude = ['author', 'updated_by', 'features', 'agency']
 
-    class Media:
-        js = (settings.STATIC_URL + 'js/properties/jquery.duplicate.min.js',
-              )

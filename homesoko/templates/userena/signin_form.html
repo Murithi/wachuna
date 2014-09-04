@@ -13,8 +13,7 @@
 			</div><!-- /.page-header -->
 
 			<div class="col-sm-4 col-sm-offset-4">
-    <form method="post" action="?">
-                        <form method="post" action="" class="form-vertical">
+                        <form method="post" action="" class="form-vertical"  novalidate>
                             {% csrf_token %}
                              {{ form.non_field_errors }}
                             {% for field in form %}

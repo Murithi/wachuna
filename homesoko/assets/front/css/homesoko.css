@@ -106,3 +106,9 @@ box-title-plain, .box-title-plain a {
 background-color: #ff6600;
 }
 
+.hero-title {
+    color: #0099ff;
+    font-size: 180px;
+    font-weight: 700;
+}
+

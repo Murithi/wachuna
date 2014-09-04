@@ -11,7 +11,7 @@
 			</div><!-- /.page-header -->
 
 			<div class="col-sm-4 col-sm-offset-4">
-                        <form class="form-vertical" role="form" action="" method="post" enctype="multipart/form-data">
+                        <form class="form-vertical" role="form" action="" method="post" enctype="multipart/form-data" novalidate>
                             {% csrf_token %}
                             {% bootstrap_form form layout="vertical" %}
                             <input type="submit" value="{% trans "Signup" %}" class="btn btn-terciary btn-block"/>

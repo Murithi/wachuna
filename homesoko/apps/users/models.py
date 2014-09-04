@@ -6,7 +6,7 @@ from userena.models import UserenaBaseProfile
 
 
 @with_author
-class Profile (TimeStampedModel, UserenaBaseProfile):
+class Profile(TimeStampedModel, UserenaBaseProfile):
     user = models.OneToOneField(User, related_name='profile')
     company = models.CharField(max_length=100, blank=False)
 

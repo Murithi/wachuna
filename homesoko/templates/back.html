@@ -17,11 +17,6 @@
         {# Load CSS and JavaScript #}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
-
-
-
-        {# Display django.contrib.messages as Bootstrap alerts #}
-        {% bootstrap_messages %}
 		<!-- PrettyCheckable Styles -->
 		<link rel='stylesheet' type='text/css' href='{{ STATIC_URL }}css/plugins/prettycheckable/prettyCheckable.css'>
 
@@ -133,12 +128,14 @@
                 <!-- Data block -->
                 <article class="col-sm-12">
                     <div class="blue data-block">
+                        {% bootstrap_messages %}
                         <header>
                             <h2>{% block header %}{% endblock %}</h2>
                             <ul class="data-header-actions">
                                 {% block header_actions %}{% endblock %}
                             </ul>
                         </header>
+
                         <section>
                             <div class="row">
                                 {% block content %}

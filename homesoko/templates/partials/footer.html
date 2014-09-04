@@ -9,11 +9,11 @@
             <h3>Property Types</h3>
 
             <div class="list-group">
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Apartments for rent <!--<span class="badge">149</span>  --></a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Apartments for sale </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Condo </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Cottage </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Offices </a>
+                <a href="{% url 'properties.list_letting' type='apartment' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Apartments for rent <!--<span class="badge">149</span>  --></a>
+                <a href="{% url 'properties.list_sale' type='apartment' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Apartments for sale </a>
+                <a href="{% url 'properties.list_sale' type='house' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Houses </a>
+                <a href="{% url 'properties.list_sale' type='office' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Offices </a>
+                <a href="{% url 'properties.list_sale' type='land' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Land </a>
             </div><!-- /.list-group -->
 
         </div><!-- /.widget -->
@@ -24,11 +24,11 @@
             <h3>Towns</h3>
 
             <div class="list-group">
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Nairobi <!--<span class="badge">149</span> --></a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Mombasa </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Kisumu </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Nakuru </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Eldoret </a>
+                <a href="{% url 'properties.list_city' city='nairobi' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Nairobi <!--<span class="badge">149</span> --></a>
+                <a href="{% url 'properties.list_city' city='mombasa' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Mombasa </a>
+                <a href="{% url 'properties.list_city' city='kisumu' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Kisumu </a>
+                <a href="{% url 'properties.list_city' city='nakuru' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Nakuru </a>
+                <a href="{% url 'properties.list_city' city='eldoret' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Eldoret </a>
             </div><!-- /.list-group -->
         </div><!-- /.widget -->
     </div>
@@ -37,11 +37,11 @@
             <h3>Neighbourhoods</h3>
 
             <div class="list-group">
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Donholm <!--<span class="badge">149</span>--></a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Kileleshwa </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Riverside </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Cottage </a>
-                <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Rongai </a>
+                <a href="{% url 'properties.list_neighbourhood' neighbourhood='westlands' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Westlands <!--<span class="badge">149</span>--></a>
+                <a href="{% url 'properties.list_neighbourhood' neighbourhood='riverside' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Riverside </a>
+                <a href="{% url 'properties.list_neighbourhood' neighbourhood='kileleshwa' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Kileleshwa </a>
+                <a href="{% url 'properties.list_neighbourhood' neighbourhood='kilimani' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Kilimani </a>
+                <a href="{% url 'properties.list_neighbourhood' neighbourhood='karen' %}" class="list-group-item"><i class="fa fa-angle-right"></i> Karen </a>
             </div><!-- /.list-group -->
         </div><!-- /.widget -->
     </div>
@@ -52,10 +52,12 @@
 
             <table class="contact">
                 <tbody>
+                    <!--
                     <tr>
                         <th class="address"><i class="fa fa-map-marker"></i> Address</th>
                         <td>24 Ojijo Road<br>Parklands, Nairobi<br>Kenya<br></td>
                     </tr>
+                    -->
 
                     <tr>
                         <th class="phone"><i class="fa fa-phone"></i> Phone</th>

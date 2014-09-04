@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 from django_extensions.db.models import TimeStampedModel
 from djchoices import DjangoChoices, ChoiceItem
 from author.decorators import with_author
 from autoslug import AutoSlugField
-import django_filters
 from sorl.thumbnail import get_thumbnail
 
 
@@ -88,6 +88,7 @@ class Property(TimeStampedModel):
     neighbourhood = models.ForeignKey(Neighbourhood, null=False, blank=False)
     category = models.CharField(max_length=14, blank=True, choices=CategoryOptions.choices)
     property_type = models.CharField(max_length=20, blank=True, choices=PropertyTypeOptions.choices)
+    agency = models.ForeignKey(User, null=False, blank=False, related_name='property')
     features = models.ManyToManyField(Feature, related_name='property', null=True, blank=True)
     objects = models.Manager()
     sale = SalePropertiesManager()
@@ -98,7 +99,9 @@ class Property(TimeStampedModel):
 
     @property
     def details(self):
-        return "Price: %d,Category: %s,Type: %s,Location: %s-%s" % (self.price, self.category, self.property_type, self.neighbourhood, self.city)
+        beds = self.bedrooms if self.bedrooms else '-'
+        baths = self.bathrooms if self.bathrooms else '-'
+        return "Price: %d,Category: %s,Type: %s,Location: %s-%s,Beds: %s,Baths: %s" % (self.price, self.category, self.property_type, self.neighbourhood, self.city, beds, baths)
 
     def primary_image_thumbnail(self):
         if self.primary_image():
