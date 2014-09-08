@@ -24,7 +24,8 @@ class PropertyDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context_data = super(PropertyDetailView, self).get_context_data(**kwargs)
         sokoproperty = self.get_object()
-        context_data['images'] = sokoproperty.images.values
+        context_data['images'] = sokoproperty.images.all()
+        context_data['features'] = sokoproperty.features.all()
         return context_data
 
 

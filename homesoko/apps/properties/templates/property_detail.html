@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load humanize %}
+{% load thumbnail %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -18,9 +19,11 @@
 
                     <div class="carousel-inner">
                         {% for image in images %}
+                            {% thumbnail  image.file "850x490" crop="center" as img %}
                             <div {% if forloop.first %}class="item active"{% else %}class="item"{% endif %}>
-                                <img alt="{{ property.name }}" src="{{ MEDIA_URL }}{{ image.file }}">
+                                <img alt="{{ property.name }}" src="{{ img.url }}">
                             </div>
+                            {% endthumbnail %}
                         {% endfor %}
                     </div><!-- /.carousel-inner -->
                 </div><!-- /.carousel -->
@@ -61,38 +64,9 @@
 
                                 <div class="row">
                                     <ul class="property-detail-amenities">
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Air conditioning</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Balcony</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Bedding</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Cable TV</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Cleaning after exit</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Cofee pot</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Computer</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Cot</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Dishwasher</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> DVD</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Fan</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Fridge</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Grill</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Hairdryer</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Heating</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Hi-fi</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Internet</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Iron</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Juicer</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Lift</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Microwave</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Oven</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Parking</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Parquet</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Radio</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Roof terrace</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Smoking allowed</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Terrace</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Toaster</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-ban no"></i> Towelwes</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Use of pool</li>
-                                        <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> Video</li>
+                                        {% for feature in features %}
+                                            <li class="col-xs-6 col-sm-4"><i class="fa fa-check ok"></i> {{ feature.name }}</li>
+                                        {% endfor %}
                                     </ul>
                                 </div><!-- /.row -->
             </div><!-- /.block-content -->

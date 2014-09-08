@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.core.urlresolvers import reverse_lazy, reverse
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import CreateView, ListView, UpdateView, View
 from django.contrib.auth.decorators import login_required
@@ -148,14 +148,11 @@ class AddPropertyFeaturesView(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        form = self.form_class()
+        form = self.form_class(request.POST)
         sokoproperty = self.get_object()
-        current_features = sokoproperty.features.all()
-        context = {'property': sokoproperty, 'form': self.form_class(request.POST), 'current_features': current_features}
         if form.is_valid():
-
             features = request.POST.getlist('features')
-            current_features = [str(feature.id) for feature in current_features]
+            current_features = [str(feature.id) for feature in sokoproperty.features.all()]
 
             # Add new features
             for feature in features:
@@ -167,8 +164,8 @@ class AddPropertyFeaturesView(View):
                     if feature not in features:
                         sokoproperty.features.remove(feature)
             messages.success(request, 'Property features have been updated successfully.')
-            return HttpResponse(reverse('dashboard.properties.property_features', args=[sokoproperty.id]))
+            return HttpResponseRedirect(reverse('dashboard.properties.property_features', args=[sokoproperty.id]))
 
-        return render(request, self.template_name, context)
+        return render(request, self.template_name, {'form': form, 'property': sokoproperty})
 
 
