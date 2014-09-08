@@ -14,7 +14,14 @@
     <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {% bootstrap_form form layout="horizontal" %}
-        {% buttons submit='Save Changes' reset='Cancel' layout='horizontal' %}{% endbuttons %}
+        {% buttons  layout='horizontal' %}
+        <button type="submit" class="btn btn-primary">
+            Save Changes
+        </button>
+        <button type="button" class="btn" onclick="history.back()">
+            Cancel
+        </button>
+        {% endbuttons %}
     </form>
 </div>
 {% endblock %}

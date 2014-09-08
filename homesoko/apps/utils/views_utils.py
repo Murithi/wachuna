@@ -11,7 +11,9 @@ def require_own_agency(view_function):
 
         # Test function
         def _test_function(user):
-            return object_org == user
+            if not user.is_staff:
+                return object_org == user
+            return True
 
         # This is the function that we're returning. It's wrapped with user_passes_test
         @user_passes_test(_test_function)
