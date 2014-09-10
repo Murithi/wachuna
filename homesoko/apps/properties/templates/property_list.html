@@ -20,7 +20,7 @@
                                 <div class="box lifted background-white">
                                     <div class="box-picture">
                                         <a href="{% url 'properties.listing' property.slug %}">
-                                            <img src="{{ MEDIA_URL }}{{ property.primary_image_thumbnail }}" alt="{{ property.name }}">
+                                            <img src="{{ property.primary_image_thumbnail.url }}" alt="{{ property.name }}">
                                             <span></span>
                                         </a>
                                     </div><!-- /.box-picture -->

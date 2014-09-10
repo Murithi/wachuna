@@ -112,3 +112,22 @@ background-color: #ff6600;
     font-weight: 700;
 }
 
+.background-secondary {
+    background-color: #0099ff;
+}
+
+.header-submenu li .fa {
+    color: #ff6600;
+}
+
+.widgetized-title:after {
+    background-color: #ff6600;
+}
+
+.widget-boxed-secondary {
+    background-color: #0099ff;
+}
+
+a:hover {
+color: #ff9900;
+}

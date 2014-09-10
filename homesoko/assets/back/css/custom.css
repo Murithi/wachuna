@@ -53,7 +53,7 @@
 }
 
 .table td.details { white-space:pre }
-ul.no-style, ul#id_features  {
+ul#id_features  {
     list-style-type: none;
     padding: 4px;
     margin: 0px;

@@ -37,7 +37,7 @@
             {% for column, cell in row.items %}
                 <td {{ column.attrs.td.as_html }}>{{ cell }}</td>
             {% endfor %}
-            <td><ul class="no-style">
+            <td><ul class="list-unstyled">
                 {% if row.record.features.all %}
 
                     <li class="text-success" data-toggle="tooltip" title="<div style='text-align:left'>
@@ -73,7 +73,7 @@
                 </div>
             </td>
             <td>
-                <ul class="no-style">
+                <ul class="list-unstyled">
                     <li><a>Property in detail</a></li>
                     <li><a  href="{% url 'properties.listing' row.record.slug %}" target="_blank">View Property on site</a></li>
                     <li><a href="{% url 'dashboard.properties.property_edit' row.record.id %}">Edit Details</a></li>

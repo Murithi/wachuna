@@ -119,10 +119,11 @@ class PropertyImagesDeleteView(UploadDeleteView):
         return super(PropertyImagesDeleteView, self).dispatch(*args, **kwargs)
 
     def get_object_agency(self):
-        return self.get_object().agency
+        return self.get_object().property.agency
 
     def get_object(self):
-        return Property.objects.get(id=int(self.kwargs['pk']))
+        return PropertyImage.objects.get(id=int(self.kwargs['pk']))
+
 
 
 class AddPropertyFeaturesView(View):
