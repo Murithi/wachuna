@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Property, City, Neighbourhood
+from .models import Property, City, Neighbourhood, Feature
 
 
 class PropertyAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class PropertyAdmin(admin.ModelAdmin):
 admin.site.register(Property, PropertyAdmin)
 admin.site.register(City)
 admin.site.register(Neighbourhood)
+admin.site.register(Feature)

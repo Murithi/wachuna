@@ -1,7 +1,7 @@
 from django.test.testcases import TestCase
 from django_dynamic_fixture import G
 from homesoko.apps.properties.models import SokoProperty, City, Neighbourhood, Features
-from homesoko.apps.dashboard.properties.forms import SokoPropertyForm
+from homesoko.apps.dashboard.listings.forms import SokoPropertyForm
 
 
 class PropertyCreateFormTests(TestCase):

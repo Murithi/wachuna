@@ -4,7 +4,7 @@
 <!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<title>Homesoko User Profile</title>
+		<title>{% block title %} Homesoko Dashboard{% endblock %}</title>
 		<meta name="description" content="">
 		<meta name="author" content="Homesoko Team">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,7 +93,7 @@
 
 							<!-- Dropdown navigation items -->
 							<li>
-								<a href="{% url "dashboard.properties.property_list" %}"> Properties</a>
+								<a href="{% url "listings.property_list" %}"> Properties</a>
 							</li>
 							<!-- /Dropdown navigation items -->
 

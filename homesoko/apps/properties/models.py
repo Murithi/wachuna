@@ -90,12 +90,14 @@ class Property(TimeStampedModel):
     property_type = models.CharField(max_length=20, blank=True, choices=PropertyTypeOptions.choices)
     agency = models.ForeignKey(User, null=False, blank=False, related_name='property')
     features = models.ManyToManyField(Feature, related_name='property', null=True, blank=True)
+    is_premium = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
     objects = models.Manager()
     sale = SalePropertiesManager()
     letting = LettingPropertiesManager()
 
     class Meta:
-        verbose_name_plural = 'properties'
+        verbose_name_plural = 'Properties'
 
     @property
     def details(self):
@@ -122,7 +124,7 @@ class Property(TimeStampedModel):
             return images[0]
         except IndexError:
             return None
-            # We return a dict with fields that mirror the key properties of
+            # We return a dict with fields that mirror the key listings of
             # the PropertyImage class so this missing image can be used
             # interchangably in templates.  Strategy pattern ftw!
             return {

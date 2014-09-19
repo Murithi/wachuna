@@ -78,11 +78,10 @@ INSTALLED_APPS = (
     'homesoko.apps.users',
     'homesoko.apps.utils',
     'homesoko.apps.utils.djupload',
-    'homesoko.apps.dashboard.properties',
+    'homesoko.apps.dashboard.listings',
     # 3rd party
     'author',
     'bootstrap3',
-    'south',
     'userena',
     'guardian',
     'django_nose',

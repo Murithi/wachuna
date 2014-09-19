@@ -15,8 +15,8 @@ from .tables import PropertyTable
 class PropertyCreateView(CreateView):
     form_class = PropertyForm
     model = Property
-    template_name = 'properties/property_form.html'
-    success_url = reverse_lazy('dashboard.properties.property_list')
+    template_name = 'listings/listing_form.html'
+    success_url = reverse_lazy('listings.property_list')
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -29,7 +29,7 @@ class PropertyCreateView(CreateView):
 
 class PropertyListView(ListView):
     model = Property
-    template_name = 'properties/dashboard_property_list.html'
+    template_name = 'listings/listing_list.html'
 
     @require_own_agency
     def dispatch(self, *args, **kwargs):
@@ -53,8 +53,8 @@ class PropertyListView(ListView):
 
 class EditPropertyView(UpdateView):
     model = Property
-    template_name = 'properties/property_form.html'
-    success_url = reverse_lazy('dashboard.properties.property_list')
+    template_name = 'listings/listing_form.html'
+    success_url = reverse_lazy('listings.listing_list')
     form_class = PropertyForm
 
     @require_own_agency
@@ -72,7 +72,7 @@ class EditPropertyView(UpdateView):
 
 class PropertyImagesUploadView(UploadView):
     model = PropertyImage
-    delete_url = 'dashboard.properties.images_delete'
+    delete_url = 'listings.images_delete'
 
     @require_own_agency
     def dispatch(self, *args, **kwargs):
@@ -93,7 +93,7 @@ class PropertyImagesUploadView(UploadView):
 
 class PropertyImagesListView(UploadListView):
     model = PropertyImage
-    delete_url = 'dashboard.properties.images_delete'
+    delete_url = 'listings.images_delete'
 
     @require_own_agency
     def dispatch(self, *args, **kwargs):
@@ -125,9 +125,8 @@ class PropertyImagesDeleteView(UploadDeleteView):
         return PropertyImage.objects.get(id=int(self.kwargs['pk']))
 
 
-
 class AddPropertyFeaturesView(View):
-    template_name = 'properties/property_add_features.html'
+    template_name = 'listings/listing_features.html'
     form_class = AddPropertyFeaturesForm
     initial = {'key': 'value'}
 
@@ -165,7 +164,7 @@ class AddPropertyFeaturesView(View):
                     if feature not in features:
                         sokoproperty.features.remove(feature)
             messages.success(request, 'Property features have been updated successfully.')
-            return HttpResponseRedirect(reverse('dashboard.properties.property_features', args=[sokoproperty.id]))
+            return HttpResponseRedirect(reverse('listings.listing_features', args=[sokoproperty.id]))
 
         return render(request, self.template_name, {'form': form, 'property': sokoproperty})
 

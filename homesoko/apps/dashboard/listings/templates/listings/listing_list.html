@@ -4,7 +4,7 @@
 {% load bootstrap3 %}
 {% block header %} My Properties {% endblock %}
 {% block header_actions %}
-   <li class="active"><a href="{% url "dashboard.properties.property_new" %}" class="btn btn-alt"><span class="elusive icon-plus-sign"></span> Add Property</a></li>
+   <li class="active"><a href="{% url "listings.property_new" %}" class="btn btn-alt"><span class="elusive icon-plus-sign"></span> Add Property</a></li>
 {% endblock %}
 
 {% if table.page %}

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load humanize %}
+{% block title %}{{ block.super }} | {{ page_title }} {% endblock %}
 {% block content %}
 <div class="container">
 	<div class="block-content">

@@ -1,27 +1,6 @@
 ﻿
-#wrapper{
-    background-color: #ffffff;
-    background-image: url(../img/bg.png);
-}
 
-.main-navigation .navbar-collapse {
-    background-color: #0099ff;
-}
-.main-navigation.navbar-default .navbar-nav > li > a{
-    color: #ffffff;
-}
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #ffffff;
-    background-color: #ff9900;
-}
-.header-branding{
-    top: 14px;
-    max-width: 256px;
-}
 
-.data-block.blue header {
-    background: #ff9900;
-}
 /**
 #header  {
     background-color: #292f33;
