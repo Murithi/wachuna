@@ -17,12 +17,16 @@
                                         <table class="box-table box-picture-meta">
                                             <tr>
                                                 <td>
-                                                    <strong>Area</strong><br/>
-                                                    150m<sup>2</sup>
+                                                    <strong>Size</strong><br/>
+                                                    {% if property.structure_size %}
+                                                       {{ property.structure_size }}<sup>2</sup>
+                                                    {% else %}
+                                                        --
+                                                    {% endif %}
                                                 </td>
                                                 <td>
-                                                    <strong>Garage</strong><br/>
-                                                    Yes
+                                                    <strong>Neigh</strong><br/>
+                                                    {{ property.neighbourhood }}
                                                 </td>
                                                 <td>
                                                     <strong>Beds</strong><br/>

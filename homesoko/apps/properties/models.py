@@ -39,7 +39,7 @@ class LettingPropertiesManager(models.Manager):
 
 @with_author
 class Feature(TimeStampedModel):
-    name = models.CharField(max_length=20)
+    name = models.CharField(max_length=30)
 
     def __unicode__(self):
         return self.name

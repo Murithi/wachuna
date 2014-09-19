@@ -165,7 +165,7 @@ class AddPropertyFeaturesView(View):
                     if feature not in features:
                         sokoproperty.features.remove(feature)
             messages.success(request, 'Property features have been updated successfully.')
-            return HttpResponseRedirect(reverse('listings.listing_features', args=[sokoproperty.id]))
+            return HttpResponseRedirect(reverse('listings.property_features', args=[sokoproperty.id]))
 
         return render(request, self.template_name, {'form': form, 'property': sokoproperty})
 

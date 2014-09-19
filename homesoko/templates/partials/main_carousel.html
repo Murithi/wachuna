@@ -7,15 +7,15 @@
       {% endfor %}
   </ol>
  <div class="carousel-inner">
- {% for property in properties %}
+ {% for property in premium_properties %}
     <div {% if forloop.first %}class="item active"{% else %}class="item"{% endif %}>
     <img src="{{ MEDIA_URL }}{{ property.slider_image }}" alt="{{ property.name }}">
       <div class="container">
         <div class="carousel-caption">
           <h1>{{ property.name }}</h1>
-          <p>{{ property.description }}</p>
+          <p>{# property.description #}</p>
           <!--
-          <p><a class="btn btn-lg btn-danger" href="{% url 'listings.listing' property.slug %}" role="button">View Property</a></p>
+          <p><a class="btn btn-lg btn-danger" href="{% url 'properties.listing' property.slug %}" role="button">View Property</a></p>
           -->
         </div>
       </div>
@@ -126,7 +126,11 @@
                           <option value="1000000">Ksh 1 Million</option>
                           <option value="3000000">Ksh 3 Million</option>
                           <option value="5000000">Ksh 5 Million</option>
-                          <option value="10000000">Ksh 10 Million</option>
+                          <option value="100000000">Ksh 10 Million</option>
+                          <option value="30000000">Ksh 30 Million</option>
+                          <option value="50000000">Ksh 50 Million</option>
+                          <option value="70000000">Ksh 70 Million</option>
+                          <option value="100000000">Ksh 100 Million</option>
                       </select>
                     </div>
                   </div>

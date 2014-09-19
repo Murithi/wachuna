@@ -79,7 +79,7 @@
                     <div class="widget widget-boxed">
     <h3>Enquire Now</h3>
 
-    <form method="post">
+    <form>{% csrf_token %}
         <div class="form-group">
             <label>Subject</label>
             <input type="text" class="form-control">
