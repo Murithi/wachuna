@@ -73,6 +73,7 @@ class EditPropertyView(UpdateView):
 class PropertyImagesUploadView(UploadView):
     model = PropertyImage
     delete_url = 'listings.images_delete'
+    template_name = 'listings/propertyimage_form.html'
 
     @require_own_agency
     def dispatch(self, *args, **kwargs):

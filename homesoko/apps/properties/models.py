@@ -61,13 +61,28 @@ class Property(TimeStampedModel):
     class BedroomOptions(DjangoChoices):
         One = ChoiceItem(1, '1')
         Two = ChoiceItem(1, '2')
+        Three = ChoiceItem('3', '3')
+        Four = ChoiceItem('4', '4')
+        Five = ChoiceItem('5', '5')
+        Six = ChoiceItem('6', '6')
+        Seven = ChoiceItem('7', '7')
+        Eight = ChoiceItem('8', '8')
+        Nine = ChoiceItem('9', '9')
+        Ten = ChoiceItem('10', '10')
+        Eleven = ChoiceItem('11', '11')
+        Twelve = ChoiceItem('12', '12')
+        Thirteen = ChoiceItem('13', '13')
+        Fourteen = ChoiceItem('14', '14')
+        Fifteen = ChoiceItem('15', '15')
 
     class BathroomsOptions(DjangoChoices):
-        ensuite = ChoiceItem('Ensuite')
+        all_ensuite = ChoiceItem('all_ensuite', 'All Ensuite')
         One = ChoiceItem('1', '1')
-        OneAndHalf = ChoiceItem('1 and 1/2', '1 and 1/2')
         Two = ChoiceItem('2', '2')
-        TwoAndHalf = ChoiceItem('2 and 1/2', '2 and 1/2')
+        Three = ChoiceItem('3', '3')
+        Four = ChoiceItem('4', '4')
+        Five = ChoiceItem('5', '5')
+        Six = ChoiceItem('6', '6')
 
     class StateOptions(DjangoChoices):
         New = ChoiceItem('new', 'New')
@@ -79,7 +94,7 @@ class Property(TimeStampedModel):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(_('Description'), blank=True, null=True)
     bedrooms = models.IntegerField(max_length=5, null=True, blank=True, choices=BedroomOptions.choices)
-    bathrooms = models.CharField(max_length=10, null=True, blank=True, choices=BathroomsOptions.choices)
+    bathrooms = models.CharField(max_length=15, null=True, blank=True, choices=BathroomsOptions.choices)
     structure_size = models.PositiveIntegerField(null=True, blank=True,
                                                  help_text='Size of the structure in square feet')
     lot_size = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True,

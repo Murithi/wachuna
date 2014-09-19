@@ -76,17 +76,17 @@
                 <ul class="list-unstyled">
                     <li><a>Property in detail</a></li>
                     <li><a  href="{% url 'properties.listing' row.record.slug %}" target="_blank">View Property on site</a></li>
-                    <li><a href="{% url 'dashboard.properties.property_edit' row.record.id %}">Edit Details</a></li>
+                    <li><a href="{% url 'listings.property_edit' row.record.id %}">Edit Details</a></li>
                     {% if row.record.features.all %}
-                        <li><a  href="{% url 'dashboard.properties.property_features' row.record.id %}">Update Features</a></li>
+                        <li><a  href="{% url 'listings.property_features' row.record.id %}">Update Features</a></li>
                     {% else %}
-                        <li><a href="{% url 'dashboard.properties.property_features' row.record.id %}">Add Features</a></li>
+                        <li><a href="{% url 'listings.property_features' row.record.id %}">Add Features</a></li>
                     {% endif %}
 
                     {% if row.record.images.all %}
-                        <li><a href="{% url 'dashboard.properties.images_upload' row.record.id %}">Update Images</a></li>
+                        <li><a href="{% url 'listings.images_upload' row.record.id %}">Update Images</a></li>
                     {% else %}
-                        <li><a href="{% url 'dashboard.properties.images_upload' row.record.id %}">Add Images</a></li>
+                        <li><a href="{% url 'listings.images_upload' row.record.id %}">Add Images</a></li>
                     {% endif %}
                 </ul>
             </td>

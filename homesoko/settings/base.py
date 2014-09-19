@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     # 3rd party
     'author',
     'bootstrap3',
+    'south',
     'userena',
     'guardian',
     'django_nose',
