@@ -1,7 +1,7 @@
 from django.views.generic import View, TemplateView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
-from .models import Property
+from .models import Property, PropertyStateMachine
 from .filters import PropertyFilter
 
 
@@ -11,7 +11,7 @@ class Homepage(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(Homepage, self).get_context_data(**kwargs)
         context_data['premium_properties'] = Property.objects.filter(is_premium=True)
-        context_data['properties'] = Property.objects.all()
+        context_data['properties'] = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED)
         return context_data
 
 
@@ -145,7 +145,7 @@ class PropertyListView(View):
 
     def get(self, request, *args, **kwargs):
         context_data = {'page_title': 'Property List'}
-        properties_list = Property.objects.all()
+        properties_list = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED)
         # Pagination
         paginator = Paginator(properties_list, 24)  # Show 25 listings per page
         page = request.GET.get('page')
@@ -162,7 +162,7 @@ class PropertyListView(View):
 
     def post(self, request, *args, **kwargs):
         context_data = {'page_title':  'Property List'}
-        properties_list = PropertyFilter(request.POST, queryset=Property.objects.all())
+        properties_list = PropertyFilter(request.POST, queryset=Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED))
         # Pagination
         paginator = Paginator(properties_list, 24)  # Show 25 listings per page
         page = request.GET.get('page')

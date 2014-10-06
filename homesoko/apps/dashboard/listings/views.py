@@ -54,7 +54,7 @@ class PropertyListView(ListView):
 class EditPropertyView(UpdateView):
     model = Property
     template_name = 'listings/listing_form.html'
-    success_url = reverse_lazy('listings.listing_list')
+    success_url = reverse_lazy('listings.property_list')
     form_class = PropertyForm
 
     @require_own_agency

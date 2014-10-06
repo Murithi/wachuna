@@ -6,6 +6,8 @@ from djchoices import DjangoChoices, ChoiceItem
 from author.decorators import with_author
 from autoslug import AutoSlugField
 from sorl.thumbnail import get_thumbnail
+from django_states.fields import StateField
+from django_states.machine import StateMachine, StateDefinition, StateTransition
 
 
 @with_author
@@ -30,12 +32,12 @@ class Neighbourhood(TimeStampedModel):
 
 class SalePropertiesManager(models.Manager):
     def get_query_set(self):
-        return super(SalePropertiesManager, self).get_query_set().filter(category=Property.CategoryOptions.Sale)
+        return super(SalePropertiesManager, self).get_query_set().filter(state=PropertyStateMachine.STATE_PUBLISHED, category=Property.CategoryOptions.Sale)
 
 
 class LettingPropertiesManager(models.Manager):
     def get_query_set(self):
-        return super(LettingPropertiesManager, self).get_query_set().filter(category=Property.CategoryOptions.Letting)
+        return super(LettingPropertiesManager, self).get_query_set().filter(state=PropertyStateMachine.STATE_PUBLISHED, category=Property.CategoryOptions.Letting)
 
 @with_author
 class Feature(TimeStampedModel):
@@ -43,6 +45,63 @@ class Feature(TimeStampedModel):
 
     def __unicode__(self):
         return self.name
+
+
+class PropertyStateMachine(StateMachine):
+    log_transitions = True
+    # States Constants
+    STATE_NEW = 'new'
+    STATE_FEATURES_ADDED = 'features_added'
+    STATE_IMAGES_ADDED = 'images_added'
+    STATE_AWAITING_ADMIN_APPROVAL = 'awaiting_admin_approval'
+    STATE_PUBLISHED = 'published'
+    STATE_INACTIVATED = 'inactivated'
+
+    # Possible states
+    class new(StateDefinition):
+        description = _('A newly created property')
+        initial = True
+
+    class features_added(StateDefinition):
+        description = _('Features have been added to the property')
+
+    class images_added(StateDefinition):
+        description = _('Images have been added to the property')
+
+    class awaiting_admin_approval(StateDefinition):
+        description = _('Admin needs to approve this property to be updated')
+
+    class published(StateDefinition):
+        description = _('The property has been published')
+
+    class inactivated(StateDefinition):
+        description = _('The property is inactive')
+
+    # State transitions
+    class mark_features_added(StateTransition):
+        from_state = ['new', 'images_added']
+        to_state = 'features_added'
+        description = 'Mark this property that the features have been added'
+
+    class mark_images_added(StateTransition):
+        from_state = ['new', 'images_added']
+        to_state = 'images_added'
+        description = 'Mark this property that the images have been added'
+
+    class mark_awaiting_admin_approval(StateTransition):
+        from_state = ['images_added', 'features_added']
+        to_state = 'awaiting_admin_approval'
+        description = 'Mark this property as awaiting the admin approval'
+
+    class mark_published(StateTransition):
+        from_state = ['awaiting_admin_approval', 'published']
+        to_state = 'awaiting_admin_approval'
+        description = 'Mark this property as published'
+
+    class mark_inactivated(StateTransition):
+        from_state = ['new', 'images_added', 'features_added', 'awaiting_admin_approval', 'published']
+        to_state = 'inactivated'
+        description = 'Mark this property as inactivated'
 
 
 @with_author
@@ -84,12 +143,7 @@ class Property(TimeStampedModel):
         Five = ChoiceItem('5', '5')
         Six = ChoiceItem('6', '6')
 
-    class StateOptions(DjangoChoices):
-        New = ChoiceItem('new', 'New')
-        Active = ChoiceItem('active', 'Active')
-        Deleted = ChoiceItem('deleted', 'Deleted')
-
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=20, blank=False)
     slug = AutoSlugField(populate_from='name')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     description = models.TextField(_('Description'), blank=True, null=True)
@@ -107,12 +161,27 @@ class Property(TimeStampedModel):
     features = models.ManyToManyField(Feature, related_name='property', null=True, blank=True)
     is_premium = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
+    state = StateField(machine=PropertyStateMachine, default='new')
     objects = models.Manager()
     sale = SalePropertiesManager()
     letting = LettingPropertiesManager()
 
     class Meta:
         verbose_name_plural = 'Properties'
+
+    @property
+    def status_percentage(self):
+        status_percentage = 0
+
+        if self.state == PropertyStateMachine.STATE_PUBLISHED:
+            status_percentage = 100
+        else:
+            if self.features.all():
+                status_percentage += 50
+            if self.images.all():
+                status_percentage += 30
+
+        return status_percentage
 
     @property
     def details(self):
@@ -139,13 +208,6 @@ class Property(TimeStampedModel):
             return images[0]
         except IndexError:
             return None
-            # We return a dict with fields that mirror the key listings of
-            # the PropertyImage class so this missing image can be used
-            # interchangably in templates.  Strategy pattern ftw!
-            return {
-                'original': self.get_missing_image(),
-                'caption': '',
-                'is_missing': True}
 
 
 class PropertyImage(TimeStampedModel):
