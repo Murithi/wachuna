@@ -145,7 +145,7 @@ class Property(TimeStampedModel):
 
     name = models.CharField(max_length=20, blank=False)
     slug = AutoSlugField(populate_from='name')
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=20, decimal_places=2)
     description = models.TextField(_('Description'), blank=True, null=True)
     bedrooms = models.IntegerField(max_length=5, null=True, blank=True, choices=BedroomOptions.choices)
     bathrooms = models.CharField(max_length=15, null=True, blank=True, choices=BathroomsOptions.choices)
