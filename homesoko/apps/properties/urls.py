@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 from .views import LettingPropertiesView, SalePropertiesView, PropertyDetailView, PropertyListView, CityPropertiesView, \
-                   NeighbourhoodPropertiesView
+                   NeighbourhoodPropertiesView, agent_message
 
 
 urlpatterns = patterns('',
@@ -11,4 +11,5 @@ urlpatterns = patterns('',
                        url(r'list/(?P<city>[\w-]+)/(?:/(?P<type>[\w-]+)/)?$', CityPropertiesView.as_view(), name='properties.list_city'),
                        url(r'list/(?P<neighbourhood>[\w-]+)/(?:/(?P<type>[\w-]+)/)?$', NeighbourhoodPropertiesView.as_view(), name='properties.list_neighbourhood'),
                        url(r'listing/(?P<property_slug>[\w-]+)/$', PropertyDetailView.as_view(), name='properties.listing'),
+                       url(r'message/$', agent_message, name='properties.listing_message'),
                        )

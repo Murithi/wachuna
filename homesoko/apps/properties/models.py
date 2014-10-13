@@ -8,6 +8,7 @@ from autoslug import AutoSlugField
 from sorl.thumbnail import get_thumbnail
 from django_states.fields import StateField
 from django_states.machine import StateMachine, StateDefinition, StateTransition
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 @with_author
@@ -169,6 +170,9 @@ class Property(TimeStampedModel):
     class Meta:
         verbose_name_plural = 'Properties'
 
+    def __unicode__(self):
+        return '%s' % self.name
+
     @property
     def status_percentage(self):
         status_percentage = 0
@@ -196,7 +200,7 @@ class Property(TimeStampedModel):
 
     def slider_image(self):
         if self.primary_image():
-            return get_thumbnail(self.primary_image().file, '1400x600', crop='center', quality=99)
+            return get_thumbnail(self.primary_image().file, '1440x600', crop='center', quality=99)
         return None
 
     def get_missing_image(self):
@@ -227,4 +231,17 @@ class PropertyImage(TimeStampedModel):
     def delete(self):
         self.deleted = True
         self.save()
+
+
+@with_author
+class PropertyMessage(TimeStampedModel):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    phone_number = PhoneNumberField()
+    message = models.TextField()
+    property = models.ForeignKey(Property, null=False, blank=False)
+    sent = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return "%s" % self.name
 

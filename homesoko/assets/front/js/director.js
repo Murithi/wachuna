@@ -189,6 +189,29 @@ $(document).ready(function() {
         });
     }
 
+    var contactAgent = $("#contact-agent");
+	contactAgent.submit(function(e){
+		var action = contactAgent.attr('action');
+		$.post(action,contactAgent.serialize(),
+			function(response){
+				if(response.success == "True"){
+					$("#contact-agent").html("<span class='success'></span>");
+					$(".success").html("Your message has been sent!!")
+						.append("<p>You will be contacted soon.</p>");
+				}
+				else{
+					$(".errorlist").hide();
+					$.each(response.errors,function(fieldname,errmsg)
+					{
+						var id = "#id_" + fieldname;
+						$(id).parent().before( errmsg );
+					});
+				}
+			},"json");
+			e.preventDefault();
+		});
+
+
     /** Google maps not in use now
     if ($('#google-map').length !== 0) {
         var map = $('#google-map').pragmatic_mates_map({

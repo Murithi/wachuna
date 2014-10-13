@@ -2,6 +2,7 @@
 {% block title %}{{ block.super }} | {{ property.name }} {% endblock %}
 {% load humanize %}
 {% load thumbnail %}
+{% load bootstrap3 %}
 {% block content %}
 <div class="container">
     <div class="row">
@@ -75,31 +76,39 @@
 
         <div class="col-sm-3">
             <div class="sidebar">
+
                 <div class="block-content">
+
                     <div class="widget widget-boxed">
-    <h3>Enquire Now</h3>
+                        <form  action="/properties/message/" enctype="multipart/form-data" method="post" id="contact-agent" novalidate>
 
-    <form>{% csrf_token %}
-        <div class="form-group">
-            <label>Subject</label>
-            <input type="text" class="form-control">
-        </div><!-- /.form-group -->
+              	<h3>Contact Agent</h3>
+              	   {% csrf_token %}
+                    {% bootstrap_messages %}
+                    {{ form.non_field_errors }}
+                    {% bootstrap_form form %}
+                    <input type="hidden" name="property" value="{{ property.id }}" />
+                    <!--
+			        <p>By sending, you agree to <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</p>
+			        -->
+                    {% buttons %}
+                    <button type="submit" class="btn btn-terciary btn-block">
+                     Submit
+                    </button>
+                  {% endbuttons %}
 
-        <div class="form-group">
-            <label>Message</label>
-            <textarea class="form-control"></textarea>
-        </div><!-- /.form-group -->
 
-        <input type="submit" class="btn btn-block btn-terciary" value="Send">
-    </form>
+            </form>
+
 </div><!-- /.widget -->
-                    <div class="widget widget-boxed widget-boxed-secondary">
+<!--
+<div class="widget widget-boxed widget-boxed-secondary">
     <form method="post">
         <div class="form-group">
             <label>Title</label>
             <input type="text" class="form-control">
         </div><!-- /.form-group -->
-
+<!--
 
         <div class="form-group">
             <label>Type</label>
@@ -112,7 +121,7 @@
                 <option value="">Warehouse</option>
             </select>
         </div><!-- /.form-group -->
-
+<!--
 
         <div class="form-group">
             <label>Price From</label>
@@ -123,7 +132,7 @@
                 <option value="">5000 €</option>
             </select>
         </div><!-- /.form-group -->
-
+<!--
         <div class="form-group">
             <label>Price To</label>
 
@@ -133,7 +142,7 @@
                 <option value="">5000 €</option>
             </select>
         </div><!-- /.form-group -->
-
+<!--
         <div class="form-group">
             <label>Baths</label>
 
@@ -145,7 +154,7 @@
                 <option value="">5</option>
             </select>
         </div><!-- /.form-group -->
-
+<!--
         <div class="form-group">
             <label>Beds</label>
 
@@ -157,10 +166,10 @@
                 <option value="">5</option>
             </select>
         </div><!-- /.form-group -->
-
+<!--
         <input type="submit" class="btn btn-block btn-primary" value="Filter">
     </form>
-</div><!-- /.widget -->
+</div><!-- /.widget --><!--
                     <div class="widget widget-boxed widget-boxed-dark">
     <h3>Resellers</h3>
 
@@ -170,7 +179,7 @@
         <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Condo<span class="badge">1254</span></a>
         <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> House<span class="badge">35</span></a>
         <a href="#" class="list-group-item"><i class="fa fa-angle-right"></i> Warehouse<span class="badge">351</span></a>
-    </div><!-- /.list-group -->
+    </div><!-- /.list-group -
 </div><!-- /.widget -->                 </div><!-- /.block-content -->
             </div><!-- /.sidebar -->
         </div>

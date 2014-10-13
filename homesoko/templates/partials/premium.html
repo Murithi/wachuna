@@ -47,7 +47,7 @@
 
                                 <div class="box-body">
                                     <h2 class="box-title-plain">
-                                        <a href="{% url 'properties.listing' property.slug %}">{{ property.name }}</a>
+                                        <a href="{% url 'properties.listing' property.slug %}">{{ property.name|truncatechars:15 }}</a>
                                     </h2><!-- /.box-title -->
 
                                     <div class="box-location box-subtitle">

@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'django_filters',
     'django_tables2',
+    'easy_thumbnails',
 )
 
 MIDDLEWARE_CLASSES = (

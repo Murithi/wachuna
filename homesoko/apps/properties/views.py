@@ -1,8 +1,12 @@
+import json
 from django.views.generic import View, TemplateView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
-from .models import Property, PropertyStateMachine
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+from .models import Property, PropertyStateMachine, PropertyMessage
 from .filters import PropertyFilter
+from .forms import PropertyMessageForm
 
 
 class Homepage(TemplateView):
@@ -27,6 +31,7 @@ class PropertyDetailView(DetailView):
         sokoproperty = self.get_object()
         context_data['images'] = sokoproperty.images.all()
         context_data['features'] = sokoproperty.features.all()
+        context_data['form'] = PropertyMessageForm
         return context_data
 
 
@@ -176,5 +181,31 @@ class PropertyListView(View):
             context_data['properties'] = paginator.page(paginator.num_pages)
 
         return render(request, self.template_name, context_data)
+
+
+def agent_message(request):
+    contact_agent_form = PropertyMessageForm(request.POST)
+    data = request.POST.copy()
+    listing = Property.objects.get(id=data['property'])
+    if request.is_ajax():
+        if contact_agent_form.is_valid():
+            PropertyMessage.objects.create(name=data['name'], phone_number=data['phone'],
+                                           email=data['email'], message=data['message'], property=listing)
+            response = json.dumps({'success': 'True'})
+        else:
+            errors = {}
+            for e in contact_agent_form.errors.iteritems():
+                errors.update({e[0]: unicode(e[1])})
+            html = contact_agent_form.errors.as_ul()
+            response = json.dumps({'success': 'False', 'html': html, 'errors': errors})
+        return HttpResponse(response, mimetype='application/json')
+    else:
+        if contact_agent_form.is_valid():
+            PropertyMessage.objects.create(name=data['name'],phone_number=data['phone'],
+                                           email=data['email'],message=data['message'], property=listing)
+            messages.add_message(request, messages.INFO, 'Your message has been sent.You will be contacted soon', extra_tags='alert-success')
+        else:
+            messages.add_message(request, messages.INFO, 'All fields are required!', extra_tags='alert-error')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
