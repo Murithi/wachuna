@@ -4,6 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
+from homesoko.apps.users.models import Profile
 from .models import Property, PropertyStateMachine, PropertyMessage
 from .filters import PropertyFilter
 from .forms import PropertyMessageForm
@@ -94,7 +95,7 @@ class CityPropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(CityPropertiesView, self).get_context_data(**kwargs)
         city = kwargs['city']
-        queryset = Property.objects.filter(city__name=city)
+        queryset = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED, city__name=city)
         if kwargs['type']:
             properties_list = queryset.filter(property_type=kwargs['type'])
         else:
@@ -122,7 +123,7 @@ class NeighbourhoodPropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(NeighbourhoodPropertiesView, self).get_context_data(**kwargs)
         neighbourhood = kwargs['neighbourhood']
-        queryset = Property.objects.filter(neighbourhood__name=neighbourhood)
+        queryset = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED, neighbourhood__name=neighbourhood)
         if kwargs['type']:
             properties_list = queryset.filter(property_type=kwargs['type'])
         else:
@@ -141,6 +142,31 @@ class NeighbourhoodPropertiesView(TemplateView):
             context_data['properties'] = paginator.page(paginator.num_pages)
 
         context_data['page_title'] = 'Properties in ' + neighbourhood
+        return context_data
+
+
+class CompanyPropertiesView(TemplateView):
+    template_name = "property_list.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(CompanyPropertiesView, self).get_context_data(**kwargs)
+        company = kwargs['company']
+        user = Profile.objects.get(company=company).user
+        properties_list = user.property.filter(state=PropertyStateMachine.STATE_PUBLISHED)
+
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 listings per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = company + '    properties'
         return context_data
 
 

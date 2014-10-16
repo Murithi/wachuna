@@ -1,3 +1,8 @@
+.jumbotron {
+    padding:10px;
+    margin-bottom: 10px;
+}
+
 .center-meta-on-hover .box-image-meta {
 background-color: #ff6600;
 }
@@ -43,22 +48,6 @@ border-top: 0px;
 }
 
 
-
-
-.box:hover .box-title-plain, .box:hover .box-title-plain a {
-  color: #ff6600;
-}
-
-background-secondary {
-    background-color: #0099ff;
-}
-
-
-
-box-title-plain, .box-title-plain a {
-    color: #ff6600;
-}
-
 #google-map, #google-map-directory {
     height: 600px;
 }
@@ -92,9 +81,7 @@ background-color: #ff6600;
     font-weight: 700;
 }
 
-.background-secondary {
-    background-color: #0099ff;
-}
+
 
 .header-submenu li .fa {
     color: #ff6600;

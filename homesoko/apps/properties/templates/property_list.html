@@ -2,15 +2,20 @@
 {% load humanize %}
 {% block title %}{{ block.super }} | {{ page_title }} {% endblock %}
 {% block content %}
+{% if properties %}
+<div class="jumbotron banner">
+    <div class="container">
+        <h1 class="large">
+			{{ page_title }}
+              </h1>
+        <h3></h3>
+    </div><!-- /.hero-text -->
+</div>
+{% endif %}
+
 <div class="container">
 	<div class="block-content">
 		<div class="block-content-inner">
-			<h2 class="mb40">
-                {% if properties %}
-				    {{ page_title }}
-                {% endif %}
-			</h2>
-
             <div class="boxes">
                 <div class="row">
                     <div class="col-sm-12">
@@ -18,7 +23,7 @@
                             {% if properties %}
                             {% for property in properties %}
                             <div class="col-sm-4 col-md-3">
-                                <div class="box lifted background-white">
+                                <div class="box">
                                     <div class="box-picture">
                                         <a href="{% url 'properties.listing' property.slug %}">
                                             <img src="{{ property.primary_image_thumbnail.url }}" alt="{{ property.name }}">
