@@ -10,8 +10,11 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^properties/', include('homesoko.apps.properties.urls')),
     url(r'^dashboard/listings/', include('homesoko.apps.dashboard.listings.urls')),
-    url(r'^accounts/', include('userena.urls')),
+    #url(r'^accounts/', include('userena.urls')),
     url(r'^select2/', include('django_select2.urls')),
+    url(r'^account/', include('account.urls')),
+    url(r'^users/', include('homesoko.apps.users.urls')),
+    url(r'^selectable/', include('selectable.urls')),
 )
 
 import os

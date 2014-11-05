@@ -56,10 +56,10 @@
 						 -->
 						<!-- User profile info -->
 						<figcaption>
-							<strong><a href="{% url "userena_profile_detail" username=user.username %}" class="">{{ user.first_name }} {{ user.last_name }}</a></strong>
+							<strong><a href="{% url "users.profile_detail" %}" class="">{{ user.first_name }} {{ user.last_name }}</a></strong>
 							<ul>
-								<li><a href="{% url "userena_profile_detail" username=user.username %}" title="Account settings">My Account</a></li>
-								<li><a href="{% url "userena_signout" %}" title="Logout">Logout</a></li>
+								<li><a href="{% url "users.profile_detail" %}" title="Account settings">My Account</a></li>
+								<li><a href="{% url "account_logout" %}" title="Logout">Logout</a></li>
 							</ul>
 						</figcaption>
 						<!-- /User profile info -->
@@ -99,12 +99,12 @@
 
 							<!-- Dropdown navigation with multi-level dropdown -->
 							<li class="dropdown">
-								<a href="{% url "userena_profile_detail" username=user.username %}"> My Account</a>
+								<a href="{% url "users.profile_detail" %}"> My Account</a>
 							</li>
 							<!-- /Dropdown navigation with multi-level dropdown -->
 
 							<li>
-								<a href="{% url "userena_signout" %}"><span class="elusive icon-lock-alt"></span> Logout</a>
+								<a href="{% url "account_logout" %}"><span class="elusive icon-lock-alt"></span> Logout</a>
 							</li>
 						</ul>
 						<!-- /Navigation items -->

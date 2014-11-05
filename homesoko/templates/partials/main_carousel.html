@@ -1,3 +1,4 @@
+{% load selectable_tags %}
 <!-- homesoko featured listings -->
 <div id="featured-properties-carousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -32,7 +33,11 @@
          <div class="row">
            <div class="form-section">
             <form role="form" action="{% url 'properties.list' %}" method="post">
+
+
                 {% csrf_token %}
+                {% load bootstrap3 %}
+
                 <div class="row">
                     <div class="col-md-8 col-md-offset-4">
                         <h3 id="search-header"><span class="fa fa-search"> FIND YOUR HOME</span></h3>
@@ -41,8 +46,8 @@
                 <div class="row">
                   <div class="col-md-4 col-md-offset-2">
                     <div class="form-group">
-                      <label class="sr-only" for="location">Neighbourhood</label>
-                      <input type="email" class="form-control" id="location" placeholder="Where?">
+                      <label class="sr-only">Where?</label>
+                        {{ search_form.location }}
                     </div>
                   </div>
                   <div class="col-md-4">

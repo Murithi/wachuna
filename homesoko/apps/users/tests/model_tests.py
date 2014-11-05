@@ -1,4 +1,4 @@
-from django.test.testcases import TestCase
+from unittest import TestCase
 from django.contrib.auth.models import User
 from django_dynamic_fixture import G
 from ..models import Profile

@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/variants/real-estate.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/homesoko.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libraries/bootstrap-vertical-tabs/bootstrap.vertical-tabs.min.css">
+    <link href="{{ STATIC_URL }}selectable/css/dj.selectable.css" type="text/css" media="all" rel="stylesheet">
     <title>{% block title %} Homesoko {% endblock %}</title>
 </head>
 
@@ -45,7 +46,11 @@
 
 </div><!-- /#page -->
 
-<script type="text/javascript" src="{{ STATIC_URL }}js/libraries/jquery.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/base/jquery-ui.css" type="text/css">
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}selectable/js/jquery.dj.selectable.js"></script>
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/libraries/gmap3.clusterer.js"></script>

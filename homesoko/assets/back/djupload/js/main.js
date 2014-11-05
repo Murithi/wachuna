@@ -66,7 +66,7 @@ $(function () {
             //xhrFields: {withCredentials: true},
             //url: $('#fileupload').fileupload('option', 'url'),
             // TODO: make this more dynamic
-            url: '/dashboard/properties/images/list/'+ pk +'/',
+            url: '/dashboard/listings/images/list/'+ pk +'/',
             dataType: 'json',
             context: $('#fileupload')[0]
         }).always(function () {

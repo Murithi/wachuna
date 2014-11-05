@@ -1,219 +1,142 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import django_extensions.db.fields
+import autoslug.fields
+import django.utils.timezone
+from django.conf import settings
+import phonenumber_field.modelfields
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'City'
-        db.create_table(u'properties_city', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('modified', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
-            ('author', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='cities_create', null=True, to=orm['auth.User'])),
-            ('updated_by', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='cities_update', null=True, to=orm['auth.User'])),
-        ))
-        db.send_create_signal(u'properties', ['City'])
+    dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+    ]
 
-        # Adding model 'Neighbourhood'
-        db.create_table(u'properties_neighbourhood', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('modified', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=20)),
-            ('city', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['properties.City'])),
-            ('author', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'neighbourhoods_create', null=True, to=orm['auth.User'])),
-            ('updated_by', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'neighbourhoods_update', null=True, to=orm['auth.User'])),
-        ))
-        db.send_create_signal(u'properties', ['Neighbourhood'])
-
-        # Adding model 'Feature'
-        db.create_table(u'properties_feature', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('modified', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=20)),
-            ('author', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'features_create', null=True, to=orm['auth.User'])),
-            ('updated_by', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name=u'features_update', null=True, to=orm['auth.User'])),
-        ))
-        db.send_create_signal(u'properties', ['Feature'])
-
-        # Adding model 'Property'
-        db.create_table(u'properties_property', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('modified', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(unique=True, max_length=100)),
-            ('slug', self.gf('autoslug.fields.AutoSlugField')(unique_with=(), max_length=50, populate_from='name')),
-            ('price', self.gf('django.db.models.fields.DecimalField')(max_digits=10, decimal_places=2)),
-            ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
-            ('bedrooms', self.gf('django.db.models.fields.IntegerField')(max_length=5, null=True, blank=True)),
-            ('bathrooms', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
-            ('structure_size', self.gf('django.db.models.fields.PositiveIntegerField')(null=True, blank=True)),
-            ('lot_size', self.gf('django.db.models.fields.DecimalField')(null=True, max_digits=10, decimal_places=2, blank=True)),
-            ('city', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['properties.City'])),
-            ('neighbourhood', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['properties.Neighbourhood'])),
-            ('category', self.gf('django.db.models.fields.CharField')(max_length=14, blank=True)),
-            ('property_type', self.gf('django.db.models.fields.CharField')(max_length=20, blank=True)),
-            ('agency', self.gf('django.db.models.fields.related.ForeignKey')(related_name='property', to=orm['auth.User'])),
-            ('is_premium', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('is_featured', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('author', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='properties_create', null=True, to=orm['auth.User'])),
-            ('updated_by', self.gf('django.db.models.fields.related.ForeignKey')(blank=True, related_name='properties_update', null=True, to=orm['auth.User'])),
-        ))
-        db.send_create_signal(u'properties', ['Property'])
-
-        # Adding M2M table for field features on 'Property'
-        m2m_table_name = db.shorten_name(u'properties_property_features')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('property', models.ForeignKey(orm[u'properties.property'], null=False)),
-            ('feature', models.ForeignKey(orm[u'properties.feature'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['property_id', 'feature_id'])
-
-        # Adding model 'PropertyImage'
-        db.create_table(u'properties_propertyimage', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('modified', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now, blank=True)),
-            ('file', self.gf('django.db.models.fields.files.ImageField')(max_length=255)),
-            ('property', self.gf('django.db.models.fields.related.ForeignKey')(related_name='images', to=orm['properties.Property'])),
-            ('caption', self.gf('django.db.models.fields.CharField')(max_length=200, null=True, blank=True)),
-            ('deleted', self.gf('django.db.models.fields.BooleanField')(default=False)),
-        ))
-        db.send_create_signal(u'properties', ['PropertyImage'])
-
-        # Adding unique constraint on 'PropertyImage', fields ['property', 'file']
-        db.create_unique(u'properties_propertyimage', ['property_id', 'file'])
-
-
-    def backwards(self, orm):
-        # Removing unique constraint on 'PropertyImage', fields ['property', 'file']
-        db.delete_unique(u'properties_propertyimage', ['property_id', 'file'])
-
-        # Deleting model 'City'
-        db.delete_table(u'properties_city')
-
-        # Deleting model 'Neighbourhood'
-        db.delete_table(u'properties_neighbourhood')
-
-        # Deleting model 'Feature'
-        db.delete_table(u'properties_feature')
-
-        # Deleting model 'Property'
-        db.delete_table(u'properties_property')
-
-        # Removing M2M table for field features on 'Property'
-        db.delete_table(db.shorten_name(u'properties_property_features'))
-
-        # Deleting model 'PropertyImage'
-        db.delete_table(u'properties_propertyimage')
-
-
-    models = {
-        u'auth.group': {
-            'Meta': {'object_name': 'Group'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '80'}),
-            'permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'})
-        },
-        u'auth.permission': {
-            'Meta': {'ordering': "(u'content_type__app_label', u'content_type__model', u'codename')", 'unique_together': "((u'content_type', u'codename'),)", 'object_name': 'Permission'},
-            'codename': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['contenttypes.ContentType']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
-        },
-        u'auth.user': {
-            'Meta': {'object_name': 'User'},
-            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
-            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
-            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
-            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
-        },
-        u'contenttypes.contenttype': {
-            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
-            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
-        },
-        u'properties.city': {
-            'Meta': {'object_name': 'City'},
-            'author': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'cities_create'", 'null': 'True', 'to': u"orm['auth.User']"}),
-            'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'updated_by': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'cities_update'", 'null': 'True', 'to': u"orm['auth.User']"})
-        },
-        u'properties.feature': {
-            'Meta': {'ordering': "('-modified', '-created')", 'object_name': 'Feature'},
-            'author': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "u'features_create'", 'null': 'True', 'to': u"orm['auth.User']"}),
-            'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'updated_by': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "u'features_update'", 'null': 'True', 'to': u"orm['auth.User']"})
-        },
-        u'properties.neighbourhood': {
-            'Meta': {'ordering': "('-modified', '-created')", 'object_name': 'Neighbourhood'},
-            'author': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "u'neighbourhoods_create'", 'null': 'True', 'to': u"orm['auth.User']"}),
-            'city': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['properties.City']"}),
-            'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '20'}),
-            'updated_by': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "u'neighbourhoods_update'", 'null': 'True', 'to': u"orm['auth.User']"})
-        },
-        u'properties.property': {
-            'Meta': {'object_name': 'Property'},
-            'agency': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'property'", 'to': u"orm['auth.User']"}),
-            'author': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'properties_create'", 'null': 'True', 'to': u"orm['auth.User']"}),
-            'bathrooms': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'}),
-            'bedrooms': ('django.db.models.fields.IntegerField', [], {'max_length': '5', 'null': 'True', 'blank': 'True'}),
-            'category': ('django.db.models.fields.CharField', [], {'max_length': '14', 'blank': 'True'}),
-            'city': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['properties.City']"}),
-            'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'features': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'property'", 'null': 'True', 'symmetrical': 'False', 'to': u"orm['properties.Feature']"}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_featured': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'is_premium': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'lot_size': ('django.db.models.fields.DecimalField', [], {'null': 'True', 'max_digits': '10', 'decimal_places': '2', 'blank': 'True'}),
-            'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '100'}),
-            'neighbourhood': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['properties.Neighbourhood']"}),
-            'price': ('django.db.models.fields.DecimalField', [], {'max_digits': '10', 'decimal_places': '2'}),
-            'property_type': ('django.db.models.fields.CharField', [], {'max_length': '20', 'blank': 'True'}),
-            'slug': ('autoslug.fields.AutoSlugField', [], {'unique_with': '()', 'max_length': '50', 'populate_from': "'name'"}),
-            'structure_size': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
-            'updated_by': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'properties_update'", 'null': 'True', 'to': u"orm['auth.User']"})
-        },
-        u'properties.propertyimage': {
-            'Meta': {'unique_together': "(('property', 'file'),)", 'object_name': 'PropertyImage'},
-            'caption': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
-            'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'deleted': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'file': ('django.db.models.fields.files.ImageField', [], {'max_length': '255'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now', 'blank': 'True'}),
-            'property': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'images'", 'to': u"orm['properties.Property']"})
-        }
-    }
-
-    complete_apps = ['properties']
+    operations = [
+        migrations.CreateModel(
+            name='City',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', django_extensions.db.fields.CreationDateTimeField(default=django.utils.timezone.now, verbose_name='created', editable=False, blank=True)),
+                ('modified', django_extensions.db.fields.ModificationDateTimeField(default=django.utils.timezone.now, verbose_name='modified', editable=False, blank=True)),
+                ('name', models.CharField(max_length=50)),
+                ('author', models.ForeignKey(related_name='cities_create', verbose_name='author', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('updated_by', models.ForeignKey(related_name='cities_update', verbose_name='last_updated_by', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+            ],
+            options={
+                'verbose_name_plural': 'Cities',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Feature',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', django_extensions.db.fields.CreationDateTimeField(default=django.utils.timezone.now, verbose_name='created', editable=False, blank=True)),
+                ('modified', django_extensions.db.fields.ModificationDateTimeField(default=django.utils.timezone.now, verbose_name='modified', editable=False, blank=True)),
+                ('name', models.CharField(max_length=30)),
+                ('author', models.ForeignKey(related_name='features_create', verbose_name='author', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('updated_by', models.ForeignKey(related_name='features_update', verbose_name='last_updated_by', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+            ],
+            options={
+                'ordering': ('-modified', '-created'),
+                'abstract': False,
+                'get_latest_by': 'modified',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Neighbourhood',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', django_extensions.db.fields.CreationDateTimeField(default=django.utils.timezone.now, verbose_name='created', editable=False, blank=True)),
+                ('modified', django_extensions.db.fields.ModificationDateTimeField(default=django.utils.timezone.now, verbose_name='modified', editable=False, blank=True)),
+                ('name', models.CharField(max_length=20)),
+                ('author', models.ForeignKey(related_name='neighbourhoods_create', verbose_name='author', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('city', models.ForeignKey(to='properties.City')),
+                ('updated_by', models.ForeignKey(related_name='neighbourhoods_update', verbose_name='last_updated_by', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+            ],
+            options={
+                'ordering': ('-modified', '-created'),
+                'abstract': False,
+                'get_latest_by': 'modified',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Property',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', django_extensions.db.fields.CreationDateTimeField(default=django.utils.timezone.now, verbose_name='created', editable=False, blank=True)),
+                ('modified', django_extensions.db.fields.ModificationDateTimeField(default=django.utils.timezone.now, verbose_name='modified', editable=False, blank=True)),
+                ('name', models.CharField(max_length=20)),
+                ('slug', autoslug.fields.AutoSlugField(editable=False)),
+                ('price', models.DecimalField(max_digits=20, decimal_places=2)),
+                ('description', models.TextField(null=True, verbose_name='Description', blank=True)),
+                ('bedrooms', models.IntegerField(blank=True, max_length=5, null=True, choices=[(1, b'1'), (1, b'2'), (3, b'3'), (4, b'4'), (5, b'5'), (6, b'6'), (7, b'7'), (8, b'8'), (9, b'9'), (10, b'10'), (11, b'11'), (12, b'12'), (13, b'13'), (14, b'14'), (15, b'15')])),
+                ('bathrooms', models.CharField(blank=True, max_length=15, null=True, choices=[(b'all_ensuite', b'All Ensuite'), (b'1', b'1'), (b'2', b'2'), (b'3', b'3'), (b'4', b'4'), (b'5', b'5'), (b'6', b'6')])),
+                ('structure_size', models.PositiveIntegerField(help_text=b'Size of the structure in square feet', null=True, blank=True)),
+                ('lot_size', models.DecimalField(help_text=b'Size of the lot in acres', null=True, max_digits=10, decimal_places=2, blank=True)),
+                ('category', models.CharField(blank=True, max_length=14, choices=[(b'letting', b'Letting'), (b'sale', b'For Sale')])),
+                ('property_type', models.CharField(blank=True, max_length=20, choices=[(b'apartment', b'Apartment'), (b'house', b'House'), (b'office', b'Office'), (b'land', b'Land'), (b'townhouse', b'Townhouse')])),
+                ('is_premium', models.BooleanField(default=False)),
+                ('is_featured', models.BooleanField(default=False)),
+                ('agency', models.ForeignKey(related_name='property', to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(related_name='properties_create', verbose_name='author', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('city', models.ForeignKey(to='properties.City')),
+                ('features', models.ManyToManyField(related_name='property', null=True, to='properties.Feature', blank=True)),
+                ('neighbourhood', models.ForeignKey(to='properties.Neighbourhood')),
+                ('updated_by', models.ForeignKey(related_name='properties_update', verbose_name='last_updated_by', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+            ],
+            options={
+                'verbose_name_plural': 'Properties',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='PropertyImage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', django_extensions.db.fields.CreationDateTimeField(default=django.utils.timezone.now, verbose_name='created', editable=False, blank=True)),
+                ('modified', django_extensions.db.fields.ModificationDateTimeField(default=django.utils.timezone.now, verbose_name='modified', editable=False, blank=True)),
+                ('file', models.ImageField(upload_to=b'images', max_length=255, verbose_name=b'File')),
+                ('caption', models.CharField(max_length=200, null=True, verbose_name='Caption', blank=True)),
+                ('deleted', models.BooleanField(default=False)),
+                ('property', models.ForeignKey(related_name='images', verbose_name='Property', to='properties.Property')),
+            ],
+            options={
+                'verbose_name': 'Property Image',
+                'verbose_name_plural': 'Property Images',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='PropertyMessage',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('created', django_extensions.db.fields.CreationDateTimeField(default=django.utils.timezone.now, verbose_name='created', editable=False, blank=True)),
+                ('modified', django_extensions.db.fields.ModificationDateTimeField(default=django.utils.timezone.now, verbose_name='modified', editable=False, blank=True)),
+                ('name', models.CharField(max_length=50)),
+                ('email', models.EmailField(max_length=75)),
+                ('phone_number', phonenumber_field.modelfields.PhoneNumberField(max_length=128)),
+                ('message', models.TextField()),
+                ('sent', models.BooleanField(default=False)),
+                ('author', models.ForeignKey(related_name='property messages_create', verbose_name='author', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+                ('property', models.ForeignKey(to='properties.Property')),
+                ('updated_by', models.ForeignKey(related_name='property messages_update', verbose_name='last_updated_by', blank=True, to=settings.AUTH_USER_MODEL, null=True)),
+            ],
+            options={
+                'ordering': ('-modified', '-created'),
+                'abstract': False,
+                'get_latest_by': 'modified',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AlterUniqueTogether(
+            name='propertyimage',
+            unique_together=set([('property', 'file')]),
+        ),
+    ]

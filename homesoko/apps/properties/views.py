@@ -5,18 +5,24 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from homesoko.apps.users.models import Profile
-from .models import Property, PropertyStateMachine, PropertyMessage
+from .models import Property, PropertyMessage
 from .filters import PropertyFilter
-from .forms import PropertyMessageForm
+from .forms import PropertyMessageForm, PropertySearchForm
+
+
+class Template(TemplateView):
+    template_name = "base.html"
 
 
 class Homepage(TemplateView):
     template_name = "home.html"
+    search_form = PropertySearchForm
 
     def get_context_data(self, **kwargs):
         context_data = super(Homepage, self).get_context_data(**kwargs)
         context_data['premium_properties'] = Property.objects.filter(is_premium=True)
-        context_data['properties'] = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED)
+        context_data['properties'] = Property.objects.filter(state=Property.StatesOptions.Published)
+        context_data['search_form'] = self.search_form
         return context_data
 
 
@@ -95,7 +101,7 @@ class CityPropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(CityPropertiesView, self).get_context_data(**kwargs)
         city = kwargs['city']
-        queryset = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED, city__name=city)
+        queryset = Property.objects.filter(state=Property.StatesOptions.Published, city__name=city)
         if kwargs['type']:
             properties_list = queryset.filter(property_type=kwargs['type'])
         else:
@@ -123,7 +129,7 @@ class NeighbourhoodPropertiesView(TemplateView):
     def get_context_data(self, **kwargs):
         context_data = super(NeighbourhoodPropertiesView, self).get_context_data(**kwargs)
         neighbourhood = kwargs['neighbourhood']
-        queryset = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED, neighbourhood__name=neighbourhood)
+        queryset = Property.objects.filter(state=Property.StatesOptions.Published, neighbourhood__name=neighbourhood)
         if kwargs['type']:
             properties_list = queryset.filter(property_type=kwargs['type'])
         else:
@@ -152,7 +158,7 @@ class CompanyPropertiesView(TemplateView):
         context_data = super(CompanyPropertiesView, self).get_context_data(**kwargs)
         company = kwargs['company']
         user = Profile.objects.get(company=company).user
-        properties_list = user.property.filter(state=PropertyStateMachine.STATE_PUBLISHED)
+        properties_list = user.property.filter(state=Property.StatesOptions.Published)
 
         # Pagination
         paginator = Paginator(properties_list, 24)  # Show 25 listings per page
@@ -166,7 +172,7 @@ class CompanyPropertiesView(TemplateView):
             # If page is out of range (e.g. 9999), deliver last page of results.
             context_data['properties'] = paginator.page(paginator.num_pages)
 
-        context_data['page_title'] = company + '    properties'
+        context_data['page_title'] = company + ' properties'
         return context_data
 
 
@@ -176,7 +182,7 @@ class PropertyListView(View):
 
     def get(self, request, *args, **kwargs):
         context_data = {'page_title': 'Property List'}
-        properties_list = Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED)
+        properties_list = Property.objects.filter(state=Property.StatesOptions.Published)
         # Pagination
         paginator = Paginator(properties_list, 24)  # Show 25 listings per page
         page = request.GET.get('page')
@@ -193,7 +199,7 @@ class PropertyListView(View):
 
     def post(self, request, *args, **kwargs):
         context_data = {'page_title':  'Property List'}
-        properties_list = PropertyFilter(request.POST, queryset=Property.objects.filter(state=PropertyStateMachine.STATE_PUBLISHED))
+        properties_list = PropertyFilter(request.POST, queryset=Property.objects.filter(state=Property.StatesOptions.Published))
         # Pagination
         paginator = Paginator(properties_list, 24)  # Show 25 listings per page
         page = request.GET.get('page')
@@ -233,5 +239,4 @@ def agent_message(request):
         else:
             messages.add_message(request, messages.INFO, 'All fields are required!', extra_tags='alert-error')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
 

@@ -2,7 +2,6 @@ from django.conf.urls import patterns, url
 from .views import LettingPropertiesView, SalePropertiesView, PropertyDetailView, PropertyListView, CityPropertiesView, \
                    NeighbourhoodPropertiesView, agent_message, CompanyPropertiesView
 
-
 urlpatterns = patterns('',
                        #(r'contact-agent/$',agent_message),
                        url(r'list/$', PropertyListView.as_view(), name='properties.list'),

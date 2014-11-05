@@ -1,4 +1,4 @@
-from django.test.testcases import TestCase
+from unittest import TestCase
 from django_dynamic_fixture import G
 from homesoko.apps.properties.models import Property, City, Neighbourhood, Feature
 from homesoko.apps.dashboard.listings.forms import PropertyForm

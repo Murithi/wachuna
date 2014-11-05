@@ -27,8 +27,6 @@ TEMPLATE_DIRS = (
 ###########################################
 
 AUTHENTICATION_BACKENDS = (
-    'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -45,6 +43,12 @@ LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
 LOGIN_URL = '/accounts/signin/'
 
 LOGOUT_URL = '/accounts/signout/'
+
+##############################################
+# pinax django-user-accounts
+##############################################
+
+ACCOUNT_LOGIN_REDIRECT_URL = '/dashboard/listings'
 
 #======================================================
 # Grappelli

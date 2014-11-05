@@ -82,9 +82,6 @@ INSTALLED_APPS = (
     # 3rd party
     'author',
     'bootstrap3',
-    'south',
-    'userena',
-    'guardian',
     'django_nose',
     'django_extensions',
     'django_select2',
@@ -92,6 +89,8 @@ INSTALLED_APPS = (
     'django_filters',
     'django_tables2',
     'easy_thumbnails',
+    'account',
+    'selectable',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,6 +102,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # middleware for django-authors
     'author.middlewares.AuthorDefaultBackendMiddleware',
+    'account.middleware.LocaleMiddleware',
+    'account.middleware.TimezoneMiddleware',
 )
 
 
@@ -117,6 +118,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.request",
+    "account.context_processors.account",
 )
 
 
