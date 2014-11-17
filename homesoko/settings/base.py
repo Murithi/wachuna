@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'homesoko.apps.utils',
     'homesoko.apps.utils.djupload',
     'homesoko.apps.dashboard.listings',
+    'homesoko.apps.zoner',
     # 3rd party
     'author',
     'bootstrap3',
@@ -88,7 +89,6 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'django_filters',
     'django_tables2',
-    'easy_thumbnails',
     'account',
     'selectable',
 )

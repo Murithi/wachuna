@@ -10,10 +10,6 @@ from .filters import PropertyFilter
 from .forms import PropertyMessageForm, PropertySearchForm
 
 
-class Template(TemplateView):
-    template_name = "base.html"
-
-
 class Homepage(TemplateView):
     template_name = "home.html"
     search_form = PropertySearchForm

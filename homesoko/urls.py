@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^account/', include('account.urls')),
     url(r'^users/', include('homesoko.apps.users.urls')),
     url(r'^selectable/', include('selectable.urls')),
+    url(r'^zoner/', include('homesoko.apps.zoner.urls')),
 )
 
 import os
