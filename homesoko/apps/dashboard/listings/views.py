@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, ListView, UpdateView, View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from homesoko.apps.properties.models import Property, PropertyImage
+from homesoko.apps.properties.models import Property, PropertyImage, PropertyDocuments
 from homesoko.apps.utils.djupload.views import UploadView, UploadListView, UploadDeleteView
 from homesoko.apps.utils.views_utils import require_own_agency
 from .forms import PropertyForm, AddPropertyFeaturesForm
@@ -91,6 +91,27 @@ class PropertyImagesUploadView(UploadView):
         context['property'] = self.get_object()
         return context
 
+class PropertyDocumentsUploadView(UploadView):
+    model = PropertyDocuments
+    delete_url = 'listings.files_delete'
+    template_name = 'listings/propertyfile_form.html'
+
+    @require_own_agency
+    def dispatch(self, *args, **kwargs):
+        self.get_object_agency()
+        return super(PropertyDocumentsUploadView, self).dispatch(*args, **kwargs)
+
+    def get_object_agency(self):
+        return self.get_object().agency
+
+
+    def get_object(self):
+        return Property.objects.get(id=int(self.kwargs['pk']))
+
+    def get_context_data(self, **kwargs):
+        context = super(PropertyDocumentsUploadView, self).get_context_data(**kwargs)
+        context['property'] = self.get_object()
+        return context
 
 class PropertyImagesListView(UploadListView):
     model = PropertyImage
@@ -111,6 +132,25 @@ class PropertyImagesListView(UploadListView):
         return PropertyImage.objects.filter(property=self.get_object(), deleted=False)
 
 
+class PropertyDocumentsListView(UploadListView):
+    model = PropertyDocuments
+    delete_url = 'listings.files_delete'
+
+    @require_own_agency
+    def dispatch(self, *args, **kwargs):
+        self.get_object_agency()
+        return super(PropertyDocumentsListView, self).dispatch(*args, **kwargs)
+
+    def get_object_agency(self):
+        return self.get_object().agency
+
+    def get_object(self):
+        return Property.objects.get(id=int(self.kwargs['pk']))
+
+    def get_queryset(self):
+        return PropertyDocuments.objects.filter(property=self.get_object(), deleted=False)
+
+
 class PropertyImagesDeleteView(UploadDeleteView):
     model = PropertyImage
 
@@ -124,6 +164,21 @@ class PropertyImagesDeleteView(UploadDeleteView):
 
     def get_object(self):
         return PropertyImage.objects.get(id=int(self.kwargs['pk']))
+
+
+class PropertyDocumentsDeleteView(UploadDeleteView):
+    model = PropertyDocuments
+
+    @require_own_agency
+    def dispatch(self, *args, **kwargs):
+        self.get_object_agency()
+        return super(PropertyDocumentsDeleteView, self).dispatch(*args, **kwargs)
+
+    def get_object_agency(self):
+        return self.get_object().property.agency
+
+    def get_object(self):
+        return PropertyDocuments.objects.get(id=int(self.kwargs['pk']))
 
 
 class AddPropertyFeaturesView(View):

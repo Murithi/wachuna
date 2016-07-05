@@ -63,6 +63,18 @@
                       </li>
                 {% endif %}
 
+                {% if row.record.documents.all %}
+                    <li class="text-success" data-toggle="tooltip" title="<div style='text-align:left'>
+                        Documents have been added</div>">
+                        <i class="elusive icon-ok" ></i>Documents have been added.
+                      </li>
+                {% else %}
+                    <li class="text-warning" data-toggle="tooltip" title="<div style='text-align:left'>
+                      Documents have not been added</div>">
+                        <i class="elusive icon-remove" ></i>Documents have not been added.
+                      </li>
+                {% endif %}
+
                 </ul>
             </td>
             <td>
@@ -103,6 +115,12 @@
                         <li><a href="{% url 'listings.images_upload' row.record.id %}">Update Images</a></li>
                     {% else %}
                         <li><a href="{% url 'listings.images_upload' row.record.id %}">Add Images</a></li>
+                    {% endif %}
+
+                    {% if row.record.documents.all %}
+                        <li><a href="{% url 'listings.files_upload' row.record.id %}">Update Documents</a></li>
+                    {% else %}
+                        <li><a href="{% url 'listings.files_upload' row.record.id %}">Add Documents</a></li>
                     {% endif %}
                 </ul>
             </td>

@@ -182,6 +182,7 @@ class PropertyListView(View):
         # Pagination
         paginator = Paginator(properties_list, 24)  # Show 25 listings per page
         page = request.GET.get('page')
+        print page
         try:
             context_data['properties'] = paginator.page(page)
         except PageNotAnInteger:

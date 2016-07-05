@@ -5117,7 +5117,7 @@ input[type="button"].btn-block {
 /* line 153, ../../libraries/bootstrap/stylesheets/bootstrap/_navbar.scss */
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
+  padding: 5px 5px;
   font-size: 18px;
   line-height: 20px;
   height: 50px;
@@ -5232,7 +5232,7 @@ input[type="button"].btn-block {
 
   /* line 281, ../../libraries/bootstrap/stylesheets/bootstrap/_navbar.scss */
   .navbar-right {
-    float: right !important;
+   /* float: right !important;*/
   }
 }
 /* line 292, ../../libraries/bootstrap/stylesheets/bootstrap/_navbar.scss */
@@ -5826,12 +5826,14 @@ a.list-group-item.active > .badge,
   padding: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #EF409F;
 }
 /* line 13, ../../libraries/bootstrap/stylesheets/bootstrap/_jumbotron.scss */
 .jumbotron h1,
 .jumbotron .h1 {
-  color: inherit;
+  color: white;
+  text-transform: uppercase;
+
 }
 /* line 16, ../../libraries/bootstrap/stylesheets/bootstrap/_jumbotron.scss */
 .jumbotron p {
@@ -7922,7 +7924,7 @@ button.close {
 
 /* line 186, ../../scss/helpers/_commons.scss */
 .background-primary-dark {
-  background-color: #272727;
+  background-color: #811677;
 }
 
 /* line 190, ../../scss/helpers/_commons.scss */
@@ -7979,7 +7981,7 @@ button.close {
 
 /* line 232, ../../scss/helpers/_commons.scss */
 .background-secondary {
-  background-color: #20b38d;
+  background-color: #F6ABCC;
 }
 
 /* line 236, ../../scss/helpers/_commons.scss */
@@ -8793,11 +8795,11 @@ button.close {
 }
 /* line 964, ../../scss/helpers/_commons.scss */
 .carousel.slide .carousel-indicators {
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, rgba(0, 0, 0, 0.6)), color-stop(100%, transparent));
+ /* background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, rgba(0, 0, 0, 0.6)), color-stop(100%, transparent));
   background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6), transparent);
   background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.6), transparent);
   background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.6), transparent);
-  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.6), transparent);
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.6), transparent); */
   bottom: 0px;
   left: 0px;
   margin: 0px;
@@ -9285,7 +9287,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #fff;
   color: #5a5a5a;
-  font-family: "Exo 2", sans-serif;
+  /*font-family: "Exo 2", sans-serif;*/
+  font-family: 'Slabo 27px', serif
   font-size: 16px;
   font-weight: 300;
   height: 100%;
@@ -9621,7 +9624,7 @@ blockquote:after {
 
 /* line 42, ../../scss/helpers/_header.scss */
 .footer-nav, .navbar-nav {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 /* line 45, ../../scss/helpers/_header.scss */
 .header-small .footer-nav, .header-small .navbar-nav {
@@ -9703,8 +9706,8 @@ blockquote:after {
   display: inline-block;
   float: none;
   height: auto;
-  padding-bottom: 30px;
-  padding-top: 30px;
+ /* padding-bottom: 30px;
+  padding-top: 30px;*/
   position: relative;
   z-index: 20;
 }
@@ -9922,7 +9925,7 @@ blockquote:after {
 }
 /* line 311, ../../scss/helpers/_header.scss */
 .megamenu > ul {
-  background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgb(246, 174, 206);
   left: 0px;
   margin: 0px;
   padding: 15px 0px;
@@ -10086,7 +10089,7 @@ blockquote:after {
 }
 /* line 480, ../../scss/helpers/_header.scss */
 .header-secondary {
-  background-color: #f8f8f8;
+   background-color: rgb(129, 22, 119);
   -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
@@ -10113,7 +10116,7 @@ blockquote:after {
 }
 /* line 502, ../../scss/helpers/_header.scss */
 .header-submenu li a {
-  color: #5a5a5a;
+  color: #FFFFFF;
   display: block;
   height: 26px;
   line-height: 24px;
@@ -11416,7 +11419,7 @@ blockquote:after {
 }
 /* line 9, ../../scss/helpers/_footer.scss */
 .footer-top-dark .footer-top {
-  background-color: #343434;
+  background-color: #EE3E9D;
   color: #fff;
 }
 /* line 13, ../../scss/helpers/_footer.scss */

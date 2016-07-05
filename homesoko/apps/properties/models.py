@@ -8,7 +8,7 @@ from autoslug import AutoSlugField
 from sorl.thumbnail import get_thumbnail
 from django_fsm import FSMField, transition
 from phonenumber_field.modelfields import PhoneNumberField
-
+from time import time
 
 @with_author
 class City(TimeStampedModel):
@@ -154,9 +154,11 @@ class Property(TimeStampedModel):
             status_percentage = 100
         else:
             if self.features.all():
-                status_percentage += 50
+                status_percentage += 30
             if self.images.all():
                 status_percentage += 30
+            if self.images.all():
+                status_percentage += 20
 
         return status_percentage
 
@@ -204,6 +206,28 @@ class PropertyImage(TimeStampedModel):
     def delete(self):
         self.deleted = True
         self.save()
+
+
+def get_upload_file_name(instance, filename):
+    return "uploaded_files/%s_%s" % (str(time()).replace('.', '_'), filename)
+
+class PropertyDocuments(TimeStampedModel):
+    document= models.FileField("document", upload_to=get_upload_file_name, max_length=255)
+    property = models.ForeignKey(Property, related_name="documents", verbose_name=_("Property"))
+    caption = models.CharField(_("Caption"), max_length=200, blank=True, null=True)
+    deleted = models.BooleanField(default=False)
+    class Meta:
+        unique_together = ('property', 'document')
+        verbose_name = _('Property Document')
+        verbose_name_plural = _('Property Documents')
+
+    def __unicode__(self):
+        return u"File of '%s'" % self.property
+
+    def delete(self):
+        self.deleted = True
+        self.save()
+
 
 
 @with_author

@@ -268,7 +268,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #2c3e50;
-  background-color: #ecf0f1;
+  background-color: #FFF;
 }
 input,
 button,
@@ -5442,7 +5442,7 @@ a:focus {
   width: 256px;
   height: 60px;
   background-repeat: no-repeat;
-  background-image: url("../img/homesoko.png");
+  background-image: url("../img/msproperties.png");
 }
 #header > h1 span {
   margin: -20px 0 0 71px;

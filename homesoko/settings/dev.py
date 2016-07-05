@@ -23,8 +23,8 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
             'NAME': 'homesoko',  # Or path to database file if using sqlite3.
-            'USER': 'flor',  # Not used with sqlite3.
-            'PASSWORD': '}3;)4.06J95qS2A',  # Not used with sqlite3.
+            'USER': 'root',  # Not used with sqlite3.
+            'PASSWORD': 'pass',  # Not used with sqlite3.
             'HOST': 'localhost',  # Set to empty string for localhost. Not used with sqlite3.
             'PORT': '3306',  # Set to empty string for default. Not used with sqlite3.
             'OPTIONS': {"init_command": "SET storage_engine=INNODB"}
@@ -44,4 +44,6 @@ warnings.filterwarnings('error', r"DateTimeField received a naive datetime",
 # Email backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+
+THUMBNAIL_DEBUG = True
 
