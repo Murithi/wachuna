@@ -18,7 +18,7 @@
 
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                  <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
                                 <span class="sr-only">Toggle navigation</span>
@@ -36,7 +36,7 @@
                             </a>
                         </div>
                             </div>
-                             <div class="col-md-6 text-right">
+                             <div class="col-md-10 text-right">
                                     <div class="collapse navbar-collapse" id="navbar-main">
                                         <ul class="nav navbar-nav navbar-right">
 
@@ -46,29 +46,15 @@
 
 
 
-    <li class="menuparent megamenu columns4">
-        <a href="#">Properties</a>
+            <li class="menuparent megamenu columns4">
+        <a href="#">Land </a>
         <ul>
             <li>
                 <ul>
-                    <li class="header"><a href="#"><i class="fa fa-columns"></i> For rent</a></li>
-                    <li><a href="{% url 'properties.list_letting' %}">All properties for rent</a></li>
-                    <li><a href="{% url 'properties.list_letting' type='apartment' %}">Apartments</a></li>
-                    <li><a href="{% url 'properties.list_letting' type='office' %}">Offices</a></li>
-                    <li><a href="{% url 'properties.list_letting' type='house' %}">Houses</a></li>
-                    <li><a href="{% url 'properties.list_letting' type='townhouse' %}">Townhouses</a></li>
-                </ul>
-            </li>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> Type</a></li>
+                    <li><a href="{% url 'properties.list_letting' %}">Land For Lease</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='land' %}">Land For sale</a></li>
 
-            <li>
-                <ul>
-                    <li class="header"><a href="#"><i class="fa fa-columns"></i> For Sale</a></li>
-                    <li><a href="{% url 'properties.list_sale' %}">All properties on sale</a></li>
-                    <li><a href="{% url 'properties.list_sale' type='apartment' %}">Apartments</a></li>
-                    <li><a href="{% url 'properties.list_sale' type='office' %}">Offices</a></li>
-                    <li><a href="{% url 'properties.list_sale' type='house' %}">Houses</a></li>
-                    <li><a href="{% url 'properties.list_sale' type='townhouse' %}">Townhouses</a></li>
-                    <li><a href="{% url 'properties.list_sale' type='land' %}">Land</a></li>
                 </ul>
             </li>
 
@@ -97,11 +83,72 @@
         </ul>
     </li>
 
-    <li class="menuparent">
-        <a href="#">Agents</a>
+    <li class="menuparent megamenu columns4">
+        <a href="#">Property </a>
+        <ul>
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> For rent</a></li>
+                    <li><a href="{% url 'properties.list_letting' %}">All properties for rent</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='apartment' %}">Apartments</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='office' %}">Offices</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='house' %}">Houses</a></li>
+                    <li><a href="{% url 'properties.list_letting' type='townhouse' %}">Townhouses</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> For Sale</a></li>
+                    <li><a href="{% url 'properties.list_sale' %}">All properties on sale</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='apartment' %}">Apartments</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='office' %}">Offices</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='house' %}">Houses</a></li>
+                    <li><a href="{% url 'properties.list_sale' type='townhouse' %}">Townhouses</a></li>
+
+                </ul>
+            </li>
+
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> Towns</a></li>
+                    <li><a href="{% url 'properties.list_city' city='nairobi' %}">Nairobi</a></li>
+                    <li><a href="{% url 'properties.list_city' city='mombasa' %}">Mombasa</a></li>
+                    <li><a href="{% url 'properties.list_city' city='kisumu' %}">Kisumu</a></li>
+                    <li><a href="{% url 'properties.list_city' city='nakuru' %}">Nakuru</a></li>
+                    <li><a href="{% url 'properties.list_city' city='eldoret' %}">Eldoret</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+                <ul>
+                    <li class="header"><a href="#"><i class="fa fa-columns"></i> Neighbourhoods</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='westlands' %}">Westlands</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='riverside' %}">Riverside</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='kileleshwa' %}">Kileleshwa</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='kilimani' %}">Kilimani</a></li>
+                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='karen' %}">Karen</a></li>
+                </ul>
+            </li>
+        </ul>
     </li>
-    <li>
-        <a href="#">Contact</a>
+
+
+
+    <li class="menuparent"></a>
+        <a href="#">Management Services</a>
+    </li>
+
+    <li class="menuparent"></a>
+        <a href="#">Others</a>
+    </li>
+    <li class="menuparent"></a>
+        <a href="#">FAQ</a>
+    </li>
+
+    <li class="menuparent">
+        <a href="#">About Us</a>
     </li>
 </ul><!-- /.nav -->                        </div><!-- /.navbar-collapse -->
                             </div>
