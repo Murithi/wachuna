@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 
 import os
 import socket
-if socket.gethostname() == 'production.homesoko.com':
+if socket.gethostname() == 'ip-10-0-0-5':
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "homesoko.settings.prod")
 else:
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "homesoko.settings.local")

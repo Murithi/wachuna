@@ -22,7 +22,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'homesoko',  # Or path to database file if using sqlite3.
+                'NAME': 'homesoko',  # Or path to database file if using sqlite3.
             'USER': 'root',  # Not used with sqlite3.
             'PASSWORD': 'pass',  # Not used with sqlite3.
             'HOST': 'localhost',  # Set to empty string for localhost. Not used with sqlite3.
