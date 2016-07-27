@@ -37,3 +37,23 @@ class PropertyForm(forms.ModelForm):
         model = Property
         exclude = ['author', 'updated_by', 'features', 'agency', 'is_premium', 'is_featured', 'state']
 
+
+class LandForm(forms.ModelForm):
+    name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control'}),
+                           error_messages={'required': 'The name of the property is required'})
+    price = forms.CharField(max_length=10, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    category = forms.ChoiceField(choices=Property.CategoryOptions.choices,
+                                 widget=forms.Select(attrs={'class': 'form-control'}))
+    lot_size = forms.DecimalField(widget=forms.TextInput(attrs={'class': 'form-control'}),
+                                  help_text='Size of the land in acres',
+                                  required=False)
+    description = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': '8'}))
+
+    city = forms.ModelChoiceField(queryset=City.objects.all(), widget=forms.Select(attrs={'class': 'form-control'}))
+    neighbourhood = forms.ModelChoiceField(queryset=Neighbourhood.objects.all(),
+                                           widget=forms.Select(attrs={'class': 'form-control'}))
+
+    class Meta:
+        model = Property
+        fields =  ['name', 'price', 'features', 'category', 'lot_size', 'description', 'city', 'neighbourhood']
+

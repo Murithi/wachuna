@@ -52,8 +52,8 @@
             <li>
                 <ul>
                     <li class="header"><a href="#"><i class="fa fa-columns"></i> Type</a></li>
-                    <li><a href="{% url 'properties.list_letting' %}">Land For Lease</a></li>
-                    <li><a href="{% url 'properties.list_sale' type='land' %}">Land For sale</a></li>
+                    <li><a href="{% url 'land.land_leasing' %}">Land For Lease</a></li>
+                    <li><a href="{% url 'land.land_sale' type='land' %}">Land For sale</a></li>
 
                 </ul>
             </li>
@@ -61,11 +61,11 @@
             <li>
                 <ul>
                     <li class="header"><a href="#"><i class="fa fa-columns"></i> Towns</a></li>
-                    <li><a href="{% url 'properties.list_city' city='nairobi' %}">Nairobi</a></li>
-                    <li><a href="{% url 'properties.list_city' city='mombasa' %}">Mombasa</a></li>
-                    <li><a href="{% url 'properties.list_city' city='kisumu' %}">Kisumu</a></li>
-                    <li><a href="{% url 'properties.list_city' city='nakuru' %}">Nakuru</a></li>
-                    <li><a href="{% url 'properties.list_city' city='eldoret' %}">Eldoret</a></li>
+                    <li><a href="{% url 'land.land_city' city='nairobi' %}">Nairobi</a></li>
+                    <li><a href="{% url 'land.land_city' city='mombasa' %}">Mombasa</a></li>
+                    <li><a href="{% url 'land.land_city' city='kisumu' %}">Kisumu</a></li>
+                    <li><a href="{% url 'land.land_city' city='nakuru' %}">Nakuru</a></li>
+                    <li><a href="{% url 'land.land_city' city='eldoret' %}">Eldoret</a></li>
                 </ul>
             </li>
 
@@ -73,11 +73,11 @@
             <li>
                 <ul>
                     <li class="header"><a href="#"><i class="fa fa-columns"></i> Neighbourhoods</a></li>
-                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='westlands' %}">Westlands</a></li>
-                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='riverside' %}">Riverside</a></li>
-                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='kileleshwa' %}">Kileleshwa</a></li>
-                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='kilimani' %}">Kilimani</a></li>
-                    <li><a href="{% url 'properties.list_neighbourhood' neighbourhood='karen' %}">Karen</a></li>
+                    <li><a href="{% url 'land.land_neighbourhood' neighbourhood='westlands' %}">Westlands</a></li>
+                    <li><a href="{% url 'land.land_neighbourhood' neighbourhood='riverside' %}">Riverside</a></li>
+                    <li><a href="{% url 'land.land_neighbourhood' neighbourhood='kileleshwa' %}">Kileleshwa</a></li>
+                    <li><a href="{% url 'land.land_neighbourhood' neighbourhood='kilimani' %}">Kilimani</a></li>
+                    <li><a href="{% url 'land.land_neighbourhood' neighbourhood='karen' %}">Karen</a></li>
                 </ul>
             </li>
         </ul>

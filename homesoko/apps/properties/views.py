@@ -37,6 +37,34 @@ class PropertyDetailView(DetailView):
         context_data['form'] = PropertyMessageForm
         return context_data
 
+class SaleLandView(TemplateView):
+    template_name = "land_list.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(SaleLandView, self).get_context_data(**kwargs)
+        # if kwargs['type']:
+        #     properties_list = Property.sale.filter(property_type='land')
+        # else:
+        #     properties_list = Property.sale.all()
+
+        land_list = Property.sale.filter(property_type='land')
+
+        # assert False, land_list
+        # Pagination
+        paginator = Paginator(land_list, 24)  # Show 25 listings per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = 'Land for Lease'
+        context_data['page_title'] = 'Land for Sale'
+        return context_data
 
 class SalePropertiesView(TemplateView):
     template_name = "property_list.html"
@@ -65,6 +93,32 @@ class SalePropertiesView(TemplateView):
         return context_data
 
 
+class LeasingLandView(TemplateView):
+    template_name = "land_list.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(LeasingLandView, self).get_context_data(**kwargs)
+        # if kwargs['type']:
+        #     properties_list = Property.letting.filter(property_type='land')
+        # else:
+        #     properties_list = Property.letting.all()
+        properties_list = Property.letting.filter(property_type='land')
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 listings per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = 'Land for Lease'
+        return context_data
+
+
 class LettingPropertiesView(TemplateView):
     template_name = "property_list.html"
 
@@ -90,6 +144,33 @@ class LettingPropertiesView(TemplateView):
         context_data['page_title'] = 'Properties for letting'
         return context_data
 
+class CityLandView(TemplateView):
+    template_name = "land_list.html"
+    def get_context_data(self, **kwargs):
+        context_data = super(CityLandView, self).get_context_data(**kwargs)
+        city = kwargs['city']
+
+        queryset = Property.objects.filter(state=Property.StatesOptions.Published, city__name=city)
+        # if kwargs['type']:
+        #     properties_list = queryset.filter(property_type=kwargs['type'])
+        # else:
+        #     properties_list = queryset
+        properties_list = queryset.filter(property_type='land')
+
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 listings per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = 'Land in ' + city
+        return context_data
 
 class CityPropertiesView(TemplateView):
     template_name = "property_list.html"
@@ -116,6 +197,36 @@ class CityPropertiesView(TemplateView):
             context_data['properties'] = paginator.page(paginator.num_pages)
 
         context_data['page_title'] = 'Properties in ' + city
+        return context_data
+
+
+class NeighbourhoodLandView(TemplateView):
+    template_name = "land_list.html"
+
+    def get_context_data(self, **kwargs):
+        context_data = super(NeighbourhoodLandView, self).get_context_data(**kwargs)
+        neighbourhood = kwargs['neighbourhood']
+
+        queryset = Property.objects.filter(state=Property.StatesOptions.Published, neighbourhood__name=neighbourhood)
+        # if kwargs['type']:
+        #     properties_list = queryset.filter(property_type=kwargs['type'])
+        # else:
+        #     properties_list = queryset
+        properties_list = queryset.filter(property_type='land')
+
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 listings per page
+        page = self.request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        context_data['page_title'] = 'Land in ' + neighbourhood
         return context_data
 
 
@@ -171,6 +282,44 @@ class CompanyPropertiesView(TemplateView):
         context_data['page_title'] = company + ' properties'
         return context_data
 
+class LandListView(View):
+    initial = {'key': 'value'}
+    template_name = "property_list.html"
+
+    def get(self, request, *args, **kwargs):
+        context_data = {'page_title': 'Property List'}
+        properties_list = Property.objects.filter(state=Property.StatesOptions.Published,  property_type='land')
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 listings per page
+        page = request.GET.get('page')
+
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, context_data)
+
+    def post(self, request, *args, **kwargs):
+        context_data = {'page_title':  'Property List'}
+        properties_list = PropertyFilter(request.POST, queryset=Property.objects.filter(state=Property.StatesOptions.Published,  property_type='land'))
+        # Pagination
+        paginator = Paginator(properties_list, 24)  # Show 25 listings per page
+        page = request.GET.get('page')
+        try:
+            context_data['properties'] = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            context_data['properties'] = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            context_data['properties'] = paginator.page(paginator.num_pages)
+
+        return render(request, self.template_name, context_data)
 
 class PropertyListView(View):
     initial = {'key': 'value'}
@@ -182,7 +331,7 @@ class PropertyListView(View):
         # Pagination
         paginator = Paginator(properties_list, 24)  # Show 25 listings per page
         page = request.GET.get('page')
-        print page
+
         try:
             context_data['properties'] = paginator.page(page)
         except PageNotAnInteger:

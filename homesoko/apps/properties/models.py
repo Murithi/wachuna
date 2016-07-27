@@ -109,7 +109,7 @@ class Property(TimeStampedModel):
     city = models.ForeignKey(City, null=False, blank=False)
     neighbourhood = models.ForeignKey(Neighbourhood, null=False, blank=False)
     category = models.CharField(max_length=14, blank=True, choices=CategoryOptions.choices)
-    property_type = models.CharField(max_length=20, blank=True, choices=PropertyTypeOptions.choices)
+    property_type = models.CharField(max_length=20, blank=True, choices=PropertyTypeOptions.choices, default="land")
     agency = models.ForeignKey(User, null=False, blank=False, related_name='property')
     features = models.ManyToManyField(Feature, related_name='property', null=True, blank=True)
     is_premium = models.BooleanField(default=False)

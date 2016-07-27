@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from homesoko.apps.properties.models import Property, PropertyImage, PropertyDocuments
 from homesoko.apps.utils.djupload.views import UploadView, UploadListView, UploadDeleteView
 from homesoko.apps.utils.views_utils import require_own_agency
-from .forms import PropertyForm, AddPropertyFeaturesForm
+from .forms import PropertyForm, AddPropertyFeaturesForm, LandForm
 from .tables import PropertyTable
 
 
@@ -25,6 +25,7 @@ class PropertyCreateView(CreateView):
     def form_valid(self, form):
         form.instance.agency = self.request.user
         return super(PropertyCreateView, self).form_valid(form)
+
 
 
 class PropertyListView(ListView):
@@ -70,6 +71,56 @@ class EditPropertyView(UpdateView):
         return super(EditPropertyView, self).form_valid(form)
 
 
+class LandCreateView(CreateView):
+    form_class = LandForm
+    model = Property
+    template_name = 'listings/listing_form.html'
+    success_url = reverse_lazy('listings.land_list')
+
+
+class LandListView(ListView):
+    model = Property
+    template_name = 'listings/listing_list.html'
+
+    @require_own_agency
+    def dispatch(self, *args, **kwargs):
+        self.get_object_agency()
+        return super(LandListView, self).dispatch(*args, **kwargs)
+
+    def get_object_agency(self):
+        return self.request.user
+
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_staff:
+            return Property.objects.filter(agency=user)
+        return Property.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(LandListView, self).get_context_data(**kwargs)
+        context['table'] = PropertyTable(self.get_queryset())
+        return context
+
+class EditLandView(UpdateView):
+    model = Property
+    template_name = 'listings/listing_form.html'
+    success_url = reverse_lazy('listings.land_list')
+    form_class = LandForm
+
+
+    @require_own_agency
+    def dispatch(self, *args, **kwargs):
+        self.get_object_agency()
+        return super(EditLandView, self).dispatch(*args, **kwargs)
+
+    def get_object_agency(self):
+        return self.get_object().agency
+
+    def form_valid(self, form):
+        form.instance.agency = self.request.user
+        return super(EditLandView, self).form_valid(form)
+
+
 class PropertyImagesUploadView(UploadView):
     model = PropertyImage
     delete_url = 'listings.images_delete'
@@ -94,7 +145,7 @@ class PropertyImagesUploadView(UploadView):
 class PropertyDocumentsUploadView(UploadView):
     model = PropertyDocuments
     delete_url = 'listings.files_delete'
-    template_name = 'listings/propertyfile_form.html'
+    template_name = 'listings/propertydocs_form.html'
 
     @require_own_agency
     def dispatch(self, *args, **kwargs):
